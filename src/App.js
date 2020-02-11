@@ -15,10 +15,17 @@ function App() {
     zoom: 13
   });
 
-  //must return a single JSX element, so wrap in a div
+
+
 
   return (
     
+    /*
+    must return a single JSX element, so wrap in a div
+    */
+    
+
+
     <div className="App">
 
       <ReactMapGL {...viewport}
@@ -33,7 +40,11 @@ function App() {
         longitude= {-122.030792}
       >
       
+
       </Marker>
+
+  </Marker>
+
       
       
       </ReactMapGL>
