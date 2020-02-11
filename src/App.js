@@ -35,17 +35,29 @@ function App() {
         setViewport(viewport);
       }}  
       >
+
       <Marker
-        latitude={36.974117}
-        longitude= {-122.030792}
+        latitude={36.952905}
+        longitude= {-122.056754}
       >
       
 
+      <p>o shit dead seal</p>
+  	</Marker>
+
+  	<Marker
+        latitude={36.9611}
+        longitude= {-122.0250}
+      >
+
+
       </Marker>
 
-  </Marker>
 
       
+      <p>o shit dead walrus</p>
+  	</Marker>
+
       
       </ReactMapGL>
 
