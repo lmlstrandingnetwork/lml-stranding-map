@@ -38,7 +38,15 @@ function App() {
         longitude= {-122.030792}
       >
       
+<<<<<<< Updated upstream
   </Marker>
+=======
+
+      </Marker>
+
+  
+
+>>>>>>> Stashed changes
       
       
       </ReactMapGL>
