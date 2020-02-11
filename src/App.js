@@ -33,21 +33,14 @@ function App() {
         setViewport(viewport);
       }}  
       >
+
       <Marker
         latitude={36.974117}
         longitude= {-122.030792}
       >
       
-<<<<<<< Updated upstream
-  </Marker>
-=======
 
-      </Marker>
-
-  
-
->>>>>>> Stashed changes
-      
+  	</Marker>
       
       </ReactMapGL>
 
