@@ -17,12 +17,14 @@ function App() {
 
 
 
+
   return (
     
     /*
     must return a single JSX element, so wrap in a div
     */
     
+
 
     <div className="App">
 
@@ -39,6 +41,7 @@ function App() {
         longitude= {-122.056754}
       >
       
+
       <p>o shit dead seal</p>
   	</Marker>
 
@@ -46,6 +49,11 @@ function App() {
         latitude={36.9611}
         longitude= {-122.0250}
       >
+
+
+      </Marker>
+
+
       
       <p>o shit dead walrus</p>
   	</Marker>
