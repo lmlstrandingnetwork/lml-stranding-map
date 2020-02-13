@@ -50,13 +50,13 @@ function App() {
         longitude= {-122.0250}
       >
 
-
+      <p>o shit dead walrus</p>
       </Marker>
 
 
       
-      <p>o shit dead walrus</p>
-  	</Marker>
+      
+  	
 
       
       </ReactMapGL>
