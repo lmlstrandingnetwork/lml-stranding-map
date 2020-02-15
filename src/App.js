@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import ReactMapGL, {Marker} from "react-map-gl";
+import * as strandings from "./strandings.json";
 //import * as strandingData from "./data/stranding-data.json";
 
 //you dont need to type myinfo.js since it is default file for import
@@ -30,33 +31,31 @@ function App() {
 
       <ReactMapGL {...viewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-      mapStyle="mapbox://styles/hfox999/ck6crjgkn0bfs1imqs16f84wz"
       onViewportChange={viewport => {
         setViewport(viewport);
       }}  
       >
 
-      <Marker
-        latitude={36.952905}
-        longitude= {-122.056754}
-      >
-      
+      {strandings.features.map((strand) => (
+        <Marker key = {strand.properties.PARK_ID}
+        latitude = {strand.geometry.coordinates[0]}
+        longitude = {strand.geometry.coordinates[1]}>
 
-      <p>o shit dead seal</p>
-  	</Marker>
+        <button class = "marker-btn">
 
-  	<Marker
-        latitude={36.9611}
-        longitude= {-122.0250}
-      >
+        <img src = "/seal-face-svgrepo-com.svg" />
 
-      <p>o shit dead walrus</p>
-      </Marker>
+        </button>
 
 
-      
-      
-  	
+        </Marker>
+
+
+
+
+        ) )}
+
+
 
       
       </ReactMapGL>
