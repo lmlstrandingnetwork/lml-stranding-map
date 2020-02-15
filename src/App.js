@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import ReactMapGL, {Marker} from "react-map-gl";
+import ReactMapGL, {Marker, Popup} from "react-map-gl";
 import * as strandings from "./strandings.json";
 //import * as strandingData from "./data/stranding-data.json";
 
@@ -17,6 +17,7 @@ function App() {
   });
 
 
+const [selectedStranding, setSelectedStranding] = useState(null);
 
 
   return (
@@ -41,8 +42,14 @@ function App() {
         latitude = {strand.geometry.coordinates[0]}
         longitude = {strand.geometry.coordinates[1]}>
 
-        <button class = "marker-btn">
-
+        <button 
+          class = "marker-btn" 
+          onClick={(e) => {
+            e.preventDefault();
+            setSelectedStranding(strand); 
+          }}
+        >
+                     
         <img src = "/seal-face-svgrepo-com.svg" />
 
         </button>
@@ -55,6 +62,23 @@ function App() {
 
         ) )}
 
+      {selectedStranding ? (
+        <Popup 
+          latitude= {selectedStranding.geometry.coordinates[0]} 
+          longitude=  {selectedStranding.geometry.coordinates[1]}
+
+          onClose= {() => {
+            setSelectedStranding(null)
+
+        }}
+
+        >
+          <div>
+            <h2> {selectedStranding.properties.NAME} </h2>
+            <p> {selectedStranding.properties.DESCRIPTIO}</p>
+          </div>
+        </Popup>
+        ) : null}
 
 
       
