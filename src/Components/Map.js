@@ -50,8 +50,14 @@ function Map() {
             }}
           >
             <div>
-              <h2> {selectedStranding.properties.NAME} </h2>
-              <p> {selectedStranding.properties.DESCRIPTIO}</p>
+              <h2> {selectedStranding.properties.SPECIES} </h2>
+              <ul>
+                <li> {selectedStranding.properties.DESCRIPTION} </li>
+                <li> {selectedStranding.properties.AGE} </li> 
+                <li> {selectedStranding.properties.SEX} </li>
+
+              </ul>
+    
             </div>
           </Popup>
         ) : null}
