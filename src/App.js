@@ -2,6 +2,9 @@ import React from "react";
 import "./App.css";
 import Map from "./Components/Map";
 import Header from "./Components/Header";
+import Filter from "./Components/Filter";
+
+
 //import { ReactComponent } from "*.svg";
 
 //you dont need to type myinfo.js since it is default file for import
