@@ -1,69 +1,80 @@
-import React, { useState } from 'react';
-import Paper from '@material-ui/core/Paper';
-import {
-  FilteringState,
-  IntegratedFiltering,
-} from '@devexpress/dx-react-grid';
-import {
-  Grid,
-  Table,
-  TableHeaderRow,
-  TableFilterRow,
-} from '@devexpress/dx-react-grid-material-ui';
-
-import { generateRows } from '../demo-data/generator';
-
-export default () => {
-  const [columns] = useState([
-    { name: 'name', title: 'Species' },
-    { name: 'gender', title: 'Sex' },
-    { name: 'city', title: 'Year' },
-    //{ name: 'car', title: 'Car' },
-  ]);
-  const [rows] = useState(generateRows({ length: 0 }));
-
-  return (
-    <Paper>
-      <Grid
-        rows={rows}
-        columns={columns}
-      >
-        <FilteringState defaultFilters={[]} />
-        <IntegratedFiltering />
-        <Table />
-        <TableHeaderRow />
-        <TableFilterRow />
-      </Grid>
-    </Paper>
-  );
-};
-
-
-//export default Filter;
-/*import React from "react";
+import * as React from 'react'
+import classnames from 'classnames'
 import {Container, Row, Col } from 'react-grid-system';
-import {
-    FilteringState,
-    IntegratedFiltering,
-  } from '@devexpress/dx-react-grid';
-  
-class Filter extends React.Component{
-    render(){
-        return(
-        <Container>
-            <Row>
-                <Col sm={4}>
+
+
+import styles from './styles.module.css'
+
+class Filter extends React.Component {
+  render() {
+    const containerClasses = classnames('container', 'mb-1', styles.container)
+    const formClasses = classnames('form-horizontal', styles.form)
+
+    return (
+
+      <div className={containerClasses}>
+        <form className={formClasses} noValidate>
+          <div className="columns text-center">
+          <Container>
+        <Row>
+          <Col>
+
+            <div className="column col-4 col-xs-12">
+              <div className="form-group">
+                <div className="col-3 col-sm-12">
+                  <label className="form-label" htmlFor="price-from">
                     Species
-                    </Col>
-                <Col sm={4}>
+                  </label>
+                </div>
+                <div className="col-9 col-sm-12">
+                <select className="form-select" id="price-from">
+                <option value="">Choose...</option>
+                </select>
+
+                </div>
+              </div>
+            </div>
+            </Col>
+            <Col>
+            <div className="column col-4 col-xs-12">
+              <div className="form-group">
+                <div className="col-3 col-sm-12">
+                  <label className="form-label" htmlFor="postcode">
                     Sex
-                </Col>
-                <Col sm={4}>
+                  </label>
+                </div>
+                <div className="col-9 col-sm-12">
+                  <select className="form-select" id="postcode">
+                    <option value="">Choose...</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            </Col>
+            <Col>
+            <div className="column col-4 col-xs-12">
+              <div className="form-group">
+                <div className="col-3 col-sm-12">
+                  <label className="form-label" htmlFor="sortorder">
                     Year
-                </Col>    
+                  </label>
+                </div>
+                <div className="col-9 col-sm-12">
+                  <select className="form-select" id="sortorder">
+                    <option value="">Choose...</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            </Col>
             </Row>
-        </Container>
-        );
-    }
+      </Container>
+          </div>
+        </form>
+      </div>
+
+    )
+  }
 }
-export default Filter;*/
+
+export default Filter
