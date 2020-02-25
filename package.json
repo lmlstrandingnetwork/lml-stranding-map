@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@devexpress/dx-core": "^2.4.1",
+    "@devexpress/dx-react-core": "^2.4.1",
+    "@devexpress/dx-react-grid": "^2.4.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
@@ -12,6 +15,7 @@
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
+    "react-grid-system": "^6.2.3",
     "react-map-gl": "^5.2.3",
     "react-scripts": "3.3.1"
   },

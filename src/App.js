@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 import Map from "./Components/Map";
+import Header from "./Components/Header";
+import Filter from "./Components/Filter";
 import NavMenu from "./Components/NavMenu";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -9,7 +11,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
+      <Header />
     	<NavMenu />
+      <Filter />
      	<Map />
     </div>
   );
