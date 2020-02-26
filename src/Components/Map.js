@@ -36,6 +36,7 @@ function Map() {
               onClick={e => {
                 e.preventDefault();
                 setSelectedStranding(strand);
+				
               }}
             >
               <img src="/seal-face-svgrepo-com.svg" alt="seal-face" />
@@ -53,12 +54,12 @@ function Map() {
           >
             <div>
               <h2> {selectedStranding.properties.SPECIES} </h2>
-              <ul>
-                <li> {selectedStranding.properties.DESCRIPTION} </li>
-                <li> {selectedStranding.properties.AGE} </li> 
-                <li> {selectedStranding.properties.SEX} </li>
+             
+                <p> {selectedStranding.properties.DESCRIPTION} </p>
+                <p> {selectedStranding.properties.AGE} </p> 
+                <p> {selectedStranding.properties.SEX} </p>
 
-              </ul>
+            
     
             </div>
           </Popup>
