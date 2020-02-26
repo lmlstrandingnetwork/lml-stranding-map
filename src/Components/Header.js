@@ -4,7 +4,8 @@ class Header extends React.Component{
     render() {
         return (
             <div>
-                <h1>Long Marine Strandings</h1>
+                <h2>UCSC Long Marine Strandings</h2>
+                <h3>01/01/11 - 02/26/20</h3>
             </div>
         );
     }

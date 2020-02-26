@@ -23,3 +23,38 @@ code {
 	width: 20px;
 	height: 20px;
 } 
+
+body {
+  font-family: 'Roboto', sans-serif
+}
+h1 {
+  font-family: 'Roboto', sans-serif
+}
+h2 {
+  font-family: 'Roboto', sans-serif
+}
+h3 {
+  font-family: 'Roboto', sans-serif
+}
+Nav {
+  font-family: 'Roboto', sans-serif
+}
+Form {
+  font-family: 'Roboto', sans-serif
+}
+Popup {
+  font-family: 'Roboto', sans-serif
+}
+Marker {
+  font-family: 'Roboto', sans-serif
+}
+.mapboxgl-map{
+  font-family: 'Roboto', sans-serif
+}
+
+.heading {
+  font-weight: 700;
+}
+.subheading {
+  font-weight: 300;
+}
