@@ -11,14 +11,12 @@ class Filter extends React.Component {
     const formClasses = classnames('form-horizontal', styles.form)
 
     return (
-
       <div className={containerClasses}>
         <form className={formClasses} noValidate>
           <div className="columns text-center">
           <Container>
         <Row>
           <Col>
-
             <div className="column col-4 col-xs-12">
               <div className="form-group">
                 <div className="col-3 col-sm-12">
@@ -59,7 +57,34 @@ class Filter extends React.Component {
               <div className="form-group">
                 <div className="col-3 col-sm-12">
                   <label className="form-label" htmlFor="sortorder">
-                    Year:
+                    From:
+                  </label>
+                </div>
+                <div className="col-9 col-sm-12">
+                  <select className="form-select" id="sortorder">
+                    <option value="">2010</option>
+                    <option value="">2011</option>
+                    <option value="">2012</option>
+                    <option value="">2013</option>
+                    <option value="">2014</option>
+                    <option value="">2015</option>
+                    <option value="">2016</option>
+                    <option value="">2017</option>
+                    <option value="">2018</option>
+                    <option value="">2019</option>
+                    <option value="">2020</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            </Col>
+
+            <Col>
+            <div className="column col-4 col-xs-12">
+              <div className="form-group">
+                <div className="col-3 col-sm-12">
+                  <label className="form-label" htmlFor="sortorder">
+                    To:
                   </label>
                 </div>
                 <div className="col-9 col-sm-12">
