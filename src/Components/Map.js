@@ -32,11 +32,11 @@ function Map() {
 		
       >
 		
-        {strandings.features.map(strand => (
+        {strandings(strand => (
           <Marker
-            key={strand.properties.PARK_ID}
-            latitude={strand.geometry.coordinates[0]}
-            longitude={strand.geometry.coordinates[1]}
+ //           key={strand.properties.PARK_ID}
+            latitude={strand.Latitude}
+            longitude={strand.Longitude}
           >
             <button
               class="marker-btn"
@@ -55,19 +55,15 @@ function Map() {
 
         {selectedStranding ? (
           <Popup
-            latitude={selectedStranding.geometry.coordinates[0]}
-            longitude={selectedStranding.geometry.coordinates[1]}
+            latitude={selectedStranding.Latitude}
+            longitude={selectedStranding.Longitude}
             onClose={() => {
               setSelectedStranding(null);
             }}
           >
             <div>
-              <h2> {selectedStranding.properties.SPECIES} </h2>
-             
-				  <p> {selectedStranding.properties.MODIFIED_D} </p>
-                <p> {selectedStranding.properties.DESCRIPTION} </p>
-                <p> {selectedStranding.properties.AGE} </p> 
-                <p> {selectedStranding.properties.SEX} </p>
+
+                <p> {selectedStranding.Sex} </p>
 
             
     
