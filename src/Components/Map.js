@@ -4,10 +4,12 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import * as strandings from "../strandings.json";
 
 function Map() {
+  // Effect hook on mount and unmount
   useEffect(() => {
     fetchItems();
   }, []);
 
+  // Set state hooks
   const [viewport, setViewport] = useState({
     width: "100%",
     height: 800,
@@ -21,7 +23,7 @@ function Map() {
 
   const fetchItems = async () => {
     const data = await fetch(
-      "https://gist.githubusercontent.com/paulyakovlev/03cefd18c257f76efb591b08980cfbf9/raw/bc97314ffa3c77841e27434c108b0f48a6ed8099/dataset.json"
+      "https://gist.githubusercontent.com/paulyakovlev/171c30bbaa958e74920cc40138b9a129/raw/33bc1d7ba22bd74b21c8374c6583da5736b20169/smalldataset.json"
     );
 
     const items = await data.json();
