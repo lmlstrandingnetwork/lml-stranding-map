@@ -19,8 +19,11 @@ function Map() {
   });
 
   const [selectedStranding, setSelectedStranding] = useState(null);
+
+  // This holds our strandings for now, default state is empty array
   const [items, setItems] = useState([]);
 
+  // Consume JSON data from placeholder and load into array
   const fetchItems = async () => {
     const data = await fetch(
       "https://gist.githubusercontent.com/paulyakovlev/171c30bbaa958e74920cc40138b9a129/raw/33bc1d7ba22bd74b21c8374c6583da5736b20169/smalldataset.json"
