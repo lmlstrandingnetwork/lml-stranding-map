@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
-
 function Map() {
   // Effect hook on mount and unmount
   useEffect(() => {
@@ -18,6 +17,7 @@ function Map() {
     zoom: 13
   });
 
+  // This holds the information for the popups
   const [selectedStranding, setSelectedStranding] = useState(null);
 
   // This holds our strandings for now, default state is empty array
