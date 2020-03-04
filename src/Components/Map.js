@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
+
 function Map() {
   // Effect hook on mount and unmount
   useEffect(() => {
@@ -60,6 +61,24 @@ function Map() {
             </button>
           </Marker>
         ))}
+        {selectedStranding ? (
+          <Popup
+            latitude={selectedStranding.geometry.coordinates[0]}
+            longitude={selectedStranding.geometry.coordinates[1]}
+            onClose={() => {
+              setSelectedStranding(null);
+            }}
+          >
+            <div>
+              <h2> {selectedStranding.properties.SPECIES} </h2>
+
+              <p> {selectedStranding.properties.MODIFIED_D} </p>
+              <p> {selectedStranding.properties.DESCRIPTION} </p>
+              <p> {selectedStranding.properties.AGE} </p>
+              <p> {selectedStranding.properties.SEX} </p>
+            </div>
+          </Popup>
+        ) : null}
       </ReactMapGL>
     </div>
   );
