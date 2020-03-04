@@ -63,8 +63,8 @@ function Map() {
         ))}
         {selectedStranding ? (
           <Popup
-            latitude={selectedStranding.geometry.coordinates[0]}
-            longitude={selectedStranding.geometry.coordinates[1]}
+            latitude={Number(selectedStranding.Latitude)}
+            longitude={Number(selectedStranding.Longitude)}
             onClose={() => {
               setSelectedStranding(null);
             }}
