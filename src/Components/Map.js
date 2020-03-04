@@ -70,12 +70,11 @@ function Map() {
             }}
           >
             <div>
-              <h2> {selectedStranding.properties.SPECIES} </h2>
+              <h2> {selectedStranding["Common Name"]} </h2>
 
-              <p> {selectedStranding.properties.MODIFIED_D} </p>
-              <p> {selectedStranding.properties.DESCRIPTION} </p>
-              <p> {selectedStranding.properties.AGE} </p>
-              <p> {selectedStranding.properties.SEX} </p>
+              <p> {selectedStranding["Date of Examination"]} </p>
+              <p> {selectedStranding["Age Class"]} </p>
+              <p> {selectedStranding["Sex"]} </p>
             </div>
           </Popup>
         ) : null}
