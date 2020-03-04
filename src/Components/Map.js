@@ -25,7 +25,7 @@ function Map() {
   // Consume JSON data from placeholder and load into array
   const fetchItems = async () => {
     const data = await fetch(
-      "https://gist.githubusercontent.com/paulyakovlev/171c30bbaa958e74920cc40138b9a129/raw/80bffce9266808d1972dbce384ff9cdf6cf1b51b/smalldataset.json"
+      "https://gist.githubusercontent.com/paulyakovlev/03cefd18c257f76efb591b08980cfbf9/raw/11e9cd157ecbcda208b79edc3eed6c6df12ab42c/dataset.json"
     );
 
     const strandings = await data.json();
