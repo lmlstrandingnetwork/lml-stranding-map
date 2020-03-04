@@ -71,10 +71,11 @@ function Map() {
           >
             <div>
               <h2> {selectedStranding["Common Name"]} </h2>
-
               <p> {selectedStranding["Date of Examination"]} </p>
               <p> {selectedStranding["Age Class"]} </p>
               <p> {selectedStranding["Sex"]} </p>
+              <p>Latitude: {selectedStranding.Latitude}</p>
+              <p>Longitude: {selectedStranding.Longitude}</p>
             </div>
           </Popup>
         ) : null}
