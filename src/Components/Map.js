@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import * as strandings from "../strandings.json";
 
 function Map() {
   // Effect hook on mount and unmount
@@ -21,17 +20,17 @@ function Map() {
   const [selectedStranding, setSelectedStranding] = useState(null);
 
   // This holds our strandings for now, default state is empty array
-  const [items, setItems] = useState([]);
+  const [strandings, setStrandings] = useState([]);
 
   // Consume JSON data from placeholder and load into array
   const fetchItems = async () => {
     const data = await fetch(
-      "https://gist.githubusercontent.com/paulyakovlev/171c30bbaa958e74920cc40138b9a129/raw/33bc1d7ba22bd74b21c8374c6583da5736b20169/smalldataset.json"
+      "https://gist.githubusercontent.com/paulyakovlev/171c30bbaa958e74920cc40138b9a129/raw/80bffce9266808d1972dbce384ff9cdf6cf1b51b/smalldataset.json"
     );
 
-    const items = await data.json();
-    setItems(items.reports);
-    console.log(items);
+    const strandings = await data.json();
+    setStrandings(strandings.reports);
+    console.log(strandings.reports);
   };
 
   return (
@@ -44,44 +43,23 @@ function Map() {
           setViewport(viewport);
         }}
       >
-        {strandings.features.map(strand => (
+        {strandings.map(report => (
           <Marker
-            key={strand.properties.PARK_ID}
-            latitude={strand.geometry.coordinates[0]}
-            longitude={strand.geometry.coordinates[1]}
+            key={report["National Database Number"]}
+            latitude={Number(report.Latitude)}
+            longitude={Number(report.Longitude)}
           >
             <button
               className="marker-btn"
               onClick={e => {
                 e.preventDefault();
-                setSelectedStranding(strand);
-                //this.map.flyTo({ center: [-118.4107187, 33.9415889] })
-                //compiles but doesn't do anything?
+                setSelectedStranding(report);
               }}
             >
               <img src="/seal-face-svgrepo-com.svg" alt="seal-face" />
             </button>
           </Marker>
         ))}
-
-        {selectedStranding ? (
-          <Popup
-            latitude={selectedStranding.geometry.coordinates[0]}
-            longitude={selectedStranding.geometry.coordinates[1]}
-            onClose={() => {
-              setSelectedStranding(null);
-            }}
-          >
-            <div>
-              <h2> {selectedStranding.properties.SPECIES} </h2>
-
-              <p> {selectedStranding.properties.MODIFIED_D} </p>
-              <p> {selectedStranding.properties.DESCRIPTION} </p>
-              <p> {selectedStranding.properties.AGE} </p>
-              <p> {selectedStranding.properties.SEX} </p>
-            </div>
-          </Popup>
-        ) : null}
       </ReactMapGL>
     </div>
   );
