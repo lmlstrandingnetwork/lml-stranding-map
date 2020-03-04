@@ -26,12 +26,12 @@ function Map() {
   // Consume JSON data from placeholder and load into array
   const fetchItems = async () => {
     const data = await fetch(
-      "https://gist.githubusercontent.com/paulyakovlev/03cefd18c257f76efb591b08980cfbf9/raw/11e9cd157ecbcda208b79edc3eed6c6df12ab42c/dataset.json"
+      "https://sos-data-viz.firebaseio.com/reports.json"
     );
 
     const strandings = await data.json();
-    setStrandings(strandings.reports);
-    console.log(strandings.reports);
+    setStrandings(strandings);
+    console.log(strandings);
   };
 
   return (
