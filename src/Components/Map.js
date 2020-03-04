@@ -26,12 +26,12 @@ function Map() {
   // Consume JSON data from placeholder and load into array
   const fetchItems = async () => {
     const data = await fetch(
-      "https://gist.githubusercontent.com/paulyakovlev/03cefd18c257f76efb591b08980cfbf9/raw/11e9cd157ecbcda208b79edc3eed6c6df12ab42c/dataset.json"
+      "https://sos-data-viz.firebaseio.com/reports.json"
     );
 
     const strandings = await data.json();
-    setStrandings(strandings.reports);
-    console.log(strandings.reports);
+    setStrandings(strandings);
+    console.log(strandings);
   };
 
   return (
@@ -63,19 +63,19 @@ function Map() {
         ))}
         {selectedStranding ? (
           <Popup
-            latitude={selectedStranding.geometry.coordinates[0]}
-            longitude={selectedStranding.geometry.coordinates[1]}
+            latitude={Number(selectedStranding.Latitude)}
+            longitude={Number(selectedStranding.Longitude)}
             onClose={() => {
               setSelectedStranding(null);
             }}
           >
             <div>
-              <h2> {selectedStranding.properties.SPECIES} </h2>
-
-              <p> {selectedStranding.properties.MODIFIED_D} </p>
-              <p> {selectedStranding.properties.DESCRIPTION} </p>
-              <p> {selectedStranding.properties.AGE} </p>
-              <p> {selectedStranding.properties.SEX} </p>
+              <h2> {selectedStranding["Common Name"]} </h2>
+              <p> {selectedStranding["Date of Examination"]} </p>
+              <p> {selectedStranding["Age Class"]} </p>
+              <p> {selectedStranding["Sex"]} </p>
+              <p>Latitude: {selectedStranding.Latitude}</p>
+              <p>Longitude: {selectedStranding.Longitude}</p>
             </div>
           </Popup>
         ) : null}
