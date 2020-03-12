@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import Filter from './Filter';
 
 function Map() {
   // Effect hook on mount and unmount
@@ -36,6 +37,7 @@ function Map() {
 
   return (
     <div>
+    
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -44,6 +46,7 @@ function Map() {
           setViewport(viewport);
         }}
       >
+      
         {strandings.map(report => (
           <Marker
             key={report["National Database Number"]}
@@ -79,6 +82,7 @@ function Map() {
             </div>
           </Popup>
         ) : null}
+        <Filter />
       </ReactMapGL>
     </div>
   );

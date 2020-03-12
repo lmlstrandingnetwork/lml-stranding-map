@@ -19,19 +19,22 @@ function NavMenu() {
             height="50"
           />
         </Navbar.Brand>
-        <h1>UCSC Long Marine Strandings</h1>
+        
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto" style={{ paddingLeft: 950 }}>
+          <Nav className="mr-auto" style={{ paddingRight: 20 }}>
             <Nav.Link href="#home">About</Nav.Link>
             <Nav.Link href="#home">FAQ</Nav.Link>
             <Nav.Link href="https://lmlstrandingnetwork.ucsc.edu/">
               Stranding Program
             </Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
+
       </Navbar>
+
     </div>
   );
 }

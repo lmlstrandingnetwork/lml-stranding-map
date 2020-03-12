@@ -1,16 +1,16 @@
-import * as React from "react";
+import React, {PureComponent} from 'react';
+import "../App.css";
 import classnames from "classnames";
 import { Container, Row, Col } from "react-grid-system";
-
 import styles from "./styles.module.css";
 
-class Filter extends React.Component {
+export default class Filter extends PureComponent {
   render() {
     const containerClasses = classnames(styles.container);
     const formClasses = classnames("form-horizontal", styles.form);
 
     return (
-      <div className={containerClasses}>
+      <div className="filter">
         <form className={formClasses} noValidate>
           <Container>
             <Row>
@@ -24,22 +24,27 @@ class Filter extends React.Component {
                   id="price-from"
                   placeholder="Choose species"
                 >
-                  <option value="">California Sea Lion</option>
-                  <option value="">Dolphin</option>
-                  <option value="">Beaked Whale</option>
+                  <option value="">California Sea Lion (330)</option>
+                  <option value="">Dolphin (14)</option>
+                  <option value="">Beaked Whale(3)</option>
                 </select>
               </Col>
+              </Row>
 
-              <Col>
-                <label className="form-label" htmlFor="postcode">
-                  Sex:
+              <Row>
+                <Col>
+                  <label className="form-label" htmlFor="postcode">
+                  Sex: 
                 </label>
                 <select className="form-select" id="postcode">
                   <option value="">Male</option>
                   <option value="">Female</option>
                 </select>
-              </Col>
-              <Col>
+                </Col>
+              </Row>
+              
+              <Row>
+                <Col>
                 <label className="form-label" htmlFor="sortorder">
                   From:
                 </label>
@@ -58,6 +63,9 @@ class Filter extends React.Component {
                   <option value="">2020</option>
                 </select>
               </Col>
+              </Row>
+
+              <Row>
 
               <Col>
                 <label className="form-label" htmlFor="sortorder">
@@ -77,12 +85,12 @@ class Filter extends React.Component {
                   <option value="">2020</option>
                 </select>
               </Col>
-            </Row>
+              </Row>
+           
           </Container>
         </form>
       </div>
     );
   }
-}
 
-export default Filter;
+}
