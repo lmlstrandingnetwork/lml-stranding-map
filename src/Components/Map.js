@@ -57,7 +57,7 @@ function Map() {
                 setSelectedStranding(report);
               }}
             >
-              <img src="/seal-face-svgrepo-com.svg" alt="seal-face" />
+              <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
             </button>
           </Marker>
         ))}
