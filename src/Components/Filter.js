@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 
 export default class Filter extends PureComponent {
   render() {
-    const containerClasses = classnames(styles.container);
+   
     const formClasses = classnames("form-horizontal", styles.form);
 
     return (
