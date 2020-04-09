@@ -28,7 +28,7 @@ function Map() {
   const fetchItems = async (params) => {
     let url = "https://sos-data-viz.firebaseio.com/reports.json";
 
-    // If any were given, add out parameters to the request url
+    // If any were given, add our parameters to the request url
     if (params) {
       url +=
         "?" +
