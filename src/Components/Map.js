@@ -6,6 +6,7 @@ import Filter from "./Filter";
 function Map() {
   // Effect hook on mount and unmount
   useEffect(() => {
+    //  var params = { orderBy: "Common Name", equalTo: "Whale, humpback" };
     fetchItems();
   }, []);
 
@@ -22,7 +23,24 @@ function Map() {
   const [selectedStranding, setSelectedStranding] = useState(null);
 
   // This holds our strandings for now, default state is empty array
-  const [strandings, setStrandings] = useState([]);
+  const [strandings, setStrandings] = useState([
+    {
+      "Age Class": "ADULT",
+      "Date of Examination": "2009-JUL-07",
+      "Common Name": "Whale, humpback",
+      Latitude: "36.89912",
+      Longitude: "-121.84161",
+      Sex: "FEMALE",
+    },
+    {
+      "Age Class": "ADULT",
+      "Date of Examination": "2009-JUL-07",
+      "Common Name": "Whale, humpback",
+      Latitude: "36.89912",
+      Longitude: "-121.84161",
+      Sex: "FEMALE",
+    },
+  ]);
 
   // Consume JSON data from placeholder and load into array
   const fetchItems = async (params) => {
@@ -37,15 +55,17 @@ function Map() {
           .map((key) => key + '="' + params[key] + '"')
           .join("&");
     }
-
     console.log(url);
+
     const response = await fetch(url);
     console.log(response);
 
-    const data = await response.json();
-    console.log(data);
-    //setStrandings(data);
-    //console.log(strandings);
+    const json = await response.json();
+    console.log(json);
+
+    setStrandings(Object.values(json));
+    console.log(Object.values(json));
+    console.log(strandings);
   };
 
   return (
