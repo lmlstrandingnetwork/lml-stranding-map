@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import Filter from './Filter';
+import Filter from "./Filter";
 
 function Map() {
   // Effect hook on mount and unmount
@@ -15,7 +15,7 @@ function Map() {
     height: 800,
     latitude: 36.954117,
     longitude: -122.030799,
-    zoom: 13
+    zoom: 13,
   });
 
   // This holds the information for the popups
@@ -25,10 +25,10 @@ function Map() {
   const [strandings, setStrandings] = useState([]);
 
   // Consume JSON data from placeholder and load into array
-  const fetchItems = async () => {
-    const data = await fetch(
-      "https://sos-data-viz.firebaseio.com/reports.json"
-    );
+  const fetchItems = async (params) => {
+    const url = "https://sos-data-viz.firebaseio.com/reports.json";
+
+    const data = await fetch(url);
 
     const strandings = await data.json();
     setStrandings(strandings);
@@ -37,17 +37,15 @@ function Map() {
 
   return (
     <div>
-    
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/hfox999/ck6crjgkn0bfs1imqs16f84wz"
-        onViewportChange={viewport => {
+        onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
       >
-      
-        {strandings.map(report => (
+        {strandings.map((report) => (
           <Marker
             key={report["National Database Number"]}
             latitude={Number(report.Latitude)}
@@ -55,7 +53,7 @@ function Map() {
           >
             <button
               className="marker-btn"
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 setSelectedStranding(report);
               }}
