@@ -26,23 +26,26 @@ function Map() {
 
   // Consume JSON data from placeholder and load into array
   const fetchItems = async (params) => {
-    let url = "https://sos-data-viz.firebaseio.com/reports.json";
+    let url =
+      "https://sos-data-viz.firebaseio.com/reports.json?orderBy=%22Common%20Name%22&equalTo=%22Whale,%20humpback%22";
 
     // If any were given, add our parameters to the request url
     if (params) {
       url +=
         "?" +
         Object.keys(params)
-          .map((key) => key + "=" + params[key])
+          .map((key) => key + '="' + params[key] + '"')
           .join("&");
     }
 
     console.log(url);
-    const data = await fetch(url);
+    const response = await fetch(url);
+    console.log(response);
 
-    const strandings = await data.json();
-    setStrandings(strandings);
-    console.log(strandings);
+    const data = await response.json();
+    console.log(data);
+    //setStrandings(data);
+    //console.log(strandings);
   };
 
   return (
