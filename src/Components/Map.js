@@ -6,7 +6,7 @@ import Filter from "./Filter";
 function Map() {
   // Effect hook on mount and unmount
   useEffect(() => {
-    //  var params = { orderBy: "Common Name", equalTo: "Whale, humpback" };
+    //var params = { orderBy: "Common Name", equalTo: "Whale, gray" };
     fetchItems();
   }, []);
 
@@ -27,8 +27,7 @@ function Map() {
 
   // Consume JSON data from placeholder and load into array
   const fetchItems = async (params) => {
-    let url =
-      "https://sos-data-viz.firebaseio.com/reports.json?orderBy=%22Common%20Name%22&equalTo=%22Porpoise,%20harbor%22";
+    let url = "https://sos-data-viz.firebaseio.com/reports.json";
 
     // If any were given, add our parameters to the request url
     if (params) {
