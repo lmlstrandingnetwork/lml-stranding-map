@@ -26,8 +26,17 @@ function Map() {
 
   // Consume JSON data from placeholder and load into array
   const fetchItems = async (params) => {
-    const url = "https://sos-data-viz.firebaseio.com/reports.json";
+    let url = "https://sos-data-viz.firebaseio.com/reports.json";
 
+    if (params) {
+      url +=
+        "?" +
+        Object.keys(params)
+          .map((key) => key + "=" + params[key])
+          .join("&");
+    }
+
+    console.log(url);
     const data = await fetch(url);
 
     const strandings = await data.json();
