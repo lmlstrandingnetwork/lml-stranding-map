@@ -23,29 +23,12 @@ function Map() {
   const [selectedStranding, setSelectedStranding] = useState(null);
 
   // This holds our strandings for now, default state is empty array
-  const [strandings, setStrandings] = useState([
-    {
-      "Age Class": "ADULT",
-      "Date of Examination": "2009-JUL-07",
-      "Common Name": "Whale, humpback",
-      Latitude: "36.89912",
-      Longitude: "-121.84161",
-      Sex: "FEMALE",
-    },
-    {
-      "Age Class": "ADULT",
-      "Date of Examination": "2009-JUL-07",
-      "Common Name": "Whale, humpback",
-      Latitude: "36.89912",
-      Longitude: "-121.84161",
-      Sex: "FEMALE",
-    },
-  ]);
+  const [strandings, setStrandings] = useState([]);
 
   // Consume JSON data from placeholder and load into array
   const fetchItems = async (params) => {
     let url =
-      "https://sos-data-viz.firebaseio.com/reports.json?orderBy=%22Common%20Name%22&equalTo=%22Whale,%20humpback%22";
+      "https://sos-data-viz.firebaseio.com/reports.json?orderBy=%22Common%20Name%22&equalTo=%22Porpoise,%20harbor%22";
 
     // If any were given, add our parameters to the request url
     if (params) {
