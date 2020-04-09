@@ -14,21 +14,18 @@ export default class Filter extends PureComponent {
         <form className={formClasses} noValidate>
           <Container>
             <Row>
-              <Col>
-                <label className="form-label" htmlFor="price-from">
-                  Species:
-                </label>
+             
+			   <Col>
+				<label>California Sea Lion</label>
+				<input type='checkbox'/>
+				<div>
+				<label>Dolphin</label>
+				<input type='checkbox'/>
+				</div>
+				<label>Beaked Whale</label>
+				<input type='checkbox'/>
+			  </Col>
 
-                <select
-                  className="form-select"
-                  id="price-from"
-                  placeholder="Choose species"
-                >
-                  <option value="">California Sea Lion (330)</option>
-                  <option value="">Dolphin (14)</option>
-                  <option value="">Beaked Whale(3)</option>
-                </select>
-              </Col>
               </Row>
 
               <Row>
