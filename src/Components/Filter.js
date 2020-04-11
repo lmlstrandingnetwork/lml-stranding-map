@@ -14,6 +14,10 @@ export default class Filter extends React.Component {
 
   handleSubmit(event) {
     console.log("Selected species: " + this.state.value);
+    this.props.fetchItems({
+      orderBy: "Common Name",
+      equalTo: this.state.value,
+    });
     event.preventDefault();
   }
   render() {
