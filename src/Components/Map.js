@@ -47,6 +47,9 @@ function Map() {
     setStrandings(Object.values(json));
     console.log(Object.values(json));
     console.log(strandings);
+
+
+    
   };
 
   return (
