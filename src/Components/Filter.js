@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
 import Map from "./Map";
@@ -33,6 +33,32 @@ const Content = () => {
 };
 
 function Filter() {
+  const [reportHits, setReportHits] = useState([]);
+
+  const getResults = (searchState) => {
+    console.log(searchState.refinementList);
+    console.log(searchState.refinementList["Common Name"].length);
+    let bloop = ["Year of Examination:2019"];
+    bloop = Object.keys(searchState.refinementList).map((key) =>
+      searchState.refinementList[key].length !== 0
+        ? searchState.refinementList[key]
+            .map((entry) => key + ":" + entry)
+            .join('", "')
+        : key + ":-foobar"
+    );
+    console.log(bloop);
+
+    index
+      .search("", {
+        facetFilters: bloop,
+        hitsPerPage: 1000,
+      })
+      .then(({ hits }) => {
+        console.log(hits);
+        setReportHits(hits);
+      });
+  };
+
   return (
     <div>
       <InstantSearch searchClient={searchClient} indexName="reports">
