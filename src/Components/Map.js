@@ -99,7 +99,6 @@ function Map() {
             </div>
           </Popup>
         ) : null}
-        <Filter params={params} setParams={setParams} fetchItems={fetchItems} />
       </ReactMapGL>
     </div>
   );

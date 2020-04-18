@@ -27,6 +27,7 @@ const Content = () => {
       <div className="info">
         <Stats />
       </div>
+      <Map />
     </div>
   );
 };
