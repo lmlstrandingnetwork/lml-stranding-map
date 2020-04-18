@@ -37,20 +37,20 @@ function Filter() {
 
   const getResults = (searchState) => {
     console.log(searchState.refinementList);
-    console.log(searchState.refinementList["Common Name"].length);
-    let bloop = ["Year of Examination:2019"];
-    bloop = Object.keys(searchState.refinementList).map((key) =>
+
+    let filters = ["Year of Examination:2019"];
+
+    filters = Object.keys(searchState.refinementList).map((key) =>
       searchState.refinementList[key].length !== 0
         ? searchState.refinementList[key]
             .map((entry) => key + ":" + entry)
             .join('", "')
         : key + ":-foobar"
     );
-    console.log(bloop);
 
     index
       .search("", {
-        facetFilters: bloop,
+        facetFilters: filters,
         hitsPerPage: 1000,
       })
       .then(({ hits }) => {
