@@ -1,40 +1,44 @@
 import React from "react";
-import "../App.css";
+import algoliasearch from "algoliasearch/lite";
+import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
 
-export default class Filter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: "Whale, gray" };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
+const searchClient = algoliasearch(
+  "UTKLMG7FHX",
+  "8e4dd8f3e449a3add9ccefda057870f6"
+);
 
-  handleSubmit(event) {
-    console.log("Selected species: " + this.state.value);
-    this.props.fetchItems({
-      orderBy: "Common Name",
-      equalTo: this.state.value,
-    });
-    event.preventDefault();
-  }
-  render() {
-    return (
-      <div className="filter">
-        <form className="form" onSubmit={this.handleSubmit}>
-          <label>
-            Species:
-            <select value={this.state.value} onChange={this.handleChange}>
-              <option value="Whale, gray">Whale, gray</option>
-              <option value="Sea lion, California">Seal, California</option>
-              <option value="Porpoise, harbor">Porpoise, harbor</option>
-            </select>
-          </label>
-          <input className="submit-button" type="submit" value="Submit" />
-        </form>
+const SideBar = () => (
+  <div className="left-column">
+    <h5> Common Name </h5>
+    <RefinementList attribute="Common Name" />
+    <h5> Year of Examination </h5>
+    <RefinementList attribute="Year of Examination" />
+    <h5> Sex </h5>
+    <RefinementList attribute="Sex" />
+  </div>
+);
+
+const Content = () => {
+  return (
+    <div className="right-column">
+      <div className="info">
+        <Stats />
       </div>
-    );
-  }
+    </div>
+  );
+};
+
+function Filter() {
+  return (
+    <div>
+      <InstantSearch searchClient={searchClient} indexName="reports">
+        <main>
+          <SideBar />
+          <Content />
+        </main>
+      </InstantSearch>
+    </div>
+  );
 }
+
+export default Filter;
