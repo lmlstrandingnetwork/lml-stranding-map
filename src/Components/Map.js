@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import Filter from "./Filter";
+import "../App.css";
 
-function Map() {
-  // Effect hook on mount and unmount
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
-  // Set state hooks
+function Map(props) {
+  // Default map orientation
   const [viewport, setViewport] = useState({
     width: "100%",
     height: 800,
@@ -24,35 +18,10 @@ function Map() {
   // This holds our strandings for now, default state is empty array
   const [strandings, setStrandings] = useState([]);
 
-  // Search filter parameters
-  const [params, setParams] = useState([]);
-
-  // Consume JSON data from placeholder and load into array
-  const fetchItems = async (params) => {
-    let url = "https://sos-data-viz.firebaseio.com/reports.json";
-
-    console.log("fetching....");
-    // If any were given, add our parameters to the request url
-    if (params) {
-      console.log("params detected:" + params);
-      url +=
-        "?" +
-        Object.keys(params)
-          .map((key) => key + '="' + params[key] + '"')
-          .join("&");
-    }
-    console.log(url);
-
-    const response = await fetch(url);
-    console.log(response);
-
-    const json = await response.json();
-    console.log(json);
-
-    setStrandings(Object.values(json));
-    console.log(Object.values(json));
-    console.log(strandings);
-  };
+  // Update strandings after every render
+  useEffect(() => {
+    setStrandings(props.hits);
+  });
 
   return (
     <div>
@@ -99,7 +68,6 @@ function Map() {
             </div>
           </Popup>
         ) : null}
-        <Filter params={params} setParams={setParams} fetchItems={fetchItems} />
       </ReactMapGL>
     </div>
   );
