@@ -3,7 +3,7 @@ import "../App.css";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import Filter from "./Filter";
 
-function Map() {
+function Map(props) {
   // Effect hook on mount and unmount
   useEffect(() => {
     fetchItems();
@@ -64,7 +64,7 @@ function Map() {
           setViewport(viewport);
         }}
       >
-        {strandings.map((report) => (
+        {props.hits.map((report) => (
           <Marker
             key={report["National Database Number"]}
             latitude={Number(report.Latitude)}

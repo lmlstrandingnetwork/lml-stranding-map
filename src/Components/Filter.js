@@ -21,13 +21,13 @@ const SideBar = () => (
   </div>
 );
 
-const Content = () => {
+const Content = (props) => {
   return (
     <div className="right-column">
       <div className="info">
         <Stats />
       </div>
-      <Map />
+      <Map hits={props.hits} />
     </div>
   );
 };
