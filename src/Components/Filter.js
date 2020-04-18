@@ -4,11 +4,11 @@ import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
 import Map from "./Map";
 
 const searchClient = algoliasearch(
-  process.env.REACT_ALGOLIA_APP_ID,
-  process.env.REACT_ALGOLIA_API_KEY
+  process.env.REACT_APP_ALGOLIA_APP_ID,
+  process.env.REACT_APP_ALGOLIA_API_KEY
 );
 
-const index = searchClient.initIndex(process.env.REACT_ALGOLIA_INDEX_NAME);
+const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
 const SideBar = () => (
   <div className="left-column">
@@ -27,7 +27,6 @@ const Content = () => {
       <div className="info">
         <Stats />
       </div>
-      <Map />
     </div>
   );
 };
@@ -63,12 +62,12 @@ function Filter() {
     <div>
       <InstantSearch
         searchClient={searchClient}
-        indexName="reports"
+        indexName={process.env.REACT_APP_ALGOLIA_INDEX_NAME}
         onSearchStateChange={(searchState) => getResults(searchState)}
       >
         <main>
           <SideBar />
-          <Content />
+          <Content hits={reportHits} />
         </main>
       </InstantSearch>
     </div>
