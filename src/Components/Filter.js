@@ -61,7 +61,11 @@ function Filter() {
 
   return (
     <div>
-      <InstantSearch searchClient={searchClient} indexName="reports">
+      <InstantSearch
+        searchClient={searchClient}
+        indexName="reports"
+        onSearchStateChange={(searchState) => getResults(searchState)}
+      >
         <main>
           <SideBar />
           <Content />
