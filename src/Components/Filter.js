@@ -15,10 +15,7 @@ const SideBar = () => (
     <h5> Common Name </h5>
     <RefinementList attribute="Common Name" />
     <h5> Year of Examination </h5>
-    <RefinementList
-      attribute="Year of Examination"
-      defaultRefinement={["2019"]}
-    />
+    <RefinementList attribute="Year of Examination" />
     <h5> Sex </h5>
     <RefinementList attribute="Sex" />
   </div>
@@ -39,9 +36,10 @@ function Filter() {
   const [reportHits, setReportHits] = useState([]);
 
   const getResults = (searchState) => {
-    let filters = ["Year of Examination:2019"];
+    let filters = [];
 
     if (searchState) {
+      console.log(searchState);
       console.log(searchState.refinementList);
 
       filters = Object.keys(searchState.refinementList).map((key) =>
@@ -63,10 +61,6 @@ function Filter() {
         setReportHits(hits);
       });
   };
-
-  useEffect(() => {
-    getResults();
-  }, []);
 
   return (
     <div>
