@@ -24,12 +24,17 @@ function Map() {
   // This holds our strandings for now, default state is empty array
   const [strandings, setStrandings] = useState([]);
 
+  // Search filter parameters
+  const [params, setParams] = useState([]);
+
   // Consume JSON data from placeholder and load into array
   const fetchItems = async (params) => {
     let url = "https://sos-data-viz.firebaseio.com/reports.json";
 
+    console.log("fetching....");
     // If any were given, add our parameters to the request url
     if (params) {
+      console.log("params detected:" + params);
       url +=
         "?" +
         Object.keys(params)
@@ -94,7 +99,7 @@ function Map() {
             </div>
           </Popup>
         ) : null}
-        <Filter />
+        <Filter params={params} setParams={setParams} fetchItems={fetchItems} />
       </ReactMapGL>
     </div>
   );
