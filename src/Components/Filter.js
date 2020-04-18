@@ -1,11 +1,14 @@
 import React from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
+import Map from "./Map";
 
 const searchClient = algoliasearch(
-  "UTKLMG7FHX",
-  "8e4dd8f3e449a3add9ccefda057870f6"
+  process.env.REACT_ALGOLIA_APP_ID,
+  process.env.REACT_ALGOLIA_API_KEY
 );
+
+const index = searchClient.initIndex(process.env.REACT_ALGOLIA_INDEX_NAME);
 
 const SideBar = () => (
   <div className="left-column">
@@ -24,6 +27,7 @@ const Content = () => {
       <div className="info">
         <Stats />
       </div>
+      <Map />
     </div>
   );
 };
