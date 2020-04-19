@@ -2,7 +2,7 @@ import React, { useState, useEffect, Component } from "react";
 import "../App.css";
 import ReactMapGL, { Marker, Popup, Source, Layer } from "react-map-gl";
 import Filter from './Filter';
-import Testdata from "../test-data.json";
+import Testdata from "../geo.json";
 import { heatmapLayer } from '../heatmap-style'; 
 //import { json as requestJson } from 'd3-request';
 
