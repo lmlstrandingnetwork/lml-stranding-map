@@ -50,3 +50,18 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
     });
   }
 );
+
+export const databaseOnDelete = functions.database
+  .ref("/features")
+  .onDelete(async (snapshot, context) => {
+    await deleteDocumentFromAlgolia(snapshot);
+  });
+
+async function deleteDocumentFromAlgolia(
+  snapshot: functions.database.DataSnapshot
+) {
+  if (snapshot.exists()) {
+    const objectID = snapshot.key;
+    await collectionIndex.deleteObject(objectID);
+  }
+}
