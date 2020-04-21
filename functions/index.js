@@ -17,9 +17,7 @@ const algoliaClient = algoliasearch(
 // the index name according to which environment is running. functions.config().projectId is a default
 // property set by Cloud Functions.
 const collectionIndexName =
-  functions.config().projectId === "PRODUCTION-PROJECT-NAME"
-    ? "COLLECTION_prod"
-    : "COLLECTION_dev";
+  functions.config().projectId === "sos-data-viz" ? "strandings" : "strandings";
 const collectionIndex = algoliaClient.initIndex(collectionIndexName);
 
 // Create a HTTP request cloud function.
@@ -31,7 +29,7 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
     const algoliaRecords: any[] = [];
 
     // Retrieve all documents from the COLLECTION collection.
-    const querySnapshot = await db.collection("COLLECTION").get();
+    const querySnapshot = await db.collection("features").get();
 
     querySnapshot.docs.forEach((doc) => {
       const document = doc.data();
@@ -49,7 +47,9 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
 
     // After all records are created, we save them to
     collectionIndex.saveObjects(algoliaRecords, (_error: any, content: any) => {
-      res.status(200).send("COLLECTION was indexed to Algolia successfully.");
+      res
+        .status(200)
+        .send("Features collection was indexed to Algolia successfully.");
     });
   }
 );
