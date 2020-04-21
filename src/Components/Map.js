@@ -36,8 +36,8 @@ function Map(props) {
         {strandings.map((report) => (
           <Marker
             key={report["National Database Number"]}
-            latitude={Number(report.Latitude)}
-            longitude={Number(report.Longitude)}
+            latitude={report.geometry.coordinates[1]}
+            longitude={report.geometry.coordinates[0]}
           >
             <button
               className="marker-btn"
