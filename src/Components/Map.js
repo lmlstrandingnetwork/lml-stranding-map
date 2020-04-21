@@ -59,12 +59,12 @@ function Map(props) {
             }}
           >
             <div>
-              <h2> {selectedStranding["Common Name"]} </h2>
-              <p> {selectedStranding["Date of Examination"]} </p>
-              <p> {selectedStranding["Age Class"]} </p>
-              <p> {selectedStranding["Sex"]} </p>
-              <p>Latitude: {selectedStranding.Latitude}</p>
-              <p>Longitude: {selectedStranding.Longitude}</p>
+              <h2> {selectedStranding.properties["Common Name"]} </h2>
+              <p> {selectedStranding.properties["Date of Examination"]} </p>
+              <p> {selectedStranding.properties["Age Class"]} </p>
+              <p> {selectedStranding.properties["Sex"]} </p>
+              <p>Latitude: {selectedStranding.geometry.coordinates[1]}</p>
+              <p>Longitude: {selectedStranding.geometry.coordinates[0]}</p>
             </div>
           </Popup>
         ) : null}
