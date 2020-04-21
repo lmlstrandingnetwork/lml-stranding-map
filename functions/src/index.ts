@@ -14,9 +14,9 @@ const algoliaClient = algoliasearch(
 );
 
 // functions.config().projectId is a default property set by Cloud Functions.
-const collectionIndexName = functions.config().projectId;
-const collectionIndex = algoliaClient.initIndex(collectionIndexName);
-
+//const collectionIndexName = functions.config().projectId;
+//const collectionIndex = algoliaClient.initIndex(collectionIndexName);
+const collectionIndex = algoliaClient.initIndex("strandings");
 // Create a HTTP request cloud function.
 export const sendCollectionToAlgolia = functions.https.onRequest(
   async (req, res) => {
@@ -52,7 +52,7 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
 );
 
 export const databaseOnDelete = functions.database
-  .ref("/features")
+  .ref("/features/{key}")
   .onDelete(async (snapshot, context) => {
     await deleteDocumentFromAlgolia(snapshot);
   });
@@ -67,14 +67,14 @@ async function deleteDocumentFromAlgolia(
 }
 
 export const databaseOnCreate = functions.database
-  .ref("/features")
+  .ref("/features/{key}")
   .onCreate(async (snapshot, context) => {
     await saveDocumentInAlgolia(snapshot);
   });
 
 async function saveDocumentInAlgolia(snapshot: any) {
   if (snapshot.exists()) {
-    const record = snapshot.data();
+    const record = snapshot.val();
     if (record) {
       // Removes the possibility of snapshot.data() being undefined.
       if (record.isIncomplete === false) {
