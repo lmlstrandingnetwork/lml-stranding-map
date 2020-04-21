@@ -66,7 +66,7 @@ async function deleteDocumentFromAlgolia(
   }
 }
 
-export const collectionOnCreate = functions.database
+export const databaseOnCreate = functions.database
   .ref("/features")
   .onCreate(async (snapshot, context) => {
     await saveDocumentInAlgolia(snapshot);
