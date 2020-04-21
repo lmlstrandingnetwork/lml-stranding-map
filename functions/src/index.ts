@@ -65,3 +65,27 @@ async function deleteDocumentFromAlgolia(
     await collectionIndex.deleteObject(objectID);
   }
 }
+
+export const collectionOnCreate = functions.database
+  .ref("/features")
+  .onCreate(async (snapshot, context) => {
+    await saveDocumentInAlgolia(snapshot);
+  });
+
+async function saveDocumentInAlgolia(snapshot: any) {
+  if (snapshot.exists) {
+    const record = snapshot.data();
+    if (record) {
+      // Removes the possibility of snapshot.data() being undefined.
+      if (record.isIncomplete === false) {
+        // We only index products that are complete.
+        record.objectID = snapshot.id;
+
+        // In this example, we are including all properties of the Firestore document
+        // in the Algolia record, but do remember to evaluate if they are all necessary.
+
+        await collectionIndex.saveObject(record); // Adds or replaces a specific object.
+      }
+    }
+  }
+}
