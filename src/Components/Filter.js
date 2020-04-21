@@ -13,11 +13,11 @@ const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 const SideBar = () => (
   <div className="left-column">
     <h5> Common Name </h5>
-    <RefinementList attribute="Common Name" />
+    <RefinementList attribute="properties.Common Name" />
     <h5> Year of Examination </h5>
-    <RefinementList attribute="Year of Examination" />
+    <RefinementList attribute="properties.Year of Examination" />
     <h5> Sex </h5>
-    <RefinementList attribute="Sex" />
+    <RefinementList attribute="properties.Sex" />
   </div>
 );
 
