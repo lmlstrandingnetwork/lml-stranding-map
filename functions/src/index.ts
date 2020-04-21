@@ -73,7 +73,7 @@ export const collectionOnCreate = functions.database
   });
 
 async function saveDocumentInAlgolia(snapshot: any) {
-  if (snapshot.exists) {
+  if (snapshot.exists()) {
     const record = snapshot.data();
     if (record) {
       // Removes the possibility of snapshot.data() being undefined.
