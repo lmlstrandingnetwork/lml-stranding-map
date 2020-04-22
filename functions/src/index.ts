@@ -14,7 +14,7 @@ const algoliaClient = algoliasearch(
 );
 
 // Set our Algolia index name
-const collectionIndex = algoliaClient.initIndex("strandings");
+const index = algoliaClient.initIndex("strandings");
 
 // Create a HTTP request cloud function.
 export const sendCollectionToAlgolia = functions.https.onRequest(
@@ -23,7 +23,6 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
     // A record does not need to necessarily contain all properties of the Firestore document,
     // only the relevant ones.
     const algoliaRecords: any[] = [];
-
     // Retrieve all documents from the COLLECTION collection.
     const querySnapshot = await db.collection("features").get();
 
@@ -42,10 +41,30 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
     });
 
     // After all records are created, we save them to
-    collectionIndex.saveObjects(algoliaRecords, (_error: any, content: any) => {
+    index.saveObjects(algoliaRecords, (_error: any, content: any) => {
       res
         .status(200)
         .send("Features collection was indexed to Algolia successfully.");
     });
   }
 );
+
+export const databaseOnCreate = functions.database
+  .ref("/features/{key}")
+  .onCreate(async (snapshot, context) => {
+    console.log(snapshot);
+    await saveDocumentInAlgolia(snapshot);
+  });
+
+async function saveDocumentInAlgolia(snapshot: any) {
+  console.log("sending to Algolia");
+  if (snapshot.exists()) {
+    const record = snapshot.val();
+    if (record) {
+      record.objectID = snapshot.key;
+      console.log(record);
+
+      await index.saveObject(record);
+    }
+  }
+}
