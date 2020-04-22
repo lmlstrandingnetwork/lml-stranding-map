@@ -56,6 +56,12 @@ export const databaseOnCreate = functions.database
     await saveDocumentInAlgolia(snapshot);
   });
 
+export const databaseOnDelete = functions.database
+  .ref("/features/{key}")
+  .onDelete(async (snapshot, context) => {
+    await deleteDocumentFromAlgolia(snapshot);
+  });
+
 async function saveDocumentInAlgolia(snapshot: any) {
   console.log("sending to Algolia");
   if (snapshot.exists()) {
