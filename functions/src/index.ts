@@ -14,7 +14,7 @@ const algoliaClient = algoliasearch(
 );
 
 // Set our Algolia index name
-const collectionIndex = algoliaClient.initIndex("strandings");
+const index = algoliaClient.initIndex("strandings");
 
 // Create a HTTP request cloud function.
 export const sendCollectionToAlgolia = functions.https.onRequest(
@@ -41,7 +41,7 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
     });
 
     // After all records are created, we save them to
-    collectionIndex.saveObjects(algoliaRecords, (_error: any, content: any) => {
+    index.saveObjects(algoliaRecords, (_error: any, content: any) => {
       res
         .status(200)
         .send("Features collection was indexed to Algolia successfully.");
@@ -65,7 +65,7 @@ async function saveDocumentInAlgolia(snapshot: any) {
       record.objectID = snapshot.key;
       console.log(record);
 
-      await collectionIndex.saveObject(record);
+      await index.saveObject(record);
     }
   }
 }
