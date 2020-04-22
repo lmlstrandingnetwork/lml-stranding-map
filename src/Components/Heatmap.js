@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactMapGL, { Source, Layer } from "react-map-gl";
 import Filter from "./Filter";
 import { heatmapLayer } from "../heatmap-style";
 import "../App.css";
 
-function Heatmap() {
+function Heatmap(props) {
   // Set state hooks
   const [viewport, setViewport] = useState({
     width: "100%",
@@ -16,6 +16,11 @@ function Heatmap() {
 
   // This holds our strandings for now, default state is empty array
   const [strandings, setStrandings] = useState([]);
+
+  // Update strandings after every render
+  useEffect(() => {
+    setStrandings(props.hits);
+  });
 
   return (
     <div>
@@ -32,8 +37,6 @@ function Heatmap() {
             <Layer {...heatmapLayer} />
           </Source>
         )}
-
-        <Filter />
       </ReactMapGL>
     </div>
   );
