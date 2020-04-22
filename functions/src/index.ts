@@ -60,7 +60,6 @@ async function saveDocumentInAlgolia(snapshot: any) {
   console.log("sending to Algolia");
   if (snapshot.exists()) {
     const record = snapshot.val();
-    console.log(record);
     if (record) {
       record.objectID = snapshot.key;
       console.log(record);
