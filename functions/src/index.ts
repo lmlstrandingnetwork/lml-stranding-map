@@ -13,10 +13,9 @@ const algoliaClient = algoliasearch(
   functions.config().algolia.apikey
 );
 
-// functions.config().projectId is a default property set by Cloud Functions.
-//const collectionIndexName = functions.config().projectId;
-//const collectionIndex = algoliaClient.initIndex(collectionIndexName);
+// Set our Algolia index name
 const collectionIndex = algoliaClient.initIndex("strandings");
+
 // Create a HTTP request cloud function.
 export const sendCollectionToAlgolia = functions.https.onRequest(
   async (req, res) => {
@@ -50,42 +49,3 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
     });
   }
 );
-
-export const databaseOnDelete = functions.database
-  .ref("/features/{key}")
-  .onDelete(async (snapshot, context) => {
-    await deleteDocumentFromAlgolia(snapshot);
-  });
-
-async function deleteDocumentFromAlgolia(
-  snapshot: functions.database.DataSnapshot
-) {
-  if (snapshot.exists()) {
-    const objectID = snapshot.key;
-    await collectionIndex.deleteObject(objectID);
-  }
-}
-
-export const databaseOnCreate = functions.database
-  .ref("/features/{key}")
-  .onCreate(async (snapshot, context) => {
-    await saveDocumentInAlgolia(snapshot);
-  });
-
-async function saveDocumentInAlgolia(snapshot: any) {
-  if (snapshot.exists()) {
-    const record = snapshot.val();
-    if (record) {
-      // Removes the possibility of snapshot.data() being undefined.
-      if (record.isIncomplete === false) {
-        // We only index products that are complete.
-        record.objectID = snapshot.id;
-
-        // In this example, we are including all properties of the Firestore document
-        // in the Algolia record, but do remember to evaluate if they are all necessary.
-
-        await collectionIndex.saveObject(record); // Adds or replaces a specific object.
-      }
-    }
-  }
-}
