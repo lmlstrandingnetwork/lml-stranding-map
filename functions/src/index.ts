@@ -49,3 +49,22 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
     });
   }
 );
+
+export const databaseOnCreate = functions.database
+  .ref("/features/{key}")
+  .onCreate(async (snapshot, context) => {
+    await saveDocumentInAlgolia(snapshot);
+  });
+
+async function saveDocumentInAlgolia(snapshot: any) {
+  if (snapshot.exists()) {
+    const record = snapshot.val();
+    if (record) {
+      if (record.isIncomplete === false) {
+        record.objectID = snapshot.id;
+
+        await collectionIndex.saveObject(record);
+      }
+    }
+  }
+}
