@@ -23,7 +23,6 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
     // A record does not need to necessarily contain all properties of the Firestore document,
     // only the relevant ones.
     const algoliaRecords: any[] = [];
-
     // Retrieve all documents from the COLLECTION collection.
     const querySnapshot = await db.collection("features").get();
 
@@ -53,18 +52,20 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
 export const databaseOnCreate = functions.database
   .ref("/features/{key}")
   .onCreate(async (snapshot, context) => {
+    console.log(snapshot);
     await saveDocumentInAlgolia(snapshot);
   });
 
 async function saveDocumentInAlgolia(snapshot: any) {
+  console.log("sending to Algolia");
   if (snapshot.exists()) {
     const record = snapshot.val();
+    console.log(record);
     if (record) {
-      if (record.isIncomplete === false) {
-        record.objectID = snapshot.id;
+      record.objectID = snapshot.key;
+      console.log(record);
 
-        await collectionIndex.saveObject(record);
-      }
+      await collectionIndex.saveObject(record);
     }
   }
 }
