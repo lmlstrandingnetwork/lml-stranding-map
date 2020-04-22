@@ -1,96 +1,81 @@
-import React, {PureComponent} from 'react';
-import "../App.css";
-import classnames from "classnames";
-import { Container, Row, Col } from "react-grid-system";
-import styles from "./styles.module.css";
+import React, { useState, useEffect } from "react";
+import algoliasearch from "algoliasearch/lite";
+import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
+import Map from "./Map";
 
-export default class Filter extends PureComponent {
-  render() {
-   
-    const formClasses = classnames("form-horizontal", styles.form);
+const searchClient = algoliasearch(
+  process.env.REACT_APP_ALGOLIA_APP_ID,
+  process.env.REACT_APP_ALGOLIA_API_KEY
+);
 
-    return (
-      <div className="filter">
-        <form className={formClasses} noValidate>
-          <Container>
-            <Row>
-              <Col>
-                <label className="form-label" htmlFor="price-from">
-                  Species:
-                </label>
+const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
-                <select
-                  className="form-select"
-                  id="price-from"
-                  placeholder="Choose species"
-                >
-                  <option value="">California Sea Lion (330)</option>
-                  <option value="">Dolphin (14)</option>
-                  <option value="">Beaked Whale(3)</option>
-                </select>
-              </Col>
-              </Row>
+const SideBar = () => (
+  <div className="left-column">
+    <h5> Common Name </h5>
+    <RefinementList attribute="properties.Common Name" />
+    <h5> Year of Examination </h5>
+    <RefinementList attribute="properties.Year of Examination" />
+    <h5> Sex </h5>
+    <RefinementList attribute="properties.Sex" />
+  </div>
+);
 
-              <Row>
-                <Col>
-                  <label className="form-label" htmlFor="postcode">
-                  Sex: 
-                </label>
-                <select className="form-select" id="postcode">
-                  <option value="">Male</option>
-                  <option value="">Female</option>
-                </select>
-                </Col>
-              </Row>
-              
-              <Row>
-                <Col>
-                <label className="form-label" htmlFor="sortorder">
-                  From:
-                </label>
-
-                <select className="form-select" id="sortorder">
-                  <option value="">2010</option>
-                  <option value="">2011</option>
-                  <option value="">2012</option>
-                  <option value="">2013</option>
-                  <option value="">2014</option>
-                  <option value="">2015</option>
-                  <option value="">2016</option>
-                  <option value="">2017</option>
-                  <option value="">2018</option>
-                  <option value="">2019</option>
-                  <option value="">2020</option>
-                </select>
-              </Col>
-              </Row>
-
-              <Row>
-
-              <Col>
-                <label className="form-label" htmlFor="sortorder">
-                  To:
-                </label>
-                <select className="form-select" id="sortorder">
-                  <option value="">2010</option>
-                  <option value="">2011</option>
-                  <option value="">2012</option>
-                  <option value="">2013</option>
-                  <option value="">2014</option>
-                  <option value="">2015</option>
-                  <option value="">2016</option>
-                  <option value="">2017</option>
-                  <option value="">2018</option>
-                  <option value="">2019</option>
-                  <option value="">2020</option>
-                </select>
-              </Col>
-              </Row>
-           
-          </Container>
-        </form>
+const Content = (props) => {
+  return (
+    <div className="right-column">
+      <div className="info">
+        <Stats />
       </div>
-    );
-  }
+      <Map hits={props.hits} />
+    </div>
+  );
+};
 
+function Filter() {
+  const [reportHits, setReportHits] = useState([]);
+
+  const getResults = (searchState) => {
+    let filters = [];
+
+    if (searchState) {
+      console.log(searchState);
+      console.log(searchState.refinementList);
+
+      filters = Object.keys(searchState.refinementList).map((key) =>
+        searchState.refinementList[key].length !== 0
+          ? searchState.refinementList[key]
+              .map((entry) => key + ":" + entry)
+              .join('", "')
+          : key + ":-foobar"
+      );
+    }
+
+    index
+      .search("", {
+        facetFilters: filters,
+        hitsPerPage: 1000,
+      })
+      .then(({ hits }) => {
+        console.log(hits);
+        setReportHits(hits);
+      });
+  };
+
+  return (
+    <div>
+      <InstantSearch
+        searchClient={searchClient}
+        indexName={process.env.REACT_APP_ALGOLIA_INDEX_NAME}
+        onSearchStateChange={(searchState) => getResults(searchState)}
+      >
+        <main>
+          <SideBar />
+          <Content hits={reportHits} />
+        </main>
+      </InstantSearch>
+    </div>
+  );
 }
+
+export default Filter;
