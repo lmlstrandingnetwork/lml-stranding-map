@@ -63,7 +63,7 @@ export const databaseOnDelete = functions.database
   });
 
 async function saveDocumentInAlgolia(snapshot: any) {
-  console.log("sending to Algolia");
+  console.log("adding record to Algolia");
   if (snapshot.exists()) {
     const record = snapshot.val();
     if (record) {
@@ -72,5 +72,14 @@ async function saveDocumentInAlgolia(snapshot: any) {
 
       await index.saveObject(record);
     }
+  }
+}
+
+async function deleteDocumentFromAlgolia(snapshot: any) {
+  if (snapshot.exists()) {
+    console.log("deleting record from Algolia");
+    const objectID = snapshot.key;
+
+    await index.deleteObject(objectID);
   }
 }
