@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ReactMapGL, { Source, Layer } from "react-map-gl";
 import Filter from "./Filter";
-import Testdata from "../geo.json";
 import { heatmapLayer } from "../heatmap-style";
 import "../App.css";
 
@@ -29,7 +28,7 @@ function Heatmap() {
         }}
       >
         {strandings && (
-          <Source type="geojson" data={Testdata}>
+          <Source type="geojson" data={strandings}>
             <Layer {...heatmapLayer} />
           </Source>
         )}
