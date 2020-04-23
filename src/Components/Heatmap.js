@@ -24,7 +24,7 @@ function Heatmap(props) {
     strandings.features = props.hits;
     setStrandings(strandings);
     console.log(strandings);
-  }, [props.hits]);
+  }, [props.hits, strandings]);
 
   return (
     <div>
@@ -37,7 +37,7 @@ function Heatmap(props) {
         }}
       >
         {strandings && (
-          <Source type="geojson" data={strandings.features}>
+          <Source type="geojson" data={strandings}>
             <Layer {...heatmapLayer} />
           </Source>
         )}
