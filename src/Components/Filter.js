@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
-import Map from "./Map";
 import Heatmap from "./Heatmap";
 
 const searchClient = algoliasearch(
