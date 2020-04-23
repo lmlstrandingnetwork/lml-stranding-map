@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Source, Layer } from "react-map-gl";
-import Filter from "./Filter";
 import { heatmapLayer } from "../heatmap-style";
 import "../App.css";
 
@@ -15,12 +14,17 @@ function Heatmap(props) {
   });
 
   // This holds our strandings for now, default state is empty array
-  const [strandings, setStrandings] = useState([]);
+  const [strandings, setStrandings] = useState({
+    type: "FeatureCollection",
+    features: [],
+  });
 
   // Update strandings after every render
   useEffect(() => {
-    setStrandings(props.hits);
-  });
+    strandings.features = props.hits;
+    setStrandings(strandings);
+    console.log(strandings);
+  }, [props.hits]);
 
   return (
     <div>
@@ -33,7 +37,7 @@ function Heatmap(props) {
         }}
       >
         {strandings && (
-          <Source type="geojson" data={strandings}>
+          <Source type="geojson" data={strandings.features}>
             <Layer {...heatmapLayer} />
           </Source>
         )}
