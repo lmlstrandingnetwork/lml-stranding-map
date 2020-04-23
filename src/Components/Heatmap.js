@@ -19,7 +19,7 @@ function Heatmap(props) {
     features: [],
   });
 
-  // Update strandings after every render
+  // Update strandings every render
   useEffect(() => {
     strandings.features = props.hits;
     setStrandings(strandings);
@@ -37,7 +37,7 @@ function Heatmap(props) {
         }}
       >
         {strandings && (
-          <Source type="geojson" data={strandings}>
+          <Source type="geojson" data={strandings} key={strandings.features}>
             <Layer {...heatmapLayer} />
           </Source>
         )}
