@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
-import Map from "./Map";
+import Heatmap from "./Heatmap";
 
 const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_APP_ID,
@@ -27,7 +27,7 @@ const Content = (props) => {
       <div className="info">
         <Stats />
       </div>
-      <Map hits={props.hits} />
+      <Heatmap hits={props.hits} />
     </div>
   );
 };
@@ -55,6 +55,7 @@ function Filter() {
       .search("", {
         facetFilters: filters,
         hitsPerPage: 1000,
+        attributesToRetrieve: ["*", "-_highlightResult"],
       })
       .then(({ hits }) => {
         console.log(hits);
