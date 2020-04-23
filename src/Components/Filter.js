@@ -56,6 +56,7 @@ function Filter() {
       .search("", {
         facetFilters: filters,
         hitsPerPage: 1000,
+        attributesToRetrieve: ["*", "-_highlightResult", ""],
       })
       .then(({ hits }) => {
         console.log(hits);
