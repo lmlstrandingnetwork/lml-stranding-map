@@ -19,11 +19,14 @@ function Heatmap(props) {
     features: [],
   });
 
+  const [strandingsKey, setStrandingsKey] = React.useReducer((c) => c + 1, 0);
+
   // Update strandings every render
   useEffect(() => {
     strandings.features = props.hits;
     setStrandings(strandings);
     console.log(strandings);
+    setStrandingsKey();
   }, [props.hits, strandings]);
 
   return (
@@ -37,7 +40,7 @@ function Heatmap(props) {
         }}
       >
         {strandings && (
-          <Source type="geojson" data={strandings} key={strandings.features}>
+          <Source type="geojson" data={strandings} key={strandingsKey}>
             <Layer {...heatmapLayer} />
           </Source>
         )}
