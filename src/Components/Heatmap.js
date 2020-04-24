@@ -4,7 +4,7 @@ import { heatmapLayer } from "../heatmap-style";
 import "../App.css";
 
 function Heatmap(props) {
-  // Set state hooks
+  // Viewport state
   const [viewport, setViewport] = useState({
     width: "100%",
     height: 800,
@@ -13,15 +13,15 @@ function Heatmap(props) {
     zoom: 13,
   });
 
-  // This holds our strandings for now, default state is empty array
+  // Strandings state in geojson format
   const [strandings, setStrandings] = useState({
     type: "FeatureCollection",
     features: [],
   });
 
+  // Use a key and useReducer to force React to unmount and mount <Source/> when strandings update
   const [strandingsKey, setStrandingsKey] = React.useReducer((c) => c + 1, 0);
 
-  // Update strandings every render
   useEffect(() => {
     strandings.features = props.hits;
     setStrandings(strandings);
