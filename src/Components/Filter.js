@@ -11,13 +11,6 @@ const searchClient = algoliasearch(
 const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
 const SideBar = (props) => {
-  const [heatmapState, dispatch] = React.useReducer(reducer, {
-    visible: false,
-  });
-  function showHeatmap() {
-    dispatch({ type: "show" });
-  }
-
   return (
     <div className="left-column">
       <ToggleHeatmapButton />
@@ -37,7 +30,7 @@ const Content = (props) => {
       <div className="info">
         <Stats />
       </div>
-      <Heatmap hits={props.hits} />
+      <Heatmap hits={props.hits} heatmapState={props.heatmapState} />
     </div>
   );
 };
@@ -61,6 +54,12 @@ const reducer = (heatmapState, action) => {
 
 function Filter() {
   const [reportHits, setReportHits] = useState([]);
+  const [heatmapState, dispatch] = React.useReducer(reducer, {
+    visible: false,
+  });
+  function showHeatmap() {
+    dispatch({ type: "show" });
+  }
 
   const getResults = (searchState) => {
     let filters = [];
@@ -99,7 +98,7 @@ function Filter() {
       >
         <main>
           <SideBar />
-          <Content hits={reportHits} />
+          <Content hits={reportHits} heatmapState={heatmapState} />
         </main>
       </InstantSearch>
     </div>
