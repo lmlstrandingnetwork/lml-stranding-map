@@ -62,6 +62,12 @@ export const databaseOnDelete = functions.database
     await deleteDocumentFromAlgolia(snapshot);
   });
 
+export const collectionOnUpdate = functions.firestore
+  .document("COLLECTION/{uid}")
+  .onUpdate(async (change, context) => {
+    await updateDocumentInAlgolia(change);
+  });
+
 async function saveDocumentInAlgolia(snapshot: any) {
   console.log("adding record to Algolia");
   if (snapshot.exists()) {
