@@ -28,7 +28,7 @@ export const databaseOnDelete = functions.database
     await deleteDocumentFromAlgolia(snapshot);
   });
 
-export const collectionOnUpdate = functions.database
+export const databaseOnUpdate = functions.database
   .ref("/features/{key}")
   .onUpdate(async (change) => {
     await updateDocumentInAlgolia(change);
