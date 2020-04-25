@@ -5,7 +5,6 @@ import algoliasearch from "algoliasearch";
 
 // Set up Firestore.
 admin.initializeApp();
-const db = admin.firestore();
 
 // Set up Algolia.
 const algoliaClient = algoliasearch(
@@ -15,39 +14,6 @@ const algoliaClient = algoliasearch(
 
 // Set our Algolia index name
 const index = algoliaClient.initIndex("strandings");
-
-// Create a HTTP request cloud function.
-export const sendCollectionToAlgolia = functions.https.onRequest(
-  async (req, res) => {
-    // This array will contain all records to be indexed in Algolia.
-    // A record does not need to necessarily contain all properties of the Firestore document,
-    // only the relevant ones.
-    const algoliaRecords: any[] = [];
-    // Retrieve all documents from the COLLECTION collection.
-    const querySnapshot = await db.collection("features").get();
-
-    querySnapshot.docs.forEach((doc) => {
-      const document = doc.data();
-      // Essentially, you want your records to contain any information that facilitates search,
-      // display, filtering, or relevance. Otherwise, you can leave it out.
-      // const record = {
-      //   objectID: doc.id,
-      //   relevantProperty1: document.relevantProperty1,
-      //   relevantProperty2: document.relevantProperty2,
-      //   relevantPropertyN: document.relevantPropertyN,
-      //  };
-      // algoliaRecords.push(record);
-      algoliaRecords.push(document);
-    });
-
-    // After all records are created, we save them to
-    index.saveObjects(algoliaRecords, (_error: any, content: any) => {
-      res
-        .status(200)
-        .send("Features collection was indexed to Algolia successfully.");
-    });
-  }
-);
 
 export const databaseOnCreate = functions.database
   .ref("/features/{key}")
@@ -60,6 +26,12 @@ export const databaseOnDelete = functions.database
   .ref("/features/{key}")
   .onDelete(async (snapshot: any, context: any) => {
     await deleteDocumentFromAlgolia(snapshot);
+  });
+
+export const databaseOnUpdate = functions.database
+  .ref("/features/{key}")
+  .onUpdate(async (change) => {
+    await updateDocumentInAlgolia(change);
   });
 
 async function saveDocumentInAlgolia(snapshot: any) {
@@ -81,5 +53,16 @@ async function deleteDocumentFromAlgolia(snapshot: any) {
     const objectID = snapshot.key;
 
     await index.deleteObject(objectID);
+  }
+}
+
+async function updateDocumentInAlgolia(
+  change: functions.Change<functions.database.DataSnapshot>
+) {
+  const docBeforeChange = change.before;
+  const docAfterChange = change.after;
+  if (docBeforeChange && docAfterChange) {
+    await deleteDocumentFromAlgolia(change.before);
+    await saveDocumentInAlgolia(change.after);
   }
 }
