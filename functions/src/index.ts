@@ -28,8 +28,8 @@ export const databaseOnDelete = functions.database
     await deleteDocumentFromAlgolia(snapshot);
   });
 
-export const collectionOnUpdate = functions.firestore
-  .document("COLLECTION/{uid}")
+export const collectionOnUpdate = functions.database
+  .ref("/features/{key}")
   .onUpdate(async (change, context) => {
     await updateDocumentInAlgolia(change);
   });
