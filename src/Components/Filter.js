@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
 import Heatmap from "./Heatmap";
@@ -12,6 +12,7 @@ const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
 const SideBar = () => (
   <div className="left-column">
+    <ToggleHeatmapButton />
     <h5> Common Name </h5>
     <RefinementList attribute="properties.Common Name" />
     <h5> Year of Examination </h5>
@@ -30,6 +31,10 @@ const Content = (props) => {
       <Heatmap hits={props.hits} />
     </div>
   );
+};
+
+const ToggleHeatmapButton = () => {
+  return <button>Toggle Heatmap</button>;
 };
 
 function Filter() {
