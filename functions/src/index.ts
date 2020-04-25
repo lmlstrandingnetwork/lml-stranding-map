@@ -30,7 +30,7 @@ export const databaseOnDelete = functions.database
 
 export const collectionOnUpdate = functions.database
   .ref("/features/{key}")
-  .onUpdate(async (change, context) => {
+  .onUpdate(async (change) => {
     await updateDocumentInAlgolia(change);
   });
 
@@ -53,5 +53,16 @@ async function deleteDocumentFromAlgolia(snapshot: any) {
     const objectID = snapshot.key;
 
     await index.deleteObject(objectID);
+  }
+}
+
+async function updateDocumentInAlgolia(
+  change: functions.Change<functions.database.DataSnapshot>
+) {
+  const docBeforeChange = change.before;
+  const docAfterChange = change.after;
+  if (docBeforeChange && docAfterChange) {
+    await deleteDocumentFromAlgolia(change.before);
+    await saveDocumentInAlgolia(change.after);
   }
 }
