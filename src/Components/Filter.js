@@ -10,17 +10,26 @@ const searchClient = algoliasearch(
 
 const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
-const SideBar = () => (
-  <div className="left-column">
-    <ToggleHeatmapButton />
-    <h5> Common Name </h5>
-    <RefinementList attribute="properties.Common Name" />
-    <h5> Year of Examination </h5>
-    <RefinementList attribute="properties.Year of Examination" />
-    <h5> Sex </h5>
-    <RefinementList attribute="properties.Sex" />
-  </div>
-);
+const SideBar = (props) => {
+  const [heatmapState, dispatch] = React.useReducer(reducer, {
+    visible: false,
+  });
+  function showHeatmap() {
+    dispatch({ type: "show" });
+  }
+
+  return (
+    <div className="left-column">
+      <ToggleHeatmapButton />
+      <h5> Common Name </h5>
+      <RefinementList attribute="properties.Common Name" />
+      <h5> Year of Examination </h5>
+      <RefinementList attribute="properties.Year of Examination" />
+      <h5> Sex </h5>
+      <RefinementList attribute="properties.Sex" />
+    </div>
+  );
+};
 
 const Content = (props) => {
   return (
@@ -33,8 +42,21 @@ const Content = (props) => {
   );
 };
 
-const ToggleHeatmapButton = () => {
-  return <button>Toggle Heatmap</button>;
+const ToggleHeatmapButton = (props) => {
+  return <button onClick={props.showHeatmap}>Toggle Heatmap</button>;
+};
+
+const reducer = (heatmapState, action) => {
+  switch (action.type) {
+    case "show":
+      return { visible: true };
+
+    case "hide":
+      return { visible: false };
+
+    default:
+      return heatmapState;
+  }
 };
 
 function Filter() {
