@@ -51,14 +51,14 @@ export const sendCollectionToAlgolia = functions.https.onRequest(
 
 export const databaseOnCreate = functions.database
   .ref("/features/{key}")
-  .onCreate(async (snapshot, context) => {
+  .onCreate(async (snapshot: any, context: any) => {
     console.log(snapshot);
     await saveDocumentInAlgolia(snapshot);
   });
 
 export const databaseOnDelete = functions.database
   .ref("/features/{key}")
-  .onDelete(async (snapshot, context) => {
+  .onDelete(async (snapshot: any, context: any) => {
     await deleteDocumentFromAlgolia(snapshot);
   });
 
