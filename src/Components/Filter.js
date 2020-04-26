@@ -45,11 +45,11 @@ const ToggleHeatmapButton = (props) => {
 const reducer = (heatmapState, action) => {
   switch (action.type) {
     case "show":
-      console.log({ visible: true });
+      console.log("heatmap visible");
       return { visible: true };
 
     case "hide":
-      console.log({ visible: false });
+      console.log("heatmap hidden");
       return { visible: false };
 
     default:
@@ -80,13 +80,10 @@ function Filter() {
 
     if (searchState) {
       console.log(searchState);
-      console.log(searchState.refinementList);
 
       filters = Object.keys(searchState.refinementList).map((key) =>
         searchState.refinementList[key].length !== 0
-          ? searchState.refinementList[key]
-              .map((entry) => key + ":" + entry)
-              .join('", "')
+          ? searchState.refinementList[key].map((entry) => key + ":" + entry)
           : key + ":-foobar"
       );
     }
@@ -98,7 +95,6 @@ function Filter() {
         attributesToRetrieve: ["*", "-_highlightResult"],
       })
       .then(({ hits }) => {
-        console.log(hits);
         setReportHits(hits);
       });
   };
