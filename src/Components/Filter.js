@@ -33,7 +33,7 @@ const Content = (props) => {
       <div className="info">
         <Stats />
       </div>
-      <Map hits={props.hits} />
+      <Map hits={props.hits} heatmapState={props.heatmapState} />
     </div>
   );
 };

@@ -42,14 +42,14 @@ useEffect(() => {
           setViewport(viewport);
         }}
       >
-         {strandings && (
+         {props.heatmapState.visible && (
           <Source type="geojson" data={strandings} key={strandingsKey}>
             <Layer {...heatmapLayer} />
           </Source>
         )}
-        {strandings.features.map((report) => (
+        {!props.heatmapState.visible && strandings.features.map((report) => (
           <Marker
-            key={report["National Database Number"]}
+            key={report["objectID"]}
             latitude={report.geometry.coordinates[1]}
             longitude={report.geometry.coordinates[0]}
           >
