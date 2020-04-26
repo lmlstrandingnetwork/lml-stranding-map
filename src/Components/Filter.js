@@ -16,6 +16,8 @@ const SideBar = (props) => {
       <ToggleHeatmapButton
         heatmapState={props.heatmapState}
         showHeatmap={props.showHeatmap}
+        toggleButtonText={props.toggleButtonText} 
+        setTButtonText={props.toggleButtonText}
       />
       <h5> Common Name </h5>
       <RefinementList attribute="properties.Common Name" />
@@ -39,7 +41,7 @@ const Content = (props) => {
 };
 
 const ToggleHeatmapButton = (props) => {
-  return <button onClick={props.showHeatmap}>Toggle Heatmap</button>;
+  return <button onClick={props.showHeatmap}>{props.toggleButtonText}</button>;
 };
 
 const reducer = (heatmapState, action) => {
@@ -61,6 +63,7 @@ const initialHeatmapState = {
   visible: false,
 };
 function Filter() {
+  const [toggleButtonText, setTButtonText] = useState("Turn Heatmap on");
   const [reportHits, setReportHits] = useState([]);
   const [heatmapState, dispatch] = React.useReducer(
     reducer,
@@ -69,8 +72,10 @@ function Filter() {
 
   function showHeatmap() {
     if (heatmapState.visible === false) {
+      setTButtonText("Turn Heatmap off")
       dispatch({ type: "show" });
     } else {
+      setTButtonText("Turn Heatmap on")
       dispatch({ type: "hide" });
     }
   }
@@ -111,7 +116,7 @@ function Filter() {
         onSearchStateChange={(searchState) => getResults(searchState)}
       >
         <main>
-          <SideBar heatmapState={heatmapState} showHeatmap={showHeatmap} />
+          <SideBar heatmapState={heatmapState} showHeatmap={showHeatmap} toggleButtonText={toggleButtonText} setTButtonText={toggleButtonText}/>
           <Content hits={reportHits} heatmapState={heatmapState} />
         </main>
       </InstantSearch>
