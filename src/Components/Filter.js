@@ -10,17 +10,22 @@ const searchClient = algoliasearch(
 
 const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
-const SideBar = () => (
-  <div className="left-column">
-    <ToggleHeatmapButton />
-    <h5> Common Name </h5>
-    <RefinementList attribute="properties.Common Name" />
-    <h5> Year of Examination </h5>
-    <RefinementList attribute="properties.Year of Examination" />
-    <h5> Sex </h5>
-    <RefinementList attribute="properties.Sex" />
-  </div>
-);
+const SideBar = (props) => {
+  return (
+    <div className="left-column">
+      <ToggleHeatmapButton
+        heatmapState={props.heatmapState}
+        showHeatmap={props.showHeatmap}
+      />
+      <h5> Common Name </h5>
+      <RefinementList attribute="properties.Common Name" />
+      <h5> Year of Examination </h5>
+      <RefinementList attribute="properties.Year of Examination" />
+      <h5> Sex </h5>
+      <RefinementList attribute="properties.Sex" />
+    </div>
+  );
+};
 
 const Content = (props) => {
   return (
@@ -33,12 +38,42 @@ const Content = (props) => {
   );
 };
 
-const ToggleHeatmapButton = () => {
-  return <button>Toggle Heatmap</button>;
+const ToggleHeatmapButton = (props) => {
+  return <button onClick={props.showHeatmap}>Toggle Heatmap</button>;
 };
 
+const reducer = (heatmapState, action) => {
+  switch (action.type) {
+    case "show":
+      console.log({ visible: true });
+      return { visible: true };
+
+    case "hide":
+      console.log({ visible: false });
+      return { visible: false };
+
+    default:
+      return heatmapState;
+  }
+};
+
+const initialHeatmapState = {
+  visible: false,
+};
 function Filter() {
   const [reportHits, setReportHits] = useState([]);
+  const [heatmapState, dispatch] = React.useReducer(
+    reducer,
+    initialHeatmapState
+  );
+
+  function showHeatmap() {
+    if (heatmapState.visible === false) {
+      dispatch({ type: "show" });
+    } else {
+      dispatch({ type: "hide" });
+    }
+  }
 
   const getResults = (searchState) => {
     let filters = [];
@@ -76,8 +111,8 @@ function Filter() {
         onSearchStateChange={(searchState) => getResults(searchState)}
       >
         <main>
-          <SideBar />
-          <Content hits={reportHits} />
+          <SideBar heatmapState={heatmapState} showHeatmap={showHeatmap} />
+          <Content hits={reportHits} heatmapState={heatmapState} />
         </main>
       </InstantSearch>
     </div>
