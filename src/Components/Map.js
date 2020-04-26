@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, { Marker, Popup, Source, Layer } from "react-map-gl";
 import "../App.css";
+import { heatmapLayer } from "../heatmap-style";
 
 function Map(props) {
   // Default map orientation
@@ -15,13 +16,21 @@ function Map(props) {
   // This holds the information for the popups
   const [selectedStranding, setSelectedStranding] = useState(null);
 
-  // This holds our strandings for now, default state is empty array
-  const [strandings, setStrandings] = useState([]);
+// Strandings state in geojson format
+const [strandings, setStrandings] = useState({
+  type: "FeatureCollection",
+  features: [],
+});
 
-  // Update strandings after every render
-  useEffect(() => {
-    setStrandings(props.hits);
-  });
+// Use a key and useReducer to force React to unmount and mount <Source/> when strandings update
+const [strandingsKey, setStrandingsKey] = React.useReducer((c) => c + 1, 0);
+
+useEffect(() => {
+  strandings.features = props.hits;
+  setStrandings(strandings);
+  console.log(strandings);
+  setStrandingsKey();
+}, [props.hits, strandings]);
 
   return (
     <div>
@@ -33,9 +42,14 @@ function Map(props) {
           setViewport(viewport);
         }}
       >
-        {strandings.map((report) => (
+         {props.heatmapState.visible && (
+          <Source type="geojson" data={strandings} key={strandingsKey}>
+            <Layer {...heatmapLayer} />
+          </Source>
+        )}
+        {!props.heatmapState.visible && strandings.features.map((report) => (
           <Marker
-            key={report["National Database Number"]}
+            key={report["objectID"]}
             latitude={report.geometry.coordinates[1]}
             longitude={report.geometry.coordinates[0]}
           >

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
-import Heatmap from "./Heatmap";
+import Map from "./Map";
 
 const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_APP_ID,
@@ -33,7 +33,7 @@ const Content = (props) => {
       <div className="info">
         <Stats />
       </div>
-      <Heatmap hits={props.hits} />
+      <Map hits={props.hits} heatmapState={props.heatmapState} />
     </div>
   );
 };
