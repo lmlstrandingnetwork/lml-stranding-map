@@ -45,9 +45,11 @@ const ToggleHeatmapButton = (props) => {
 const reducer = (heatmapState, action) => {
   switch (action.type) {
     case "show":
+      console.log({ visible: true });
       return { visible: true };
 
     case "hide":
+      console.log({ visible: false });
       return { visible: false };
 
     default:
@@ -55,14 +57,22 @@ const reducer = (heatmapState, action) => {
   }
 };
 
+const initialHeatmapState = {
+  visible: false,
+};
 function Filter() {
   const [reportHits, setReportHits] = useState([]);
-  const [heatmapState, dispatch] = React.useReducer(reducer, {
-    visible: false,
-  });
+  const [heatmapState, dispatch] = React.useReducer(
+    reducer,
+    initialHeatmapState
+  );
 
   function showHeatmap() {
-    dispatch({ type: "show" });
+    if (heatmapState.visible === false) {
+      dispatch({ type: "show" });
+    } else {
+      dispatch({ type: "hide" });
+    }
   }
 
   const getResults = (searchState) => {
