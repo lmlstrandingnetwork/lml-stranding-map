@@ -21,9 +21,12 @@ const SideBar = (props) => {
         toggleButtonText={props.toggleButtonText}
         setTButtonText={props.toggleButtonText}
       />
-      <DropdownRefinementList attribute={"properties.Common Name"} />
-      <DropdownRefinementList attribute={"properties.Year of Examination"} />
-      <DropdownRefinementList attribute={"properties.Sex"} />
+      <DropdownRefinementList hoverable attribute={"properties.Common Name"} />
+      <DropdownRefinementList
+        hoverable
+        attribute={"properties.Year of Examination"}
+      />
+      <DropdownRefinementList hoverable attribute={"properties.Sex"} />
     </div>
   );
 };
