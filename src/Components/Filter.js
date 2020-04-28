@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
+import { orderBy } from "lodash";
 import Map from "./Map";
 import DropdownRefinementList from "./DropdownRefinementList";
 import "./DropdownRefinementList.css";
@@ -25,11 +26,13 @@ const SideBar = (props) => {
         hoverable
         attribute={"properties.Common Name"}
         limit={50}
+        transformItems={(items) => orderBy(items, "label", "asc")}
       />
       <DropdownRefinementList
         hoverable
         attribute={"properties.Year of Examination"}
         limit={50}
+        transformItems={(items) => orderBy(items, "label", "asc")}
       />
       <DropdownRefinementList hoverable attribute={"properties.Sex"} />
     </div>
