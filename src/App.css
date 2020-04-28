@@ -69,8 +69,8 @@ main {
   margin-top: 18px;
 }
 .right-column {
-  max-width: 74%;
-  margin-left: 26%;
+  max-width: 84%;
+  margin-left: 16%;
 }
 .clear:after {
   content: "";
