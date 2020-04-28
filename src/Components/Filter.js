@@ -14,7 +14,7 @@ const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
 const SideBar = (props) => {
   return (
-    <div className="left-column">
+    <div style={{ display: "flex", justifyItems: "flex-start" }}>
       <ToggleHeatmapButton
         heatmapState={props.heatmapState}
         showHeatmap={props.showHeatmap}
@@ -30,7 +30,7 @@ const SideBar = (props) => {
 
 const Content = (props) => {
   return (
-    <div className="right-column">
+    <div>
       <div className="info">
         <Stats />
       </div>
@@ -40,7 +40,14 @@ const Content = (props) => {
 };
 
 const ToggleHeatmapButton = (props) => {
-  return <button onClick={props.showHeatmap}>{props.toggleButtonText}</button>;
+  return (
+    <button
+      style={{ "font-size": "15px", margin: "10px 24px" }}
+      onClick={props.showHeatmap}
+    >
+      {props.toggleButtonText}
+    </button>
+  );
 };
 
 const reducer = (heatmapState, action) => {
