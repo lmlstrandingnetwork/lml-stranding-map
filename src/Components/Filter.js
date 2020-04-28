@@ -15,7 +15,7 @@ const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
 const SideBar = (props) => {
   return (
-    <div style={{ display: "flex", justifyItems: "flex-start" }}>
+    <div className="left-column">
       <ToggleHeatmapButton
         heatmapState={props.heatmapState}
         showHeatmap={props.showHeatmap}
@@ -41,7 +41,7 @@ const SideBar = (props) => {
 
 const Content = (props) => {
   return (
-    <div>
+    <div className="right-column">
       <div className="info">
         <Stats />
       </div>
