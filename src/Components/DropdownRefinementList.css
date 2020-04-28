@@ -17,6 +17,9 @@
   margin-left: -6px;
   border: 1px solid #999;
   border-radius: 5%;
+  overflow: auto;
+  height: 300px;
+  width: 300px;
 }
 .ais-DropdownRefinementList-container:hover .ais-DropdownRefinementList-List {
   display: inline-block;
