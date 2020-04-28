@@ -55,7 +55,7 @@ class DropdownRefinementList extends Component {
   render() {
     const { items, attribute, hoverable, currentRefinement } = this.props;
     const { active, mobile } = this.state;
-    const title = this.capitalizeFirst(attribute);
+    const title = attribute.split(".").pop();
     console.log(this.state);
     return (
       <div
