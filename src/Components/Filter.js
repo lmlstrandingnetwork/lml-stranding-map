@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
 import Map from "./Map";
+import DropdownRefinementList from "./DropdownRefinementList";
+import "./DropdownRefinementList.css";
 
 const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_APP_ID,
@@ -16,15 +18,12 @@ const SideBar = (props) => {
       <ToggleHeatmapButton
         heatmapState={props.heatmapState}
         showHeatmap={props.showHeatmap}
-        toggleButtonText={props.toggleButtonText} 
+        toggleButtonText={props.toggleButtonText}
         setTButtonText={props.toggleButtonText}
       />
-      <h5> Common Name </h5>
-      <RefinementList attribute="properties.Common Name" />
-      <h5> Year of Examination </h5>
-      <RefinementList attribute="properties.Year of Examination" />
-      <h5> Sex </h5>
-      <RefinementList attribute="properties.Sex" />
+      <DropdownRefinementList attribute={"properties.Common Name"} />
+      <DropdownRefinementList attribute={"properties.Year of Examination"} />
+      <DropdownRefinementList attribute={"properties.Sex"} />
     </div>
   );
 };
@@ -72,10 +71,10 @@ function Filter() {
 
   function showHeatmap() {
     if (heatmapState.visible === false) {
-      setTButtonText("Turn Heatmap off")
+      setTButtonText("Turn Heatmap off");
       dispatch({ type: "show" });
     } else {
-      setTButtonText("Turn Heatmap on")
+      setTButtonText("Turn Heatmap on");
       dispatch({ type: "hide" });
     }
   }
@@ -112,7 +111,12 @@ function Filter() {
         onSearchStateChange={(searchState) => getResults(searchState)}
       >
         <main>
-          <SideBar heatmapState={heatmapState} showHeatmap={showHeatmap} toggleButtonText={toggleButtonText} setTButtonText={toggleButtonText}/>
+          <SideBar
+            heatmapState={heatmapState}
+            showHeatmap={showHeatmap}
+            toggleButtonText={toggleButtonText}
+            setTButtonText={toggleButtonText}
+          />
           <Content hits={reportHits} heatmapState={heatmapState} />
         </main>
       </InstantSearch>
