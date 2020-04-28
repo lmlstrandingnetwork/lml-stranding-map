@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import algoliasearch from "algoliasearch/lite";
-import { InstantSearch, Stats, RefinementList } from "react-instantsearch-dom";
+import { InstantSearch, Stats } from "react-instantsearch-dom";
 import { orderBy } from "lodash";
 import Map from "./Map";
 import DropdownRefinementList from "./DropdownRefinementList";
