@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup, Source, Layer } from "react-map-gl";
 import "../App.css";
 import { heatmapLayer } from "../heatmap-style";
+import useSupercluster from "use-supercluster";
+import useSwr from "swr";
 
 function Map(props) {
   // Default map orientation
