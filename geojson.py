@@ -1,6 +1,6 @@
 import json, geojson, sys
 
-print "Converting Json to Geojson.. "
+print ("Converting Json to Geojson.. ")
 
 in_file = sys.argv[1]
 
@@ -12,9 +12,10 @@ gjson = {
 with open(in_file) as json_file:
 	data = json.load(json_file)
 
-	for p in data['MSDBS_Report (21)']:
+	for p in data['reports']:
 		f = gjson["features"]
-		if (p.has_key("Latitude") and p.has_key("Longitude")):
+		p.update( {"cluster" : False} )
+		if (("Latitude") in p and ("Longitude") in p):
 			lat =  p['Latitude'].encode('ascii', 'ignore')
 			lat =  float(lat)
 			lon = p['Longitude'].encode('ascii', 'ignore')
@@ -23,7 +24,7 @@ with open(in_file) as json_file:
 			#print lat 
 			#print lon
 			#print properties
-			point = geojson.Point((lat, lon))
+			#point = geojson.Point((lat, lon))
 			feature = {"type": "Feature","geometry": {"type": "Point","coordinates": [lat, lon]},"properties": p}
 			#print feature
 			f.append(feature)
@@ -35,4 +36,4 @@ output.write(geojson_string)
 output.close()
 
 
-print geojson_string
+#print(geojson_string)
