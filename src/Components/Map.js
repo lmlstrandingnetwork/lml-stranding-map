@@ -60,7 +60,12 @@ useEffect(() => {
                 setSelectedStranding(report);
               }}
             >
-              <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
+              {/* determine marker based off species type */}
+              {strandings.features["Sex"]==="MALE" &&
+                <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
+                
+              }
+              
             </button>
           </Marker>
         ))}
