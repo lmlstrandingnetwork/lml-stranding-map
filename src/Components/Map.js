@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ReactMapGL, { Marker, Popup, Source, Layer } from "react-map-gl";
+import ReactMapGL, { Marker, Source, Layer } from "react-map-gl";
 import { heatmapLayer } from "./heatmapLayer";
+import StrandingPopup from "./StrandingPopup";
 
 function Map(props) {
   // Default map orientation
@@ -65,22 +66,14 @@ function Map(props) {
             </Marker>
           ))}
         {selectedStranding ? (
-          <Popup
+          <StrandingPopup
+            selectedStranding={selectedStranding}
             latitude={selectedStranding.geometry.coordinates[1]}
             longitude={selectedStranding.geometry.coordinates[0]}
             onClose={() => {
               setSelectedStranding(null);
             }}
-          >
-            <div>
-              <h2> {selectedStranding.properties["Common Name"]} </h2>
-              <p> {selectedStranding.properties["Date of Examination"]} </p>
-              <p> {selectedStranding.properties["Age Class"]} </p>
-              <p> {selectedStranding.properties["Sex"]} </p>
-              <p>Latitude: {selectedStranding.geometry.coordinates[1]}</p>
-              <p>Longitude: {selectedStranding.geometry.coordinates[0]}</p>
-            </div>
-          </Popup>
+          />
         ) : null}
       </ReactMapGL>
     </div>
