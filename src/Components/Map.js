@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup, Source, Layer } from "react-map-gl";
-import { heatmapLayer } from "../heatmap-style";
+import { heatmapLayer } from "./heatmap-style";
 
 function Map(props) {
   // Default map orientation
