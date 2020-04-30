@@ -7,7 +7,7 @@ function Map(props) {
   // Default map orientation
   const [viewport, setViewport] = useState({
     width: "100%",
-    height: 800,
+    height: 685,
     latitude: 36.954117,
     longitude: -122.030799,
     zoom: 13,
