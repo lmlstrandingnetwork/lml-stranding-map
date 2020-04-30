@@ -11,25 +11,16 @@ const searchClient = algoliasearch(
 
 const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
-const Content = (props) => {
-  return (
-    <div className="right-column">
-      <div className="info">
-        <Stats />
-      </div>
-      <Map hits={props.hits} heatmapState={props.heatmapState} />
-    </div>
-  );
+const initialHeatmapState = {
+  visible: false,
 };
 
 const reducer = (heatmapState, action) => {
   switch (action.type) {
     case "show":
-      console.log("heatmap visible");
       return { visible: true };
 
     case "hide":
-      console.log("heatmap hidden");
       return { visible: false };
 
     default:
@@ -37,9 +28,6 @@ const reducer = (heatmapState, action) => {
   }
 };
 
-const initialHeatmapState = {
-  visible: false,
-};
 function Filter() {
   const [toggleButtonText, setTButtonText] = useState("Turn Heatmap on");
   const [reportHits, setReportHits] = useState([]);
@@ -70,7 +58,6 @@ function Filter() {
           : key + ":-foobar"
       );
     }
-
     index
       .search("", {
         facetFilters: filters,
@@ -102,5 +89,16 @@ function Filter() {
     </div>
   );
 }
+
+const Content = (props) => {
+  return (
+    <div className="right-column">
+      <div className="info">
+        <Stats />
+      </div>
+      <Map hits={props.hits} heatmapState={props.heatmapState} />
+    </div>
+  );
+};
 
 export default Filter;
