@@ -1,6 +1,4 @@
 import React from "react";
-import "../App.css";
-
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "react-bootstrap/Nav";
@@ -10,7 +8,7 @@ import Nav from "react-bootstrap/Nav";
 function NavMenu() {
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar className="header" bg="light" expand="lg">
         <Navbar.Brand href="#home">
           <img
             src="../long-marine-stranding-program.png"
@@ -19,7 +17,6 @@ function NavMenu() {
             height="50"
           />
         </Navbar.Brand>
-        
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -29,12 +26,9 @@ function NavMenu() {
             <Nav.Link href="https://lmlstrandingnetwork.ucsc.edu/">
               Stranding Program
             </Nav.Link>
-
           </Nav>
         </Navbar.Collapse>
-
       </Navbar>
-
     </div>
   );
 }
