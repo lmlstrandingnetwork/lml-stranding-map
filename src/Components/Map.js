@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup, Source, Layer } from "react-map-gl";
-import "../App.css";
-import { heatmapLayer } from "../heatmap-style";
+import { heatmapLayer } from "./heatmapLayer";
 
 function Map(props) {
   // Default map orientation
@@ -16,21 +15,21 @@ function Map(props) {
   // This holds the information for the popups
   const [selectedStranding, setSelectedStranding] = useState(null);
 
-// Strandings state in geojson format
-const [strandings, setStrandings] = useState({
-  type: "FeatureCollection",
-  features: [],
-});
+  // Strandings state in geojson format
+  const [strandings, setStrandings] = useState({
+    type: "FeatureCollection",
+    features: [],
+  });
 
-// Use a key and useReducer to force React to unmount and mount <Source/> when strandings update
-const [strandingsKey, setStrandingsKey] = React.useReducer((c) => c + 1, 0);
+  // Use a key and useReducer to force React to unmount and mount <Source/> when strandings update
+  const [strandingsKey, setStrandingsKey] = React.useReducer((c) => c + 1, 0);
 
-useEffect(() => {
-  strandings.features = props.hits;
-  setStrandings(strandings);
-  console.log(strandings);
-  setStrandingsKey();
-}, [props.hits, strandings]);
+  useEffect(() => {
+    strandings.features = props.hits;
+    setStrandings(strandings);
+    console.log(strandings);
+    setStrandingsKey();
+  }, [props.hits, strandings]);
 
   return (
     <div>
@@ -42,28 +41,29 @@ useEffect(() => {
           setViewport(viewport);
         }}
       >
-         {props.heatmapState.visible && (
+        {props.heatmapState.visible && (
           <Source type="geojson" data={strandings} key={strandingsKey}>
             <Layer {...heatmapLayer} />
           </Source>
         )}
-        {!props.heatmapState.visible && strandings.features.map((report) => (
-          <Marker
-            key={report["objectID"]}
-            latitude={report.geometry.coordinates[1]}
-            longitude={report.geometry.coordinates[0]}
-          >
-            <button
-              className="marker-btn"
-              onClick={(e) => {
-                e.preventDefault();
-                setSelectedStranding(report);
-              }}
+        {!props.heatmapState.visible &&
+          strandings.features.map((report) => (
+            <Marker
+              key={report["objectID"]}
+              latitude={report.geometry.coordinates[1]}
+              longitude={report.geometry.coordinates[0]}
             >
-              <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
-            </button>
-          </Marker>
-        ))}
+              <button
+                className="marker-btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSelectedStranding(report);
+                }}
+              >
+                <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
+              </button>
+            </Marker>
+          ))}
         {selectedStranding ? (
           <Popup
             latitude={selectedStranding.geometry.coordinates[1]}

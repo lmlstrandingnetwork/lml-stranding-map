@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connectRefinementList } from "react-instantsearch-dom";
 import PropTypes from "prop-types";
+import "./DropdownRefinementList.css";
 
 /**
  *

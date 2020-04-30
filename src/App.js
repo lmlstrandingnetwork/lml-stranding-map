@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Filter from "./Components/Filter";
 import NavMenu from "./Components/NavMenu";
 import "bootstrap/dist/css/bootstrap.min.css";

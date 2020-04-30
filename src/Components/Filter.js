@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, Stats } from "react-instantsearch-dom";
-import { orderBy } from "lodash";
 import Map from "./Map";
-import DropdownRefinementList from "./DropdownRefinementList";
-import "./DropdownRefinementList.css";
+import Sidebar from "./Sidebar";
 
 const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_APP_ID,
@@ -13,62 +11,16 @@ const searchClient = algoliasearch(
 
 const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
-const SideBar = (props) => {
-  return (
-    <div className="left-column">
-      <ToggleHeatmapButton
-        heatmapState={props.heatmapState}
-        showHeatmap={props.showHeatmap}
-        toggleButtonText={props.toggleButtonText}
-        setTButtonText={props.toggleButtonText}
-      />
-      <DropdownRefinementList
-        hoverable
-        attribute={"properties.Common Name"}
-        limit={50}
-        transformItems={(items) => orderBy(items, "label", "asc")}
-      />
-      <DropdownRefinementList
-        hoverable
-        attribute={"properties.Year of Examination"}
-        limit={50}
-        transformItems={(items) => orderBy(items, "label", "asc")}
-      />
-      <DropdownRefinementList hoverable attribute={"properties.Sex"} />
-    </div>
-  );
-};
-
-const Content = (props) => {
-  return (
-    <div className="right-column">
-      <div className="info">
-        <Stats />
-      </div>
-      <Map hits={props.hits} heatmapState={props.heatmapState} />
-    </div>
-  );
-};
-
-const ToggleHeatmapButton = (props) => {
-  return (
-    <button
-      style={{ "font-size": "15px", margin: "10px 24px" }}
-      onClick={props.showHeatmap}
-    >
-      {props.toggleButtonText}
-    </button>
-  );
+const initialHeatmapState = {
+  visible: false,
 };
 
 const reducer = (heatmapState, action) => {
   switch (action.type) {
     case "show":
-      console.log("heatmap visible");
       return { visible: true };
 
     case "hide":
-      console.log("heatmap hidden");
       return { visible: false };
 
     default:
@@ -76,9 +28,6 @@ const reducer = (heatmapState, action) => {
   }
 };
 
-const initialHeatmapState = {
-  visible: false,
-};
 function Filter() {
   const [toggleButtonText, setTButtonText] = useState("Turn Heatmap on");
   const [reportHits, setReportHits] = useState([]);
@@ -109,7 +58,6 @@ function Filter() {
           : key + ":-foobar"
       );
     }
-
     index
       .search("", {
         facetFilters: filters,
@@ -129,7 +77,7 @@ function Filter() {
         onSearchStateChange={(searchState) => getResults(searchState)}
       >
         <main>
-          <SideBar
+          <Sidebar
             heatmapState={heatmapState}
             showHeatmap={showHeatmap}
             toggleButtonText={toggleButtonText}
@@ -141,5 +89,16 @@ function Filter() {
     </div>
   );
 }
+
+const Content = (props) => {
+  return (
+    <div className="right-column">
+      <div className="info">
+        <Stats />
+      </div>
+      <Map hits={props.hits} heatmapState={props.heatmapState} />
+    </div>
+  );
+};
 
 export default Filter;
