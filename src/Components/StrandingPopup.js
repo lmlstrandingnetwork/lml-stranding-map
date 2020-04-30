@@ -7,6 +7,7 @@ const StrandingPopup = (props) => {
       latitude={props.latitude}
       longitude={props.longitude}
       onClose={props.onClose}
+      closeOnClick={true}
     >
       <div>
         <h2> {props.selectedStranding.properties["Common Name"]} </h2>
