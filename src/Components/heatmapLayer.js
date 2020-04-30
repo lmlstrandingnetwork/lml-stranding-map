@@ -1,5 +1,5 @@
 const MAX_ZOOM_LEVEL = 10;
-//hey
+
 export const heatmapLayer = {
   maxzoom: MAX_ZOOM_LEVEL,
   type: "heatmap",
