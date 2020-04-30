@@ -1,3 +1,14 @@
+.left-column {
+  float: left;
+  width: 16%;
+  margin-top: 18px;
+}
+.right-column {
+  max-width: 84%;
+  max-height: 90%;
+  margin-left: 16%;
+}
+
 .marker-btn {
   background: none;
   border: none;
