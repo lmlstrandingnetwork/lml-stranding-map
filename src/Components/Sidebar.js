@@ -1,7 +1,6 @@
 import React from "react";
 import { orderBy } from "lodash";
 import DropdownRefinementList from "./DropdownRefinementList";
-import "./DropdownRefinementList.css";
 
 const Sidebar = (props) => {
   return (
