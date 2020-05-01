@@ -7,9 +7,13 @@ import "./ClusteredMarkers.css"
 
 
 const ClusterMarker = ({ longitude, latitude, pointCount }) => (
-  <Marker longitude={longitude} latitude={latitude}>
-    <div className="cluster-marker">{pointCount}</div>
-  </Marker>
+  < Marker longitude={longitude} latitude={latitude} >
+    <div style={{
+      height: { pointCount }, width: { pointCount }, background: "#087cdb",
+      borderRadius: "20px",
+      textAlign: "center"
+    }} > {pointCount} </div>
+  </Marker >
 );
 
 const ClusteredMarkers = (props) => {
