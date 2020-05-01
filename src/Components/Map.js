@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ReactMapGL, { Marker, Source, Layer } from "react-map-gl";
+import MapGL, { Marker, Source, Layer } from "@urbica/react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 import { heatmapLayer } from "./heatmapLayer";
 import StrandingPopup from "./StrandingPopup";
 import Legend from "./Legend";
@@ -7,8 +8,6 @@ import Legend from "./Legend";
 function Map(props) {
   // Default map orientation
   const [viewport, setViewport] = useState({
-    width: "100%",
-    height: 685,
     latitude: 36.954117,
     longitude: -122.030799,
     zoom: 13,
@@ -35,16 +34,22 @@ function Map(props) {
 
   return (
     <div>
-      <ReactMapGL
+      <MapGL
         {...viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        style={{ width: "100%", height: "670px" }}
+        accessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/hfox999/ck6crjgkn0bfs1imqs16f84wz"
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
       >
         {props.heatmapState.visible && (
-          <Source type="geojson" data={strandings} key={strandingsKey}>
+          <Source
+            id="reports"
+            type="geojson"
+            data={strandings}
+            key={strandingsKey}
+          >
             <Layer {...heatmapLayer} />
           </Source>
         )}
@@ -63,11 +68,11 @@ function Map(props) {
                 }}
               >
                 {/* decide which icon to give the animal */}
-                { report.properties["Common Name"] === "Sea lion, California"  
-                 ? <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
-                 : <img src="/red-pin.svg" alt="seal species" />
-                }
-                
+                {report.properties["Common Name"] === "Sea lion, California" ? (
+                  <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
+                ) : (
+                  <img src="/red-pin.svg" alt="seal species" />
+                )}
               </button>
             </Marker>
           ))}
@@ -81,8 +86,8 @@ function Map(props) {
             }}
           />
         ) : null}
-        <Legend/>
-      </ReactMapGL>
+        <Legend />
+      </MapGL>
     </div>
   );
 }

@@ -31,7 +31,7 @@ const Sidebar = (props) => {
 const ToggleHeatmapButton = (props) => {
   return (
     <button
-      style={{ "font-size": "15px", margin: "10px 24px" }}
+      style={{ fontSize: "15px", margin: "10px 24px" }}
       onClick={props.showHeatmap}
     >
       {props.toggleButtonText}
