@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Source, Layer } from "react-map-gl";
 import { heatmapLayer } from "./heatmapLayer";
 import StrandingPopup from "./StrandingPopup";
+import Legend from "./Legend";
 
 function Map(props) {
   // Default map orientation
@@ -80,6 +81,7 @@ function Map(props) {
             }}
           />
         ) : null}
+        <Legend/>
       </ReactMapGL>
     </div>
   );
