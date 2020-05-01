@@ -10,6 +10,7 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "@urbica/react-map-gl": "^1.13.1",
+    "@urbica/react-map-gl-cluster": "^0.2.0",
     "algoliasearch": "^4.1.0",
     "bootstrap": "^4.4.1",
     "dotenv": "^8.2.0",

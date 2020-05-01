@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MapGL, { Marker, Source, Layer } from "@urbica/react-map-gl";
+import Cluster from "@urbica/react-map-gl-cluster";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { heatmapLayer } from "./heatmapLayer";
 import StrandingPopup from "./StrandingPopup";
@@ -24,6 +25,21 @@ function Map(props) {
 
   // Use a key and useReducer to force React to unmount and mount <Source/> when strandings update
   const [strandingsKey, setStrandingsKey] = React.useReducer((c) => c + 1, 0);
+
+  const style = {
+    width: "20px",
+    height: "20px",
+    color: "#fff",
+    background: "#1978c8",
+    borderRadius: "20px",
+    textAlign: "center",
+  };
+
+  const ClusterMarker = ({ longitude, latitude, pointCount }) => (
+    <Marker longitude={longitude} latitude={latitude}>
+      <div style={{ ...style, background: "#f28a25" }}>{pointCount}</div>
+    </Marker>
+  );
 
   useEffect(() => {
     strandings.features = props.hits;
@@ -53,29 +69,38 @@ function Map(props) {
             <Layer {...heatmapLayer} />
           </Source>
         )}
-        {!props.heatmapState.visible &&
-          strandings.features.map((report) => (
-            <Marker
-              key={report["objectID"]}
-              latitude={report.geometry.coordinates[1]}
-              longitude={report.geometry.coordinates[0]}
-            >
-              <button
-                className="marker-btn"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setSelectedStranding(report);
-                }}
+        {!props.heatmapState.visible && (
+          <Cluster
+            radius={40}
+            extent={512}
+            nodeSize={64}
+            component={ClusterMarker}
+          >
+            {strandings.features.map((report) => (
+              <Marker
+                key={report["objectID"]}
+                latitude={report.geometry.coordinates[1]}
+                longitude={report.geometry.coordinates[0]}
               >
-                {/* decide which icon to give the animal */}
-                {report.properties["Common Name"] === "Sea lion, California" ? (
-                  <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
-                ) : (
-                  <img src="/red-pin.svg" alt="seal species" />
-                )}
-              </button>
-            </Marker>
-          ))}
+                <button
+                  className="marker-btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSelectedStranding(report);
+                  }}
+                >
+                  {/* decide which icon to give the animal */}
+                  {report.properties["Common Name"] ===
+                  "Sea lion, California" ? (
+                    <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
+                  ) : (
+                    <img src="/red-pin.svg" alt="seal species" />
+                  )}
+                </button>
+              </Marker>
+            ))}
+          </Cluster>
+        )}
         {selectedStranding ? (
           <StrandingPopup
             selectedStranding={selectedStranding}
