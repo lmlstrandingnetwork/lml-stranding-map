@@ -5,18 +5,10 @@ import Cluster from "@urbica/react-map-gl-cluster";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./ClusteredMarkers.css"
 
-const style = {
-  width: "20px",
-  height: "20px",
-  color: "#fff",
-  background: "#1978c8",
-  borderRadius: "20px",
-  textAlign: "center",
-};
 
 const ClusterMarker = ({ longitude, latitude, pointCount }) => (
   <Marker longitude={longitude} latitude={latitude}>
-    <div style={{ ...style, background: "#f28a25" }}>{pointCount}</div>
+    <div className="cluster-marker">{pointCount}</div>
   </Marker>
 );
 
