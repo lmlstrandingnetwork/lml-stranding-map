@@ -1,6 +1,8 @@
 const MAX_ZOOM_LEVEL = 24;
 
 export const heatmapLayer = {
+  id: "reports",
+  source: "reports",
   maxzoom: MAX_ZOOM_LEVEL,
   type: "heatmap",
   paint: {

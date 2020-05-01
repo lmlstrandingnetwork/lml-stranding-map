@@ -1,5 +1,6 @@
 import React from "react";
-import { Popup } from "react-map-gl";
+import { Popup } from "@urbica/react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 import "./StrandingPopup.css";
 
 const StrandingPopup = (props) => {

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ReactMapGL, { Marker, Source, Layer } from "react-map-gl";
+import MapGL, { Marker, Source, Layer } from "@urbica/react-map-gl";
+import Cluster from "@urbica/react-map-gl-cluster";
+import "mapbox-gl/dist/mapbox-gl.css";
 import { heatmapLayer } from "./heatmapLayer";
 import StrandingPopup from "./StrandingPopup";
 import Legend from "./Legend";
@@ -7,8 +9,6 @@ import Legend from "./Legend";
 function Map(props) {
   // Default map orientation
   const [viewport, setViewport] = useState({
-    width: "100%",
-    height: 685,
     latitude: 36.954117,
     longitude: -122.030799,
     zoom: 13,
@@ -26,6 +26,21 @@ function Map(props) {
   // Use a key and useReducer to force React to unmount and mount <Source/> when strandings update
   const [strandingsKey, setStrandingsKey] = React.useReducer((c) => c + 1, 0);
 
+  const style = {
+    width: "20px",
+    height: "20px",
+    color: "#fff",
+    background: "#1978c8",
+    borderRadius: "20px",
+    textAlign: "center",
+  };
+
+  const ClusterMarker = ({ longitude, latitude, pointCount }) => (
+    <Marker longitude={longitude} latitude={latitude}>
+      <div style={{ ...style, background: "#f28a25" }}>{pointCount}</div>
+    </Marker>
+  );
+
   useEffect(() => {
     strandings.features = props.hits;
     setStrandings(strandings);
@@ -35,42 +50,57 @@ function Map(props) {
 
   return (
     <div>
-      <ReactMapGL
+      <MapGL
         {...viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        style={{ width: "100%", height: "670px" }}
+        accessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/hfox999/ck6crjgkn0bfs1imqs16f84wz"
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
       >
         {props.heatmapState.visible && (
-          <Source type="geojson" data={strandings} key={strandingsKey}>
+          <Source
+            id="reports"
+            type="geojson"
+            data={strandings}
+            key={strandingsKey}
+          >
             <Layer {...heatmapLayer} />
           </Source>
         )}
-        {!props.heatmapState.visible &&
-          strandings.features.map((report) => (
-            <Marker
-              key={report["objectID"]}
-              latitude={report.geometry.coordinates[1]}
-              longitude={report.geometry.coordinates[0]}
-            >
-              <button
-                className="marker-btn"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setSelectedStranding(report);
-                }}
+        {!props.heatmapState.visible && (
+          <Cluster
+            radius={40}
+            extent={512}
+            nodeSize={64}
+            component={ClusterMarker}
+          >
+            {strandings.features.map((report) => (
+              <Marker
+                key={report["objectID"]}
+                latitude={report.geometry.coordinates[1]}
+                longitude={report.geometry.coordinates[0]}
               >
-                {/* decide which icon to give the animal */}
-                { report.properties["Common Name"] === "Sea lion, California"  
-                 ? <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
-                 : <img src="/red-pin.svg" alt="seal species" />
-                }
-                
-              </button>
-            </Marker>
-          ))}
+                <button
+                  className="marker-btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSelectedStranding(report);
+                  }}
+                >
+                  {/* decide which icon to give the animal */}
+                  {report.properties["Common Name"] ===
+                  "Sea lion, California" ? (
+                    <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
+                  ) : (
+                    <img src="/red-pin.svg" alt="seal species" />
+                  )}
+                </button>
+              </Marker>
+            ))}
+          </Cluster>
+        )}
         {selectedStranding ? (
           <StrandingPopup
             selectedStranding={selectedStranding}
@@ -81,8 +111,8 @@ function Map(props) {
             }}
           />
         ) : null}
-        <Legend/>
-      </ReactMapGL>
+        <Legend />
+      </MapGL>
     </div>
   );
 }
