@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import MapGL, { Marker, Source, Layer } from "@urbica/react-map-gl";
+import React from "react";
+import { Marker } from "@urbica/react-map-gl";
 import Cluster from "@urbica/react-map-gl-cluster";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./ClusteredMarkers.css";
@@ -19,9 +19,11 @@ const ClusterMarker = ({ longitude, latitude, pointCount }) => {
           justifyContent: "center",
           alignItems: "center",
           display: "flex",
-          background: "#087cdb",
+          background: "#2284e6",
           borderRadius: "75px",
           border: "1px solid #333",
+          fontWeight: "bold",
+          color: "white",
         }}
       >
         {pointCount}
@@ -32,7 +34,13 @@ const ClusterMarker = ({ longitude, latitude, pointCount }) => {
 
 const ClusteredMarkers = (props) => {
   return (
-    <Cluster radius={40} extent={512} nodeSize={64} component={ClusterMarker}>
+    <Cluster
+      radius={40}
+      extent={512}
+      nodeSize={64}
+      component={ClusterMarker}
+      maxZoom={14}
+    >
       {props.strandings.features.map((report) => (
         <Marker
           key={report["objectID"]}
