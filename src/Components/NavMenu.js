@@ -1,8 +1,8 @@
 import React from "react";
+import "./NavMenu.css";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "react-bootstrap/Nav";
-import "./NavMenu.css";
 
 //Uses bootstrap
 //Be sure to have bootstrap installed
