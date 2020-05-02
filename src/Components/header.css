@@ -1,4 +1,12 @@
 .header{
-  background-color: #003c6c;
+  background-color: #ffbf00;
   color: #ffffff
+}
+.nav-link {
+    color: white !important
+}
+
+.nav-link:hover{
+
+    color:#003c6c !important
 }
