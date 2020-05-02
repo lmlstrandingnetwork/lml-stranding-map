@@ -6,15 +6,19 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "./ClusteredMarkers.css"
 
 
-const ClusterMarker = ({ longitude, latitude, pointCount }) => (
-  < Marker longitude={longitude} latitude={latitude} >
-    <div style={{
-      height: { pointCount }, width: { pointCount }, background: "#087cdb",
-      borderRadius: "20px",
-      textAlign: "center"
-    }} > {pointCount} </div>
-  </Marker >
-);
+const ClusterMarker = ({ longitude, latitude, pointCount }) => {
+  var clusterSize = pointCount * 1.75;
+  return (
+    < Marker longitude={longitude} latitude={latitude} >
+      <div style={{
+        height: clusterSize, width: clusterSize, maxHeight: 80, maxWidth: 80, minHeight: 20, minWidth: 20, background: "#087cdb",
+        borderRadius: "20px",
+        textAlign: center,
+
+      }} > {pointCount} </div>
+    </Marker >
+  );
+};
 
 const ClusteredMarkers = (props) => {
   return (
