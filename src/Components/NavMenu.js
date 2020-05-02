@@ -2,13 +2,14 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "react-bootstrap/Nav";
+import "./header.css"
 
 //Uses bootstrap
 //Be sure to have bootstrap installed
 function NavMenu() {
   return (
     <div>
-      <Navbar className="header" bg="light" expand="lg">
+      <Navbar className="header" expand="lg">
         <Navbar.Brand href="#home">
           <img
             src="../long-marine-stranding-program.png"
@@ -21,9 +22,9 @@ function NavMenu() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" style={{ paddingRight: 20 }}>
-            <Nav.Link href="#home">About</Nav.Link>
-            <Nav.Link href="#home">FAQ</Nav.Link>
-            <Nav.Link href="https://lmlstrandingnetwork.ucsc.edu/">
+            <Nav.Link href="#home" style={{ color:'white' }}>About</Nav.Link>
+            <Nav.Link href="#home" style={{ color:'white' }}>FAQ</Nav.Link>
+            <Nav.Link href="https://lmlstrandingnetwork.ucsc.edu/" style={{ color:'white' }}>
               Stranding Program
             </Nav.Link>
           </Nav>
