@@ -1,9 +1,15 @@
 
+.toggle-label{
+  color:black;
+  /*top right bottom left*/
+  margin: 2px 1em 2px 0px;
+}
+
 .ToggleSwitch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 30px;
+  width: 35px;
+  height: 17px;
 }
 
 .ToggleSwitch.off {
@@ -17,7 +23,7 @@
   border-radius: 25px;
   padding: 2px;
   cursor: pointer;
-  background-color: #ffbf00;
+  background-color: #93c02d;
 }
 
 .ToggleSwitch.off:before,
@@ -25,17 +31,17 @@
   display: inline-block;
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  background-color: darkgray;
+  height: 13px;
+  width: 13px;
+  background-color: white;
   transition: transform 0.2s ease;
   border-radius: 50%;
-  box-shadow: inset -2px -2px 2px -2px darkgray;
+  
 }
 
 .ToggleSwitch.on:before {
-  transform: translateX(30px);
-  background-color: darkgrey;
+  transform: translateX(18px);
+  background-color: white;
 }
 
 

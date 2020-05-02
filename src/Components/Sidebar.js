@@ -6,12 +6,19 @@ import "./Sidebar.css";
 const Sidebar = (props) => {
   return (
     <div className="left-column">
-      <ToggleSwitch 
-        heatmapState={props.heatmapState}
-        showHeatmap={props.showHeatmap}
-        toggleState={props.toggleState}
-        setToggleState={props.setToggleState}
-      />
+      <div className="Heatmap-control" style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }} >
+      <div className="toggle-label"> Heat Map Toggle</div>
+        <ToggleSwitch 
+          heatmapState={props.heatmapState}
+          showHeatmap={props.showHeatmap}
+          toggleState={props.toggleState}
+          setToggleState={props.setToggleState}
+        />
+      </div>
       <DropdownRefinementList
         hoverable
         attribute={"properties.Common Name"}
