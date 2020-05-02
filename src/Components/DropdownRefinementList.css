@@ -7,22 +7,26 @@
   cursor: pointer;
   position: relative;
   height: 100%;
+  border: 1px solid #999;
+  margin: 10px;
 }
 
 .ais-DropdownRefinementList-List {
-  padding: 12px;
   background: #fff;
   position: relative;
   margin-top: 12px;
-  margin-left: -6px;
-  border: 1px solid #999;
-  border-radius: 5%;
   overflow: auto;
-  height: 300px;
+  overflow-x: hidden;
+  max-height: 300px;
 }
 .ais-DropdownRefinementList-container:hover .ais-DropdownRefinementList-List {
   display: inline-block;
 }
+.ais-DropdownRefinementList-container:active
+  .ais-DropdownRefinementList-caret-down {
+  transform: rotate(45deg);
+}
+
 .ais-DropdownRefinementList-title span {
   color: gray;
 }
@@ -46,14 +50,11 @@
   padding: 3px;
   margin-bottom: 3px;
   margin-left: 4px;
-  transform: rotate(45deg);
+  transform: rotate(-45deg);
 }
 .ais-DropdownRefinementList-active-facets {
-  background: #00f;
   width: 23px;
   height: 23px;
-  color: #fff;
-  border-radius: 50%;
   text-align: center;
   display: inline-block;
   margin-bottom: 0;
