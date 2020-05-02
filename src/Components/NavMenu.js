@@ -27,6 +27,8 @@ function NavMenu() {
             <Nav.Link href="https://lmlstrandingnetwork.ucsc.edu/" >
               Stranding Program
             </Nav.Link>
+            <Nav.Link href="#home" >About The Developers</Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
         <Navbar.Brand href="#home">
@@ -34,7 +36,6 @@ function NavMenu() {
             <img
             src="../baskin-logo-banner.png"
             alt="baskin logo"
-            justify="right"
             width="230"
             height="40"
           />
