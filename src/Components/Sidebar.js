@@ -12,18 +12,16 @@ const Sidebar = (props) => {
         setTButtonText={props.toggleButtonText}
       />
       <DropdownRefinementList
-        hoverable
         attribute={"properties.Common Name"}
         limit={50}
         transformItems={(items) => orderBy(items, "label", "asc")}
       />
       <DropdownRefinementList
-        hoverable
         attribute={"properties.Year of Examination"}
         limit={50}
         transformItems={(items) => orderBy(items, "label", "asc")}
       />
-      <DropdownRefinementList hoverable attribute={"properties.Sex"} />
+      <DropdownRefinementList attribute={"properties.Sex"} />
     </div>
   );
 };
