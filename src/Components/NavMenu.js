@@ -29,6 +29,17 @@ function NavMenu() {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
+        <Navbar.Brand href="#home">
+            <Nav className="justify-content-end">
+            <img
+            src="../baskin-logo-banner.png"
+            alt="baskin logo"
+            justify="right"
+            width="230"
+            height="40"
+          />
+          </Nav>
+          </Navbar.Brand>
       </Navbar>
     </div>
   );
