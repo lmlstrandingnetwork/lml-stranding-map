@@ -12,9 +12,10 @@ const ClusterMarker = ({ longitude, latitude, pointCount }) => {
     < Marker longitude={longitude} latitude={latitude} >
       <div style={{
         height: clusterSize, width: clusterSize, maxHeight: 80, maxWidth: 80, minHeight: 20, minWidth: 20, background: "#087cdb",
-        borderRadius: "20px",
-        textAlign: center,
-
+        borderRadius: "75px",
+        textAlign: "center",
+        position: "relative",
+        border: '1px solid #333',
       }} > {pointCount} </div>
     </Marker >
   );
