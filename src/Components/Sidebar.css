@@ -1,0 +1,50 @@
+
+.toggle-label{
+  color:black;
+  /*top right bottom left*/
+  margin: 2px 1em 2px 0px;
+}
+
+.ToggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 17px;
+}
+
+.ToggleSwitch.off {
+  border-radius: 25px;
+  padding: 2px;
+  cursor: pointer;
+  background-color:lightgrey;
+
+}
+.ToggleSwitch.on {
+  border-radius: 25px;
+  padding: 2px;
+  cursor: pointer;
+  background-color: #93c02d;
+}
+
+.ToggleSwitch.off:before,
+.ToggleSwitch.on:before {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  background-color: white;
+  transition: transform 0.2s ease;
+  border-radius: 50%;
+  
+}
+
+.ToggleSwitch.on:before {
+  transform: translateX(18px);
+  background-color: white;
+}
+
+
+  
+
+  
