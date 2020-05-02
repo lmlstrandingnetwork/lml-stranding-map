@@ -29,17 +29,6 @@ const Sidebar = (props) => {
   );
 };
 
-const ToggleHeatmapButton = (props) => {
-  return (
-    <div className="ToggleSwitch"  >
-    <button
-      onClick={props.showHeatmap}
-    >
-      {props.toggleButtonText}
-    </button>
-    </div>
-  );
-};
 const ToggleSwitch = (props) => {
   return (
     <div className={`ToggleSwitch ${props.toggleState}`} onClick={props.showHeatmap} />
