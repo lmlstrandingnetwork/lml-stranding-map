@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MapGL, { Marker, Source, Layer } from "@urbica/react-map-gl";
+import MapGL, { Source, Layer, NavigationControl } from "@urbica/react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { heatmapLayer } from "./heatmapLayer";
 import StrandingPopup from "./StrandingPopup";
@@ -25,6 +25,15 @@ function Map(props) {
 
   // Use a key and useReducer to force React to unmount and mount <Source/> when strandings update
   const [strandingsKey, setStrandingsKey] = React.useReducer((c) => c + 1, 0);
+
+  const speciesMarkers = {
+    Dolphin: "orange",
+    Pinniped: "brown",
+    Porpoise: "green",
+    Seal: "blue",
+    "Sea lion": "red",
+    Whale: "purple",
+  };
 
   useEffect(() => {
     strandings.features = props.hits;
@@ -56,8 +65,9 @@ function Map(props) {
         )}
         {!props.heatmapState.visible && (
           <ClusteredMarkers
-          strandings = {strandings}
-          setSelectedStranding = {setSelectedStranding}
+            strandings={strandings}
+            setSelectedStranding={setSelectedStranding}
+            speciesMarkers={speciesMarkers}
           />
         )}
         {selectedStranding ? (
@@ -70,6 +80,8 @@ function Map(props) {
             }}
           />
         ) : null}
+        <Legend speciesMarkers={speciesMarkers} />
+        <NavigationControl showCompass showZoom position="top-left" />
       </MapGL>
     </div>
   );
