@@ -6,22 +6,24 @@
   z-index: 998;
   cursor: pointer;
   position: relative;
-  height: 100%;
   border: 1px solid #999;
   margin: 10px;
+  background: white;
+  display: inline-block;
+  width: 90%;
 }
 
 .ais-DropdownRefinementList-List {
+  font-size: small;
   background: #fff;
   position: relative;
   margin-top: 12px;
   overflow: auto;
   overflow-x: hidden;
   max-height: 300px;
+  width: 100%;
 }
-.ais-DropdownRefinementList-container:hover .ais-DropdownRefinementList-List {
-  display: inline-block;
-}
+
 .ais-DropdownRefinementList-container:active
   .ais-DropdownRefinementList-caret-down {
   transform: rotate(45deg);
