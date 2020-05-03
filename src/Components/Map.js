@@ -26,6 +26,15 @@ function Map(props) {
   // Use a key and useReducer to force React to unmount and mount <Source/> when strandings update
   const [strandingsKey, setStrandingsKey] = React.useReducer((c) => c + 1, 0);
 
+  const speciesMarkers = {
+    Dolphin: "orange",
+    Pinniped: "brown",
+    Porpoise: "green",
+    Seal: "blue",
+    "Sea lion": "red",
+    Whale: "purple",
+  };
+
   useEffect(() => {
     strandings.features = props.hits;
     setStrandings(strandings);
@@ -58,6 +67,7 @@ function Map(props) {
           <ClusteredMarkers
             strandings={strandings}
             setSelectedStranding={setSelectedStranding}
+            speciesMarkers={speciesMarkers}
           />
         )}
         {selectedStranding ? (
@@ -70,9 +80,9 @@ function Map(props) {
             }}
           />
         ) : null}
+        <Legend speciesMarkers={speciesMarkers} />
+        <NavigationControl showCompass showZoom position="top-left" />
       </MapGL>
-      <Legend />
-      <NavigationControl showCompass showZoom position="top-left" />
     </div>
   );
 }
