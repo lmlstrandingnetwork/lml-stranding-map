@@ -1,21 +1,18 @@
-import * as React from 'react';
-import {PureComponent} from 'react';
-import './Legend.css';
+import React from "react";
+import "./Legend.css";
+import MarkerSVG from "./MarkerSVG";
 
-export default class Legend extends PureComponent {
-  render() {
-    return (
-      <div className="legend">
-            <li>
-                <img src="./seal-grey-svgrepo-com.svg" alt="seal icon"></img>
-                Sea lion, California
-            </li>
-            <li>
-                <img src="./red-pin.svg" alt="red pin"></img>
-                All other species
-            </li>
-        
-      </div>
-    );
-  }
-}
+const Legend = (props) => {
+  return (
+    <div className="legend">
+      {Object.keys(props.speciesMarkers).map((species) => (
+        <li style={{ listStyle: "none" }}>
+          <MarkerSVG speciesMarkers={props.speciesMarkers} species={species.toString()}/>
+          {species}
+        </li>
+      ))}
+    </div>
+  );
+};
+
+export default Legend;

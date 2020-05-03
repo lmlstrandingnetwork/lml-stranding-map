@@ -29,7 +29,7 @@ const reducer = (heatmapState, action) => {
 };
 
 function Filter() {
-  const [toggleButtonText, setTButtonText] = useState("Turn Heatmap on");
+  const [toggleState, setToggleState] = useState("off");
   const [reportHits, setReportHits] = useState([]);
   const [heatmapState, dispatch] = React.useReducer(
     reducer,
@@ -38,10 +38,10 @@ function Filter() {
 
   function showHeatmap() {
     if (heatmapState.visible === false) {
-      setTButtonText("Turn Heatmap off");
+      setToggleState("on");
       dispatch({ type: "show" });
     } else {
-      setTButtonText("Turn Heatmap on");
+      setToggleState("off");
       dispatch({ type: "hide" });
     }
   }
@@ -80,8 +80,8 @@ function Filter() {
           <Sidebar
             heatmapState={heatmapState}
             showHeatmap={showHeatmap}
-            toggleButtonText={toggleButtonText}
-            setTButtonText={toggleButtonText}
+            toggleState={toggleState}
+            setToggleState={setToggleState}
           />
           <Content hits={reportHits} heatmapState={heatmapState} />
         </main>
@@ -94,7 +94,13 @@ const Content = (props) => {
   return (
     <div className="right-column">
       <div className="info">
-        <Stats />
+        <Stats
+          translations={{
+            stats(nbHits, timeSpentMS) {
+              return `${nbHits} strandings found in ${timeSpentMS}ms`;
+            },
+          }}
+        />
       </div>
       <Map hits={props.hits} heatmapState={props.heatmapState} />
     </div>

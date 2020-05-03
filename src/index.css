@@ -1,11 +1,14 @@
 .left-column {
   float: left;
-  width: 16%;
+  width: 23%;
   margin-top: 18px;
+  height: 680px;
+  overflow: auto;
+  overflow-x: hidden;
 }
 .right-column {
-  max-width: 84%;
+  max-width: 77%;
   max-height: 90%;
-  margin-left: 16%;
+  margin-left: 23%;
   margin-right: 10px;
 }

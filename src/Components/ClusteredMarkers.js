@@ -1,16 +1,30 @@
-
-import React, { useState, useEffect } from "react";
-import MapGL, { Marker, Source, Layer } from "@urbica/react-map-gl";
+import React from "react";
+import { Marker } from "@urbica/react-map-gl";
 import Cluster from "@urbica/react-map-gl-cluster";
 import "mapbox-gl/dist/mapbox-gl.css";
-import "./ClusteredMarkers.css"
+import "./ClusteredMarkers.css";
+import MarkerSVG from "./MarkerSVG"
 
-
-const ClusterMarker = ({ longitude, latitude, pointCount }) => (
-  <Marker longitude={longitude} latitude={latitude}>
-    <div className="cluster-marker">{pointCount}</div>
-  </Marker>
-);
+const ClusterMarker = ({ longitude, latitude, pointCount }) => {
+  var clusterSize = pointCount * 1.85;
+  return (
+    <Marker longitude={longitude} latitude={latitude}>
+      <div
+        className="cluster-marker"
+        style={{
+          height: clusterSize,
+          width: clusterSize,
+          maxHeight: 70,
+          maxWidth: 70,
+          minHeight: 30,
+          minWidth: 30,
+        }}
+      >
+        {pointCount}
+      </div>
+    </Marker>
+  );
+};
 
 const ClusteredMarkers = (props) => {
   return (
@@ -19,6 +33,7 @@ const ClusteredMarkers = (props) => {
       extent={512}
       nodeSize={64}
       component={ClusterMarker}
+      maxZoom={14}
     >
       {props.strandings.features.map((report) => (
         <Marker
@@ -32,22 +47,16 @@ const ClusteredMarkers = (props) => {
               e.preventDefault();
               props.setSelectedStranding(report);
             }}
-          >
-            {/* decide which icon to give the animal */}
-            {report.properties["Common Name"] ===
-              "Sea lion, California" ? (
-                <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
-              ) : (
-                <img src="/red-pin.svg" alt="seal species" />
-              )}
+          > 
+
+          {/*send speciesMarkers dictionary object and species found in the report*/}
+        
+            <MarkerSVG speciesMarkers={props.speciesMarkers} species={report.properties["Common Name"].split(",")[0]}/>
           </button>
         </Marker>
       ))}
     </Cluster>
-
   );
 };
 
 export default ClusteredMarkers;
-
-
