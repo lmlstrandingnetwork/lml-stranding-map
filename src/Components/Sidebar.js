@@ -11,7 +11,7 @@ const Sidebar = (props) => {
           justifyContent: "center",
           alignItems: "center"
         }} >
-      <div className="toggle-label"> Heat Map Toggle</div>
+      <div className="toggle-label"> Heat Map</div>
         <ToggleSwitch 
           heatmapState={props.heatmapState}
           showHeatmap={props.showHeatmap}
