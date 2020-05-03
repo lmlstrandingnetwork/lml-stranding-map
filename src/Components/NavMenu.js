@@ -21,7 +21,7 @@ function NavMenu() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" >
-            <Nav.Link href="#home" >About</Nav.Link>
+            <Nav.Link href="#home" >Map</Nav.Link>
             <Nav.Link href="#home" >FAQ</Nav.Link>
             <Nav.Link href="https://lmlstrandingnetwork.ucsc.edu/" >
               Stranding Program
