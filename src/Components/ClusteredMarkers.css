@@ -10,10 +10,13 @@
 }
 
 .cluster-marker {
-  width: 20px;
-  height: 20px;
-  color: #fff;
-  background: #087cdb;
-  border-radius: 20px;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: #2284e6;
+  border-radius: 75px;
+  border: 1px solid #333;
+  font-weight: bold;
+  color: white;
+  opacity: 80%;
 }
