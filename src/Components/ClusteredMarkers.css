@@ -1,0 +1,22 @@
+.marker-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.marker-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.cluster-marker {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: #2284e6;
+  border-radius: 75px;
+  border: 1px solid #333;
+  font-weight: bold;
+  color: white;
+  opacity: 80%;
+}

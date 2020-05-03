@@ -12,14 +12,3 @@
   margin-left: 23%;
   margin-right: 10px;
 }
-
-.marker-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.marker-btn img {
-  width: 20px;
-  height: 20px;
-}
