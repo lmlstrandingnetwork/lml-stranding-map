@@ -70,7 +70,6 @@ function Map(props) {
             }}
           />
         ) : null}
-        <Legend />
       </MapGL>
     </div>
   );
