@@ -94,7 +94,13 @@ const Content = (props) => {
   return (
     <div className="right-column">
       <div className="info">
-        <Stats />
+        <Stats
+          translations={{
+            stats(nbHits, timeSpentMS) {
+              return `${nbHits} strandings found in ${timeSpentMS}ms`;
+            },
+          }}
+        />
       </div>
       <Map hits={props.hits} heatmapState={props.heatmapState} />
     </div>
