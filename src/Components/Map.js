@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MapGL, { Marker, Source, Layer } from "@urbica/react-map-gl";
+import MapGL, { Source, Layer, NavigationControl } from "@urbica/react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { heatmapLayer } from "./heatmapLayer";
 import StrandingPopup from "./StrandingPopup";
@@ -56,8 +56,8 @@ function Map(props) {
         )}
         {!props.heatmapState.visible && (
           <ClusteredMarkers
-          strandings = {strandings}
-          setSelectedStranding = {setSelectedStranding}
+            strandings={strandings}
+            setSelectedStranding={setSelectedStranding}
           />
         )}
         {selectedStranding ? (
@@ -71,6 +71,8 @@ function Map(props) {
           />
         ) : null}
       </MapGL>
+      <Legend />
+      <NavigationControl showCompass showZoom position="top-left" />
     </div>
   );
 }
