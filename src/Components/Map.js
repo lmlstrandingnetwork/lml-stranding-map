@@ -89,13 +89,7 @@ function Map(props) {
                     setSelectedStranding(report);
                   }}
                 >
-                  {/* decide which icon to give the animal */}
-                  {report.properties["Common Name"] ===
-                  "Sea lion, California" ? (
-                    <img src="/seal-grey-svgrepo-com.svg" alt="seal-face" />
-                  ) : (
-                    <img src="/red-pin.svg" alt="seal species" />
-                  )}
+                  <img src="/red-pin.svg" alt="seal species" />
                 </button>
               </Marker>
             ))}
@@ -111,7 +105,6 @@ function Map(props) {
             }}
           />
         ) : null}
-        <Legend />
       </MapGL>
     </div>
   );
