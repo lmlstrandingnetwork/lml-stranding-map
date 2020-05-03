@@ -34,8 +34,8 @@ function NavMenu() {
             <img
             src="../baskin-logo-banner-new.jpg"
             alt="baskin logo"
-            width="230"
-            height="40"
+            width="115"
+            height="20"
           />
           </Nav>
           </Navbar.Brand>
