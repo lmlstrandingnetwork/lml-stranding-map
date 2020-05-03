@@ -4,7 +4,7 @@ import NavMenu from "./Components/NavMenu";
 import Footer from "./Components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
+//comment
 function App() {
   return (
     <div className="App">
@@ -24,6 +24,7 @@ function App() {
   <NavMenu />
       <Filter />
       <Footer />
+      
 			</div>
 			)
 		}
