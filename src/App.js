@@ -5,40 +5,18 @@ import About from "./Components/About";
 import Faq from "./Components/faq";
 import Footer from "./Components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-//comment
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 function App() {
   return (
     <div className="App">
+      <NavMenu />
       <Router>
-      <Route path="/" exact render={
-		()=>{
-			return (
-			<div>
-		  	  <NavMenu />
-      		  <Filter />
-     		  <Footer />
-      		</div>
-			)
-		}
-	}/>
-      <Route path="/faq" exact render={
-		()=>{
-			return (
-			<Faq />
-			)
-		}
-	}/>
-
-<Route path="/about" exact render={
-		()=>{
-			return (
-			<About />
-			
-			)
-		}
-	}/>
-        </Router>
+        <Route path="/" exact component={Filter} />
+        <Route path="/faq" exact component={Faq} />
+        <Route path="/about" exact component={About} />
+      </Router>
+      <Footer />
     </div>
   );
 }
