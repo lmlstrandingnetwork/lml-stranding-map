@@ -5,7 +5,7 @@ import "./Sidebar.css";
 
 const Sidebar = (props) => {
   return (
-    <div className="left-column">
+    <div className="sidebar">
       <div
         className="Heatmap-control"
         style={{

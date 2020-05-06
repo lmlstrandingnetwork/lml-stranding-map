@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import algoliasearch from "algoliasearch/lite";
-import { InstantSearch, Stats } from "react-instantsearch-dom";
-import Map from "./Map";
+import { InstantSearch } from "react-instantsearch-dom";
+import Content from "./Content";
 import Sidebar from "./Sidebar";
 
 const searchClient = algoliasearch(
@@ -89,22 +89,5 @@ function Filter() {
     </div>
   );
 }
-
-const Content = (props) => {
-  return (
-    <div className="right-column">
-      <div className="info">
-        <Stats
-          translations={{
-            stats(nbHits, timeSpentMS) {
-              return `${nbHits} strandings found in ${timeSpentMS}ms`;
-            },
-          }}
-        />
-      </div>
-      <Map hits={props.hits} heatmapState={props.heatmapState} />
-    </div>
-  );
-};
 
 export default Filter;
