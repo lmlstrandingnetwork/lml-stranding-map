@@ -4,3 +4,30 @@
   margin-left: 23%;
   margin-right: 10px;
 }
+
+.info {
+  display: flex;
+  padding: 10px;
+  margin: 10px;
+  max-width: 265px;
+  justify-content: space-between;
+}
+
+.sidebar-btn {
+  position: relative;
+  padding-left: 1.25em;
+  background: #ffffff;
+  border-style: none;
+}
+
+.sidebar-btn:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  margin: 5px;
+  top: 0.25em;
+  width: 1em;
+  height: 0.15em;
+  background: black;
+  box-shadow: 0 0.25em 0 0 black, 0 0.5em 0 0 black;
+}

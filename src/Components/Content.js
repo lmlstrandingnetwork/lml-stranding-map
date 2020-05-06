@@ -7,6 +7,7 @@ const Content = (props) => {
   return (
     <div className="content">
       <div className="info">
+        <SidebarButton />
         <Stats
           translations={{
             stats(nbHits, timeSpentMS) {
@@ -18,6 +19,10 @@ const Content = (props) => {
       <Map hits={props.hits} heatmapState={props.heatmapState} />
     </div>
   );
+};
+
+const SidebarButton = (props) => {
+  return <button className="sidebar-btn" onClick={props.collapseSidebar} />;
 };
 
 export default Content;
