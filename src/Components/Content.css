@@ -1,0 +1,77 @@
+.content {
+  max-width: 77%;
+  max-height: 90%;
+  margin-left: 23%;
+  margin-right: 10px;
+}
+
+.info {
+  display: flex;
+  max-width: 300px;
+  justify-content: space-between;
+}
+
+.sidebar-btn {
+  position: relative;
+  padding-left: 1.25em;
+  background: #ffffff;
+  border-style: none;
+  display: flex;
+  z-index: 1;
+  overflow: visible;
+  margin-left: 0px;
+  height: 30px;
+  width: 30px;
+}
+
+/* sidebar button hamburger icon */
+.sidebar-btn:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  margin: 5px;
+  top: 0.25em;
+  width: 1em;
+  height: 0.15em;
+  background: black;
+  box-shadow: 0 0.25em 0 0 black, 0 0.5em 0 0 black;
+}
+
+.sidebar-btn-tooltip {
+  /* appearance */
+
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  font-size: small;
+
+  /* positioning */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+/* tooltip arrow */
+.sidebar-btn-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.sidebar-btn:hover .sidebar-btn-tooltip {
+  display: block;
+  opacity: 1;
+}

@@ -1,6 +1,14 @@
+.sidebar {
+  float: left;
+  width: 23%;
+  margin-top: 18px;
+  height: 680px;
+  overflow: auto;
+  overflow-x: hidden;
+}
 
-.toggle-label{
-  color:black;
+.toggle-label {
+  color: black;
   /*top right bottom left*/
   margin: 2px 1em 2px 0px;
 }
@@ -16,8 +24,7 @@
   border-radius: 25px;
   padding: 2px;
   cursor: pointer;
-  background-color:lightgrey;
-
+  background-color: lightgrey;
 }
 .ToggleSwitch.on {
   border-radius: 25px;
@@ -36,15 +43,9 @@
   background-color: white;
   transition: transform 0.2s ease;
   border-radius: 50%;
-  
 }
 
 .ToggleSwitch.on:before {
   transform: translateX(18px);
   background-color: white;
 }
-
-
-  
-
-  
