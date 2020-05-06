@@ -22,7 +22,11 @@ const Content = (props) => {
 };
 
 const SidebarButton = (props) => {
-  return <button className="sidebar-btn" onClick={props.collapseSidebar} />;
+  return (
+    <button className="sidebar-btn" onClick={props.collapseSidebar}>
+      <span className="sidebar-btn-tooltip">Hide/show sidebar</span>
+    </button>
+  );
 };
 
 export default Content;
