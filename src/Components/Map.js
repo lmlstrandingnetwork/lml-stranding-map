@@ -38,7 +38,6 @@ function Map(props) {
   useEffect(() => {
     strandings.features = props.hits;
     setStrandings(strandings);
-    console.log(strandings);
     setStrandingsKey();
   }, [props.hits, strandings]);
 

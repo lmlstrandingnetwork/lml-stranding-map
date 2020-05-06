@@ -50,8 +50,6 @@ function Filter() {
     let filters = [];
 
     if (searchState) {
-      console.log(searchState);
-
       filters = Object.keys(searchState.refinementList).map((key) =>
         searchState.refinementList[key].length !== 0
           ? searchState.refinementList[key].map((entry) => key + ":" + entry)
