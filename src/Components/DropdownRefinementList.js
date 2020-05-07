@@ -57,7 +57,7 @@ class DropdownRefinementList extends Component {
     const { items, attribute, hoverable, currentRefinement } = this.props;
     const { active, mobile } = this.state;
     const title = attribute.split(".").pop();
-    console.log(this.state);
+    //console.log(this.state);
     return (
       <div
         className="ais-DropdownRefinementList-container"

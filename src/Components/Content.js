@@ -17,8 +17,8 @@ const Content = (props) => {
           }}
         />
         <ActiveFilterBar
-          /*passed searchState from Filter to Content */
-          searchState={props.searchState}
+          /*passed from Filter to Content */
+          reportFilters={props.reportFilters}
         />
       </div>
       <Map hits={props.hits} 

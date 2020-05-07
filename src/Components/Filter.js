@@ -31,6 +31,7 @@ const reducer = (heatmapState, action) => {
 function Filter() {
   const [toggleState, setToggleState] = useState("off");
   const [reportHits, setReportHits] = useState([]);
+  const [reportFilters, setReportFilters] = useState([]);
   const [heatmapState, dispatch] = React.useReducer(
     reducer,
     initialHeatmapState
@@ -57,6 +58,8 @@ function Filter() {
           ? searchState.refinementList[key].map((entry) => key + ":" + entry)
           : key + ":-foobar"
       );
+      setReportFilters(filters);
+      console.log(filters);
     }
     index
       .search("", {
@@ -83,7 +86,12 @@ function Filter() {
             toggleState={toggleState}
             setToggleState={setToggleState}
           />
-          <Content hits={reportHits} heatmapState={heatmapState} />
+          <Content 
+            hits={reportHits} 
+            heatmapState={heatmapState} 
+            reportFilters={reportFilters}
+            
+          />
         </main>
       </InstantSearch>
     </div>
