@@ -15,7 +15,7 @@ const Content = (props) => {
   };
 
   return (
-    <div className="content">
+    <div className={"content" + (props.isSidebarHidden ? "_big" : "")}>
       <div className="info">
         <SidebarButton
           hideSidebar={hideSidebar}
@@ -36,10 +36,7 @@ const Content = (props) => {
 
 const SidebarButton = (props) => {
   return (
-    <button
-      className={"sidebar-btn" + (props.isSidebarHidden ? "_small" : "_big")}
-      onClick={props.hideSidebar}
-    >
+    <button className={"sidebar-btn"} onClick={props.hideSidebar}>
       <span className="sidebar-btn-tooltip">Hide/show sidebar</span>
     </button>
   );

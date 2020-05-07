@@ -5,7 +5,7 @@ import "./Sidebar.css";
 
 const Sidebar = (props) => {
   return (
-    <div className="sidebar">
+    <div className={"sidebar" + (props.isSidebarHidden ? "_hidden" : "")}>
       <div
         className="Heatmap-control"
         style={{
