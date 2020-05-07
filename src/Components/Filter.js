@@ -28,12 +28,27 @@ const reducer = (heatmapState, action) => {
   }
 };
 
+const reducerSidebar = (isSidebarHidden, action) => {
+  switch (action.type) {
+    case "show":
+      return false;
+    case "hide":
+      return true;
+    default:
+      return isSidebarHidden;
+  }
+};
+
 function Filter() {
   const [toggleState, setToggleState] = useState("off");
   const [reportHits, setReportHits] = useState([]);
   const [heatmapState, dispatch] = React.useReducer(
     reducer,
     initialHeatmapState
+  );
+  const [isSidebarHidden, dispatchSidebar] = React.useReducer(
+    reducerSidebar,
+    false
   );
 
   function showHeatmap() {
@@ -81,7 +96,12 @@ function Filter() {
             toggleState={toggleState}
             setToggleState={setToggleState}
           />
-          <Content hits={reportHits} heatmapState={heatmapState} />
+          <Content
+            hits={reportHits}
+            heatmapState={heatmapState}
+            isSidebarHidden={isSidebarHidden}
+            dispatchSidebar={dispatchSidebar}
+          />
         </main>
       </InstantSearch>
     </div>
