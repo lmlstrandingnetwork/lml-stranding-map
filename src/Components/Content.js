@@ -1,6 +1,7 @@
 import React from "react";
 import { Stats } from "react-instantsearch-dom";
 import Map from "./Map";
+import ActiveFilterBar from "./ActiveFilterBar";
 import "./Content.css";
 
 const Content = (props) => {
@@ -15,8 +16,13 @@ const Content = (props) => {
             },
           }}
         />
+        <ActiveFilterBar
+          /*passed searchState from Filter to Content */
+          searchState={props.searchState}
+        />
       </div>
-      <Map hits={props.hits} heatmapState={props.heatmapState} />
+      <Map hits={props.hits} 
+      heatmapState={props.heatmapState} />
     </div>
   );
 };
