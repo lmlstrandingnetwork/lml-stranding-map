@@ -48,7 +48,7 @@ function Filter() {
   );
   const [isSidebarHidden, dispatchSidebar] = React.useReducer(
     reducerSidebar,
-    true
+    false
   );
 
   function showHeatmap() {
