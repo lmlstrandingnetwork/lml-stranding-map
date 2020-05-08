@@ -70,15 +70,20 @@ function Filter() {
           searchState.refinementList[key].map((entry) => key + ":" + entry)
         );
     }
-    index
-      .search("", {
-        facetFilters: filters,
-        hitsPerPage: 1000,
-        attributesToRetrieve: ["*", "-_highlightResult"],
-      })
-      .then(({ hits }) => {
-        setReportHits(hits);
-      });
+
+    if (filters.length === 0) {
+      setReportHits([]);
+    } else {
+      index
+        .search("", {
+          facetFilters: filters,
+          hitsPerPage: 1000,
+          attributesToRetrieve: ["*"],
+        })
+        .then(({ hits }) => {
+          setReportHits(hits);
+        });
+    }
   };
 
   useEffect(() => {
