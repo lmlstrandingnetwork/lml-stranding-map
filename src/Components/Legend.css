@@ -4,11 +4,18 @@
   right: 0;
   max-width: 320px;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
   padding: 12px 24px;
   margin: 5px;
   font-size: 13px;
   line-height: 2;
   color: #6b6b76;
   outline: none;
+  border-radius: 3%;
+}
+
+.legend ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
