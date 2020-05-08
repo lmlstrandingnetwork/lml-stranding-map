@@ -3,7 +3,7 @@ import { Marker } from "@urbica/react-map-gl";
 import Cluster from "@urbica/react-map-gl-cluster";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./ClusteredMarkers.css";
-import MarkerSVG from "./MarkerSVG"
+import MarkerSVG from "./MarkerSVG";
 
 const ClusterMarker = ({ longitude, latitude, pointCount }) => {
   var clusterSize = pointCount * 1.85;
@@ -47,11 +47,14 @@ const ClusteredMarkers = (props) => {
               e.preventDefault();
               props.setSelectedStranding(report);
             }}
-          > 
-
-          {/*send speciesMarkers dictionary object and species found in the report*/}
-        
-            <MarkerSVG speciesMarkers={props.speciesMarkers} species={report.properties["Common Name"].split(",")[0]}/>
+          >
+            <MarkerSVG
+              markerColor={
+                props.speciesMarkers[
+                  report.properties["Common Name"].split(",")[0]
+                ]
+              }
+            />
           </button>
         </Marker>
       ))}
