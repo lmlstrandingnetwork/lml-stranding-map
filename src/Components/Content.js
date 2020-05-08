@@ -7,10 +7,8 @@ const Content = (props) => {
   const hideSidebar = () => {
     if (props.isSidebarHidden === false) {
       props.dispatchSidebar({ type: "hide" });
-      console.log("hide sidebar");
     } else {
       props.dispatchSidebar({ type: "show" });
-      console.log("show sidebar");
     }
   };
 

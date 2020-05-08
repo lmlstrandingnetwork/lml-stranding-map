@@ -54,15 +54,15 @@ class DropdownRefinementList extends Component {
     this.setState({ active: !this.state.active });
   };
   render() {
-    const { items, attribute, hoverable, currentRefinement } = this.props;
+    const { items, attribute, currentRefinement } = this.props;
     const { active, mobile } = this.state;
     const title = attribute.split(".").pop();
 
     return (
       <div
         className="ais-DropdownRefinementList-container"
-        onMouseLeave={hoverable && !mobile && this.handleEvent}
-        onMouseEnter={hoverable && !mobile && this.handleEvent}
+        onMouseLeave={!mobile && this.handleEvent}
+        onMouseEnter={!mobile && this.handleEvent}
       >
         <div className={cx("title-container")} onClick={this.handleEvent}>
           <span className="ais-DropdownRefinementList-title">
@@ -86,11 +86,7 @@ class DropdownRefinementList extends Component {
 
 DropdownRefinementList.propTypes = {
   attribute: PropTypes.string.isRequired,
-  hoverable: PropTypes.bool,
   limit: PropTypes.number,
-};
-DropdownRefinementList.defaultProps = {
-  hoverable: false,
 };
 
 export default connectRefinementList(DropdownRefinementList);
