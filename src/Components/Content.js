@@ -4,10 +4,21 @@ import Map from "./Map";
 import "./Content.css";
 
 const Content = (props) => {
+  const hideSidebar = () => {
+    if (props.isSidebarHidden === false) {
+      props.dispatchSidebar({ type: "hide" });
+    } else {
+      props.dispatchSidebar({ type: "show" });
+    }
+  };
+
   return (
-    <div className="content">
+    <div className={"content" + (props.isSidebarHidden ? "_big" : "")}>
       <div className="info">
-        <SidebarButton />
+        <SidebarButton
+          hideSidebar={hideSidebar}
+          isSidebarHidden={props.isSidebarHidden}
+        />
         <Stats
           translations={{
             stats(nbHits, timeSpentMS) {
@@ -23,7 +34,7 @@ const Content = (props) => {
 
 const SidebarButton = (props) => {
   return (
-    <button className="sidebar-btn" onClick={props.collapseSidebar}>
+    <button className={"sidebar-btn"} onClick={props.hideSidebar}>
       <span className="sidebar-btn-tooltip">Hide/show sidebar</span>
     </button>
   );

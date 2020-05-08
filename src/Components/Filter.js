@@ -28,12 +28,27 @@ const reducer = (heatmapState, action) => {
   }
 };
 
+const reducerSidebar = (isSidebarHidden, action) => {
+  switch (action.type) {
+    case "show":
+      return false;
+    case "hide":
+      return true;
+    default:
+      return isSidebarHidden;
+  }
+};
+
 function Filter() {
   const [toggleState, setToggleState] = useState("off");
   const [reportHits, setReportHits] = useState([]);
   const [heatmapState, dispatch] = React.useReducer(
     reducer,
     initialHeatmapState
+  );
+  const [isSidebarHidden, dispatchSidebar] = React.useReducer(
+    reducerSidebar,
+    false
   );
 
   function showHeatmap() {
@@ -50,8 +65,6 @@ function Filter() {
     let filters = [];
 
     if (searchState) {
-      console.log(searchState);
-
       filters = Object.keys(searchState.refinementList).map((key) =>
         searchState.refinementList[key].length !== 0
           ? searchState.refinementList[key].map((entry) => key + ":" + entry)
@@ -82,8 +95,14 @@ function Filter() {
             showHeatmap={showHeatmap}
             toggleState={toggleState}
             setToggleState={setToggleState}
+            isSidebarHidden={isSidebarHidden}
           />
-          <Content hits={reportHits} heatmapState={heatmapState} />
+          <Content
+            hits={reportHits}
+            heatmapState={heatmapState}
+            isSidebarHidden={isSidebarHidden}
+            dispatchSidebar={dispatchSidebar}
+          />
         </main>
       </InstantSearch>
     </div>
