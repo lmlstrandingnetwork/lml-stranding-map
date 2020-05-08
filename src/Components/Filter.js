@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch } from "react-instantsearch-dom";
 import Content from "./Content";
@@ -63,13 +63,12 @@ function Filter() {
 
   const getResults = (searchState) => {
     let filters = [];
-
     if (searchState) {
-      filters = Object.keys(searchState.refinementList).map((key) =>
-        searchState.refinementList[key].length !== 0
-          ? searchState.refinementList[key].map((entry) => key + ":" + entry)
-          : key + ":-foobar"
-      );
+      filters = Object.keys(searchState.refinementList)
+        .filter((key) => searchState.refinementList[key].length !== 0)
+        .map((key) =>
+          searchState.refinementList[key].map((entry) => key + ":" + entry)
+        );
     }
     index
       .search("", {
@@ -81,6 +80,10 @@ function Filter() {
         setReportHits(hits);
       });
   };
+
+  useEffect(() => {
+    getResults();
+  }, []);
 
   return (
     <div>
