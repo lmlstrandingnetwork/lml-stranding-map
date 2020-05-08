@@ -26,7 +26,7 @@ function NavMenu() {
             <Nav.Link href="https://lmlstrandingnetwork.ucsc.edu/" >
               Stranding Program
             </Nav.Link>
-            <Nav.Link href="about" >About The Developers</Nav.Link>
+            <Nav.Link href="about" >Team</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Brand href="/">
