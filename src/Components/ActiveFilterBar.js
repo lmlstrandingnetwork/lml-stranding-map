@@ -1,13 +1,16 @@
 import React from "react";
 import "./ActiveFilterBar.css";
 
-//map over repertFilters
 const ActiveFilterBar = (props) => {
     console.log(props.reportFilters)
     return (
         <div>
-            <li>Filtering By: </li>
-            {props.reportFilters}
+        <li>Filtering By: </li>
+        {(props.reportFilters).map((filters) => (
+            <li style={{ listStyle: "none" }}>
+              {filters}
+            </li>
+          ))}
         </div>
     );
 };
