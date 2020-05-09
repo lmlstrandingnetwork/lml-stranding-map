@@ -62,7 +62,7 @@ function Filter() {
   }
 
   const getResults = (searchState) => {
-    let filters = [];
+    let filters = ["properties.Year of Examination:2019"];
     if (searchState) {
       filters = Object.keys(searchState.refinementList)
         .filter((key) => searchState.refinementList[key].length !== 0)
