@@ -2,6 +2,7 @@ import React from "react";
 import { Stats } from "react-instantsearch-dom";
 import Map from "./Map";
 import "./Content.css";
+import { object } from "firebase-functions/lib/providers/storage";
 
 const Content = (props) => {
   const hideSidebar = () => {
@@ -19,10 +20,13 @@ const Content = (props) => {
           hideSidebar={hideSidebar}
           isSidebarHidden={props.isSidebarHidden}
         />
+
         <Stats
           translations={{
             stats(nbHits, timeSpentMS) {
-              return `${nbHits} strandings found in ${timeSpentMS}ms`;
+              return `${
+                Object.keys(props.hits).length > 0 ? nbHits : 0
+              } strandings found`;
             },
           }}
         />
