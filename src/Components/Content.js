@@ -2,7 +2,6 @@ import React from "react";
 import { Stats } from "react-instantsearch-dom";
 import Map from "./Map";
 import "./Content.css";
-import { object } from "firebase-functions/lib/providers/storage";
 
 const Content = (props) => {
   const hideSidebar = () => {
