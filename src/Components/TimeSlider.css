@@ -1,0 +1,16 @@
+.time-slider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: 320px;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
+  padding: 12px 24px;
+  margin: 20px;
+  font-size: 13px;
+  line-height: 2;
+  color: #6b6b76;
+  outline: none;
+  text-transform: uppercase;
+  border-radius: 3%;
+}
