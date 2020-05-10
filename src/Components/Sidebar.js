@@ -6,16 +6,13 @@ import "./Sidebar.css";
 const Sidebar = (props) => {
   return (
     <div className={"sidebar" + (props.isSidebarHidden ? "_hidden" : "")}>
-      <div className="toggles">
-        <div style={{ display: "block" }}>
-          <label> Heatmap</label>
-          <ToggleSwitch showComponent={props.showHeatmap} />
-        </div>
+      <div className="toggles-container">
+        <ToggleSwitch label={"Heatmap"} toggleComponent={props.showHeatmap} />
 
-        <div style={{ display: "block" }}>
-          <label>Time Slider</label>
-          <ToggleSwitch showComponent={props.showTimeSlider} />
-        </div>
+        <ToggleSwitch
+          label={"Time Slider"}
+          toggleComponent={props.showTimeSlider}
+        />
       </div>
       <DropdownRefinementList
         attribute={"properties.Common Name"}
@@ -37,7 +34,7 @@ const ToggleSwitch = (props) => {
   const [toggleState, setToggleState] = useState("off");
 
   const handleClick = () => {
-    props.showComponent();
+    props.toggleComponent();
 
     if (toggleState === "off") {
       setToggleState("on");
@@ -47,7 +44,10 @@ const ToggleSwitch = (props) => {
   };
 
   return (
-    <div className={`ToggleSwitch ${toggleState}`} onClick={handleClick} />
+    <div>
+      <label> {props.label} </label>
+      <div className={`ToggleSwitch ${toggleState}`} onClick={handleClick} />
+    </div>
   );
 };
 
