@@ -11,20 +11,16 @@ const searchClient = algoliasearch(
 
 const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
-const initialHeatmapState = {
-  visible: false,
-};
-
-const reducer = (heatmapState, action) => {
+const reducerHeatmap = (isHeatmapHidden, action) => {
   switch (action.type) {
     case "show":
-      return { visible: true };
+      return false;
 
     case "hide":
-      return { visible: false };
+      return true;
 
     default:
-      return heatmapState;
+      return isHeatmapHidden;
   }
 };
 
@@ -40,11 +36,10 @@ const reducerSidebar = (isSidebarHidden, action) => {
 };
 
 function Filter() {
-  const [toggleState, setToggleState] = useState("off");
   const [reportHits, setReportHits] = useState([]);
-  const [heatmapState, dispatch] = React.useReducer(
-    reducer,
-    initialHeatmapState
+  const [isHeatmapHidden, dispatchHeatmap] = React.useReducer(
+    reducerHeatmap,
+    true
   );
   const [isSidebarHidden, dispatchSidebar] = React.useReducer(
     reducerSidebar,
@@ -52,12 +47,10 @@ function Filter() {
   );
 
   function showHeatmap() {
-    if (heatmapState.visible === false) {
-      setToggleState("on");
-      dispatch({ type: "show" });
+    if (isHeatmapHidden === true) {
+      dispatchHeatmap({ type: "show" });
     } else {
-      setToggleState("off");
-      dispatch({ type: "hide" });
+      dispatchHeatmap({ type: "hide" });
     }
   }
 
@@ -99,15 +92,12 @@ function Filter() {
       >
         <main>
           <Sidebar
-            heatmapState={heatmapState}
             showHeatmap={showHeatmap}
-            toggleState={toggleState}
-            setToggleState={setToggleState}
             isSidebarHidden={isSidebarHidden}
           />
           <Content
             hits={reportHits}
-            heatmapState={heatmapState}
+            isHeatmapHidden={isHeatmapHidden}
             isSidebarHidden={isSidebarHidden}
             dispatchSidebar={dispatchSidebar}
           />

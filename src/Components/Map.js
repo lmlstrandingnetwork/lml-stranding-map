@@ -6,6 +6,7 @@ import { heatmapLayer } from "./heatmapLayer";
 import StrandingPopup from "./StrandingPopup";
 import Legend from "./Legend";
 import ClusteredMarkers from "./ClusteredMarkers";
+import TimeSlider from "./TimeSlider";
 
 const SizeAware = withSize({ noPlaceholder: true, monitorHeight: true })(
   (props) => props.children
@@ -68,7 +69,7 @@ function Map(props) {
             setViewport(viewport);
           }}
         >
-          {props.heatmapState.visible && (
+          {!props.isHeatmapHidden && (
             <Source
               id="reports"
               type="geojson"
@@ -78,7 +79,7 @@ function Map(props) {
               <Layer {...heatmapLayer} />
             </Source>
           )}
-          {!props.heatmapState.visible && (
+          {props.isHeatmapHidden && (
             <ClusteredMarkers
               strandings={strandings}
               setSelectedStranding={setSelectedStranding}
@@ -97,6 +98,7 @@ function Map(props) {
           ) : null}
           <Legend speciesMarkers={speciesMarkers} />
           <NavigationControl showCompass showZoom position="top-left" />
+          <TimeSlider />
         </MapGL>
       </SizeAware>
     </div>

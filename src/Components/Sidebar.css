@@ -17,15 +17,15 @@
   transition: all 0.5s ease 0s;
 }
 
-.toggle-label {
-  color: black;
-  /*top right bottom left*/
-  margin: 2px 1em 2px 0px;
+.toggles {
+  display: block;
+  padding: 20px;
 }
 
 .ToggleSwitch {
+  display: block;
   position: relative;
-  display: inline-block;
+  float: right;
   width: 35px;
   height: 17px;
 }

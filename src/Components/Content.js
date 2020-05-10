@@ -30,7 +30,7 @@ const Content = (props) => {
           }}
         />
       </div>
-      <Map hits={props.hits} heatmapState={props.heatmapState} />
+      <Map hits={props.hits} isHeatmapHidden={props.isHeatmapHidden} />
     </div>
   );
 };
