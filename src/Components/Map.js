@@ -86,6 +86,7 @@ function Map(props) {
               speciesMarkers={speciesMarkers}
             />
           )}
+          {!props.isTimeSliderHidden && <TimeSlider />}
           {selectedStranding ? (
             <StrandingPopup
               selectedStranding={selectedStranding}
@@ -98,7 +99,6 @@ function Map(props) {
           ) : null}
           <Legend speciesMarkers={speciesMarkers} />
           <NavigationControl showCompass showZoom position="top-left" />
-          <TimeSlider />
         </MapGL>
       </SizeAware>
     </div>

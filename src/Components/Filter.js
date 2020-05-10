@@ -15,10 +15,8 @@ const reducerHeatmap = (isHeatmapHidden, action) => {
   switch (action.type) {
     case "show":
       return false;
-
     case "hide":
       return true;
-
     default:
       return isHeatmapHidden;
   }
@@ -35,6 +33,17 @@ const reducerSidebar = (isSidebarHidden, action) => {
   }
 };
 
+const reducerTimeSlider = (isTimeSliderHidden, action) => {
+  switch (action.type) {
+    case "show":
+      return false;
+    case "hide":
+      return true;
+    default:
+      return isTimeSliderHidden;
+  }
+};
+
 function Filter() {
   const [reportHits, setReportHits] = useState([]);
   const [isHeatmapHidden, dispatchHeatmap] = React.useReducer(
@@ -45,12 +54,24 @@ function Filter() {
     reducerSidebar,
     false
   );
+  const [isTimeSliderHidden, dispatchTimeSlider] = React.useReducer(
+    reducerTimeSlider,
+    true
+  );
 
   function showHeatmap() {
     if (isHeatmapHidden === true) {
       dispatchHeatmap({ type: "show" });
     } else {
       dispatchHeatmap({ type: "hide" });
+    }
+  }
+
+  function showTimeSlider() {
+    if (isTimeSliderHidden === true) {
+      dispatchTimeSlider({ type: "show" });
+    } else {
+      dispatchTimeSlider({ type: "hide" });
     }
   }
 
@@ -93,12 +114,14 @@ function Filter() {
         <main>
           <Sidebar
             showHeatmap={showHeatmap}
+            showTimeSlider={showTimeSlider}
             isSidebarHidden={isSidebarHidden}
           />
           <Content
             hits={reportHits}
             isHeatmapHidden={isHeatmapHidden}
             isSidebarHidden={isSidebarHidden}
+            isTimeSliderHidden={isTimeSliderHidden}
             dispatchSidebar={dispatchSidebar}
           />
         </main>
