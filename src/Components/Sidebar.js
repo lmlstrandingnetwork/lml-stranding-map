@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { orderBy } from "lodash";
 import DropdownRefinementList from "./DropdownRefinementList";
 import "./Sidebar.css";
@@ -6,20 +6,12 @@ import "./Sidebar.css";
 const Sidebar = (props) => {
   return (
     <div className={"sidebar" + (props.isSidebarHidden ? "_hidden" : "")}>
-      <div
-        className="Heatmap-control"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div className="toggle-label"> Heat Map</div>
+      <div className="toggles-container">
+        <ToggleSwitch label={"Heatmap"} toggleComponent={props.showHeatmap} />
+
         <ToggleSwitch
-          heatmapState={props.heatmapState}
-          showHeatmap={props.showHeatmap}
-          toggleState={props.toggleState}
-          setToggleState={props.setToggleState}
+          label={"Time Slider"}
+          toggleComponent={props.showTimeSlider}
         />
       </div>
       <DropdownRefinementList
@@ -39,11 +31,23 @@ const Sidebar = (props) => {
 };
 
 const ToggleSwitch = (props) => {
+  const [toggleState, setToggleState] = useState("off");
+
+  const handleClick = () => {
+    props.toggleComponent();
+
+    if (toggleState === "off") {
+      setToggleState("on");
+    } else {
+      setToggleState("off");
+    }
+  };
+
   return (
-    <div
-      className={`ToggleSwitch ${props.toggleState}`}
-      onClick={props.showHeatmap}
-    />
+    <div>
+      <label> {props.label} </label>
+      <div className={`ToggleSwitch ${toggleState}`} onClick={handleClick} />
+    </div>
   );
 };
 

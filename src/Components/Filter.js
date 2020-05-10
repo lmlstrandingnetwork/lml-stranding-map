@@ -11,20 +11,14 @@ const searchClient = algoliasearch(
 
 const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
-const initialHeatmapState = {
-  visible: false,
-};
-
-const reducer = (heatmapState, action) => {
+const reducerHeatmap = (isHeatmapHidden, action) => {
   switch (action.type) {
     case "show":
-      return { visible: true };
-
+      return false;
     case "hide":
-      return { visible: false };
-
+      return true;
     default:
-      return heatmapState;
+      return isHeatmapHidden;
   }
 };
 
@@ -39,25 +33,45 @@ const reducerSidebar = (isSidebarHidden, action) => {
   }
 };
 
+const reducerTimeSlider = (isTimeSliderHidden, action) => {
+  switch (action.type) {
+    case "show":
+      return false;
+    case "hide":
+      return true;
+    default:
+      return isTimeSliderHidden;
+  }
+};
+
 function Filter() {
-  const [toggleState, setToggleState] = useState("off");
   const [reportHits, setReportHits] = useState([]);
-  const [heatmapState, dispatch] = React.useReducer(
-    reducer,
-    initialHeatmapState
+  const [isHeatmapHidden, dispatchHeatmap] = React.useReducer(
+    reducerHeatmap,
+    true
   );
   const [isSidebarHidden, dispatchSidebar] = React.useReducer(
     reducerSidebar,
     false
   );
+  const [isTimeSliderHidden, dispatchTimeSlider] = React.useReducer(
+    reducerTimeSlider,
+    true
+  );
 
   function showHeatmap() {
-    if (heatmapState.visible === false) {
-      setToggleState("on");
-      dispatch({ type: "show" });
+    if (isHeatmapHidden === true) {
+      dispatchHeatmap({ type: "show" });
     } else {
-      setToggleState("off");
-      dispatch({ type: "hide" });
+      dispatchHeatmap({ type: "hide" });
+    }
+  }
+
+  function showTimeSlider() {
+    if (isTimeSliderHidden === true) {
+      dispatchTimeSlider({ type: "show" });
+    } else {
+      dispatchTimeSlider({ type: "hide" });
     }
   }
 
@@ -99,16 +113,15 @@ function Filter() {
       >
         <main>
           <Sidebar
-            heatmapState={heatmapState}
             showHeatmap={showHeatmap}
-            toggleState={toggleState}
-            setToggleState={setToggleState}
+            showTimeSlider={showTimeSlider}
             isSidebarHidden={isSidebarHidden}
           />
           <Content
             hits={reportHits}
-            heatmapState={heatmapState}
+            isHeatmapHidden={isHeatmapHidden}
             isSidebarHidden={isSidebarHidden}
+            isTimeSliderHidden={isTimeSliderHidden}
             dispatchSidebar={dispatchSidebar}
           />
         </main>
