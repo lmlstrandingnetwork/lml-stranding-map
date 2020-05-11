@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./TimeSlider.css";
-import { connectRange } from "react-instantsearch-dom";
+import { connectRefinementList } from "react-instantsearch-dom";
 
 const TimeSlider = (props) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
 
   const handleChange = (value) => {
-    const min = 1;
-    const max = 2;
     setValue(value);
-    props.refine({ min, max });
+
     console.log(value);
   };
-
-  useEffect(() => {
-    console.log(props.currentRefinement);
-  });
 
   return (
     <div className={props.className}>
@@ -34,4 +28,4 @@ const TimeSlider = (props) => {
   );
 };
 
-export default connectRange(TimeSlider);
+export default connectRefinementList(TimeSlider);
