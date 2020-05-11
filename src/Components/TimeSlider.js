@@ -3,7 +3,9 @@ import "./TimeSlider.css";
 import { connectRefinementList } from "react-instantsearch-dom";
 
 const TimeSlider = (props) => {
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(0);
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
 
   const handleChange = (value) => {
     setValue(value);
@@ -13,10 +15,15 @@ const TimeSlider = (props) => {
     props.refine(selection);
   };
 
+  useState(() => {
+    setStart(props.items[0].label);
+    setEnd(props.items[props.items.length - 1].label);
+  }, []);
+
   return (
     <div className={props.className}>
-      <h4>{props.year}</h4>
-      <label>{props.endTime}</label>
+      <h4>{props.items[value].label}</h4>
+      <label>{start}</label>
       <input
         type="range"
         min={0}
@@ -25,7 +32,7 @@ const TimeSlider = (props) => {
         value={value}
         onChange={(changeEvent) => handleChange(changeEvent.target.value)}
       />
-      <label>{props.startTime}</label>
+      <label>{end}</label>
     </div>
   );
 };

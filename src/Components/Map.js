@@ -90,7 +90,7 @@ function Map(props) {
           <TimeSlider
             className={props.isTimeSliderHidden ? "hidden" : "visible"}
             attribute="properties.Year of Examination"
-            transformItems={(items) => orderBy(items, "label", "desc")}
+            transformItems={(items) => orderBy(items, "label", "asc")}
             limit={1000}
           />
           {selectedStranding ? (
