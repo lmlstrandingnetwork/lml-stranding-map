@@ -6,10 +6,10 @@ const TimeSlider = (props) => {
   const days = Math.round((props.endTime - props.startTime) / day);
 
   return (
-    <div className="time-slider">
+    <div className={props.className}>
       <h4>{props.year}</h4>
       <label>{props.endTime}</label>
-      <input type="range" min={1} max={days} step={1} />
+      <input type="range" min={props.min} max={days} step={1} />
       <label>{props.startTime}</label>
     </div>
   );

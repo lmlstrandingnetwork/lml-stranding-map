@@ -86,7 +86,9 @@ function Map(props) {
               speciesMarkers={speciesMarkers}
             />
           )}
-          {!props.isTimeSliderHidden && <TimeSlider />}
+          <TimeSlider
+            className={props.isTimeSliderHidden ? "hidden" : "visible"}
+          />
           {selectedStranding ? (
             <StrandingPopup
               selectedStranding={selectedStranding}

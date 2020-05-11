@@ -1,4 +1,4 @@
-.time-slider {
+.visible {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -14,4 +14,8 @@
   text-transform: uppercase;
   border-radius: 3%;
   text-align: center;
+}
+
+.hidden {
+  display: none;
 }
