@@ -7,8 +7,10 @@ const TimeSlider = (props) => {
 
   const handleChange = (value) => {
     setValue(value);
-
-    console.log(value);
+    console.log("slider value = " + value);
+    const selection = [props.items[value].label];
+    console.log("filter selection = " + value);
+    props.refine(selection);
   };
 
   return (
@@ -17,8 +19,8 @@ const TimeSlider = (props) => {
       <label>{props.endTime}</label>
       <input
         type="range"
-        min={1}
-        max={10}
+        min={0}
+        max={props.items.length - 1}
         step={1}
         value={value}
         onChange={(changeEvent) => handleChange(changeEvent.target.value)}

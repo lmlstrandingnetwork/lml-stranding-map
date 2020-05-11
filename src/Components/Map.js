@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import MapGL, { Source, Layer, NavigationControl } from "@urbica/react-map-gl";
+import { orderBy } from "lodash";
 import { withSize } from "react-sizeme";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { heatmapLayer } from "./heatmapLayer";
@@ -88,7 +89,9 @@ function Map(props) {
           )}
           <TimeSlider
             className={props.isTimeSliderHidden ? "hidden" : "visible"}
-            attribute="properties.Date of Examination"
+            attribute="properties.Year of Examination"
+            transformItems={(items) => orderBy(items, "label", "desc")}
+            limit={1000}
           />
           {selectedStranding ? (
             <StrandingPopup
