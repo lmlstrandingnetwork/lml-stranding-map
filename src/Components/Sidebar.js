@@ -8,11 +8,6 @@ const Sidebar = (props) => {
     <div className={"sidebar" + (props.isSidebarHidden ? "_hidden" : "")}>
       <div className="toggles-container">
         <ToggleSwitch label={"Heatmap"} toggleComponent={props.showHeatmap} />
-
-        <ToggleSwitch
-          label={"Time Slider"}
-          toggleComponent={props.showTimeSlider}
-        />
       </div>
       <DropdownRefinementList
         attribute={"properties.Common Name"}

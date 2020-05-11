@@ -86,7 +86,6 @@ function Map(props) {
               speciesMarkers={speciesMarkers}
             />
           )}
-          {!props.isTimeSliderHidden && <TimeSlider />}
           {selectedStranding ? (
             <StrandingPopup
               selectedStranding={selectedStranding}
