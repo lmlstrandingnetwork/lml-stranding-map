@@ -25,6 +25,12 @@ const Sidebar = (props) => {
         transformItems={(items) => orderBy(items, "label", "desc")}
       />
       <DropdownRefinementList attribute={"properties.Sex"} />
+
+      <DropdownRefinementList attribute={"properties.Findings of Human Interaction"} />
+      <DropdownRefinementList attribute={"properties.Condition at Examination"} />
+      <DropdownRefinementList attribute={"properties.Necropsied Flag"} />
+
+
     </div>
   );
 };
