@@ -20,12 +20,12 @@
   display: none;
 }
 
-h4 {
+.visible h4 {
   font-size: medium;
   color: black;
 }
 
-label {
+.visible label {
   padding: 0 12px 0 12px;
   font-size: small;
 }
