@@ -11,9 +11,7 @@ const TimeSlider = (props) => {
 
   const handleChange = (value) => {
     setValue(value);
-    console.log("slider value = " + value);
     const selection = [props.items[value].label];
-    console.log("filter selection = " + selection);
     props.refine(selection);
   };
 
@@ -33,8 +31,8 @@ const TimeSlider = (props) => {
     <div className={props.className}>
       {props.items.length > 0 ? (
         <div>
-          <button onClick={handleClick} />
           <h4>{props.items[value].label}</h4>
+          <button className="button" onClick={handleClick} />
           <label>{props.items[0].label}</label>
           <input
             type="range"
