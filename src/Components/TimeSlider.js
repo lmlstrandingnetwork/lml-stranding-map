@@ -11,10 +11,20 @@ const TimeSlider = (props) => {
 
   const handleChange = (value) => {
     setValue(value);
-    console.log("slider value = " + value);
     const selection = [props.items[value].label];
-    console.log("filter selection = " + selection);
     props.refine(selection);
+  };
+
+  const handleClick = () => {
+    for (var i = 0; i <= props.items.length - 1; i++) {
+      var tick = function (i) {
+        return function () {
+          document.querySelector("input[type=range]").value = i;
+          handleChange(i);
+        };
+      };
+      setTimeout(tick(i), 500 * i);
+    }
   };
 
   return (
@@ -22,6 +32,7 @@ const TimeSlider = (props) => {
       {props.items.length > 0 ? (
         <div>
           <h4>{props.items[value].label}</h4>
+          <button className="button" onClick={handleClick} />
           <label>{props.items[0].label}</label>
           <input
             type="range"
