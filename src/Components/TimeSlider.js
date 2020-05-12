@@ -17,10 +17,23 @@ const TimeSlider = (props) => {
     props.refine(selection);
   };
 
+  const handleClick = () => {
+    for (var i = 0; i <= props.items.length - 1; i++) {
+      var tick = function (i) {
+        return function () {
+          document.querySelector("input[type=range]").value = i;
+          handleChange(i);
+        };
+      };
+      setTimeout(tick(i), 500 * i);
+    }
+  };
+
   return (
     <div className={props.className}>
       {props.items.length > 0 ? (
         <div>
+          <button onClick={handleClick} />
           <h4>{props.items[value].label}</h4>
           <label>{props.items[0].label}</label>
           <input
