@@ -1,8 +1,8 @@
-.time-slider {
+.visible {
   position: absolute;
   bottom: 0;
   left: 0;
-  max-width: 320px;
+  max-width: 80%;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
   padding: 12px 24px;
@@ -14,4 +14,18 @@
   text-transform: uppercase;
   border-radius: 3%;
   text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible h4 {
+  font-size: medium;
+  color: black;
+}
+
+.visible label {
+  padding: 0 12px 0 12px;
+  font-size: small;
 }
