@@ -89,7 +89,7 @@ function Map(props) {
           )}
           <TimeSlider
             className={props.isTimeSliderHidden ? "hidden" : "visible"}
-            attribute="properties.Date of Examination"
+            attribute="properties.Year of Examination"
             transformItems={(items) => orderBy(items, "label", "asc")}
             limit={1000}
           />
