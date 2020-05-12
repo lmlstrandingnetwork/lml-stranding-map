@@ -49,6 +49,18 @@ function Filter() {
 
   const getResults = (searchState) => {
     let filters = [];
+    let activeFilters = [];
+    if (searchState) {
+      console.log(searchState);
+
+      activeFilters = Object.keys(searchState.refinementList).map((key) =>
+        searchState.refinementList[key].length !== 0
+          ? searchState.refinementList[key].map((entry) => entry)
+          : "nothing"
+      );
+      setReportFilters(activeFilters);
+      console.log(activeFilters);
+    }
 
     if (searchState) {
       console.log(searchState);
@@ -58,7 +70,6 @@ function Filter() {
           ? searchState.refinementList[key].map((entry) => key + ":" + entry)
           : key + ":-foobar"
       );
-      setReportFilters(filters);
       console.log(filters);
     }
     index
