@@ -6,6 +6,7 @@ import Faq from "./Components/faq";
 import Footer from "./Components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Login from "./Components/Login";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" exact component={Filter} />
         <Route path="/faq" exact component={Faq} />
         <Route path="/about" exact component={About} />
+        <Route path="/login" exact component = {Login}/>
       </Router>
       <Footer />
     </div>
