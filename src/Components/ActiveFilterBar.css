@@ -1,11 +1,9 @@
 .filterbubble {
-    position: absolute;
-    max-width: 320px;
-    background: darkgray;
-    padding: 3x;
-    margin: 5px;
-    font-size: 13px;
-    line-height: 2;
+    display: flex;
+    padding: 5px;
+    background: darkgrey;
+    border-radius: 5px;
     color: white;
-    outline: none;
+    font: 300 13px/10px "Source Sans Pro", "Helvetica Neue", Sans-serif;
+    display:inline-block;
 }

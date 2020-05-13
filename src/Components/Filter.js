@@ -55,7 +55,7 @@ function Filter() {
 
       activeFilters = Object.keys(searchState.refinementList).map((key) =>
         searchState.refinementList[key].length !== 0
-          ? searchState.refinementList[key].map((entry) => entry)
+          ? searchState.refinementList[key].map((entry) => entry + " ")
           : "nothing"
       );
       setReportFilters(activeFilters);
