@@ -6,11 +6,13 @@ const ActiveFilterBar = (props) => {
     return (
         <div>
         <li>Filtering By: </li>
-        {(props.reportFilters).map((filters) => (
-            <li style={{ listStyle: "none" }}>
-              {filters}
-            </li>
-          ))}
+          {(props.reportFilters).map((filters) => (
+              <li style={{ listStyle: "none" }}>
+                <div classname= "filterbubble">
+                    {filters}
+                </div>
+              </li>
+            ))}
         </div>
     );
 };

@@ -1,0 +1,11 @@
+.filterbubble {
+    position: absolute;
+    max-width: 320px;
+    background: darkgray;
+    padding: 3x;
+    margin: 5px;
+    font-size: 13px;
+    line-height: 2;
+    color: white;
+    outline: none;
+}
