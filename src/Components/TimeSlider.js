@@ -3,11 +3,10 @@ import "./TimeSlider.css";
 import { connectRefinementList } from "react-instantsearch-dom";
 
 const TimeSlider = (props) => {
-  const [dates, setDates] = useState([]);
   const [value, setValue] = useState(0);
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
-  const [currentLabel, setCurrentLabel] = useState("");
+  const [startYear, setStartYear] = useState("");
+  const [endYear, setEndYear] = useState("");
+  const [currentYear, setCurrentYear] = useState("");
 
   const handleChange = (value) => {
     setValue(value);
