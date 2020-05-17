@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { orderBy } from "lodash";
 import DropdownRefinementList from "./DropdownRefinementList";
+import { PoweredBy } from "react-instantsearch-dom";
 import "./Sidebar.css";
 
 const Sidebar = (props) => {
@@ -26,11 +27,16 @@ const Sidebar = (props) => {
       />
       <DropdownRefinementList attribute={"properties.Sex"} />
 
-      <DropdownRefinementList attribute={"properties.Findings of Human Interaction"} />
-      <DropdownRefinementList attribute={"properties.Condition at Examination"} />
+      <DropdownRefinementList
+        attribute={"properties.Findings of Human Interaction"}
+      />
+      <DropdownRefinementList
+        attribute={"properties.Condition at Examination"}
+      />
       <DropdownRefinementList attribute={"properties.Necropsied Flag"} />
-
-
+      <div style={{ padding: "18px" }}>
+        <PoweredBy />
+      </div>
     </div>
   );
 };
