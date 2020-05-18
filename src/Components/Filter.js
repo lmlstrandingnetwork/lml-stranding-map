@@ -3,9 +3,6 @@ import algoliasearch from "algoliasearch/lite";
 import { InstantSearch } from "react-instantsearch-dom";
 import Content from "./Content";
 import Sidebar from "./Sidebar";
-import UploadPopup from "./UploadPopup";
-import Dropzone from "react-dropzone";
-import csv from "csv";
 
 const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_APP_ID,
@@ -33,10 +30,6 @@ function Filter() {
     reducer,
     true
   );
-  const [isUploadPopupHidden, dispatchUploadPopup] = React.useReducer(
-    reducer,
-    true
-  );
 
   function showHeatmap() {
     if (isHeatmapHidden === true) {
@@ -51,16 +44,6 @@ function Filter() {
       dispatchTimeSlider({ type: "show" });
     } else {
       dispatchTimeSlider({ type: "hide" });
-    }
-  }
-
-  function showUploadPopup() {
-    if (isUploadPopupHidden === true) {
-      dispatchUploadPopup({ type: "show" });
-      console.log(isUploadPopupHidden);
-    } else {
-      dispatchUploadPopup({ type: "hide" });
-      console.log(isUploadPopupHidden);
     }
   }
 
@@ -101,7 +84,6 @@ function Filter() {
         onSearchStateChange={(searchState) => getResults(searchState)}
       >
         <main>
-          {!isUploadPopupHidden && <UploadPopup toggle={showUploadPopup} />}
           <Sidebar
             showHeatmap={showHeatmap}
             showTimeSlider={showTimeSlider}
