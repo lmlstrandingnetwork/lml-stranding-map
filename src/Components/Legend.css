@@ -22,5 +22,9 @@
 
 .legend label {
   display: inline-block;
-  padding: 0 0 0 5px;
+  padding: 0 10px 0 5px;
+}
+
+.legend span {
+  float: right;
 }
