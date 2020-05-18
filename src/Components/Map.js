@@ -103,7 +103,10 @@ function Map(props) {
               }}
             />
           ) : null}
-          <Legend speciesMarkers={speciesMarkers} />
+          <Legend
+            attribute={"properties.Common Name"}
+            speciesMarkers={speciesMarkers}
+          />
           <NavigationControl showCompass showZoom position="top-left" />
         </MapGL>
       </SizeAware>
