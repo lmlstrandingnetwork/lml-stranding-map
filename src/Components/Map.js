@@ -106,6 +106,7 @@ function Map(props) {
           <Legend
             attribute={"properties.Common Name"}
             markerColors={markerColors}
+            transformItems={(items) => orderBy(items, "label", "asc")}
           />
           <NavigationControl showCompass showZoom position="top-left" />
         </MapGL>
