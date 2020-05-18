@@ -5,5 +5,9 @@
     border-radius: 5px;
     color: white;
     font: 300 13px/10px "Source Sans Pro", "Helvetica Neue", Sans-serif;
-    display:inline-block;
+}
+
+.bubblelist
+{
+display: block;
 }
