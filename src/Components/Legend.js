@@ -32,8 +32,8 @@ const Legend = (props) => {
   const renderLegendItem = (item, i) => (
     <li key={i}>
       <MarkerSVG markerColor={[item.color]} />
-      <label classname="item-name">{item.name}</label>
-      <span classname="item-count">({item.count})</span>
+      <label className="item-name">{item.name}</label>
+      <span className="item-count">({item.count})</span>
     </li>
   );
 
