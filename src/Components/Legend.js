@@ -6,36 +6,30 @@ import { connectRefinementList } from "react-instantsearch-dom";
 const Legend = (props) => {
   const [legendItems, setLegendItems] = useState([]);
 
-  const groupSpecies = (items) => {
-    var counts = items.reduce((p, c) => {
-      var name = c.label.split(",")[0];
-      if (!p.hasOwnProperty(name)) {
-        p[name] = 0;
-      }
-      p[name] += c.count;
-      return p;
-    }, {});
-
-    console.log(counts);
-
-    var countsExtended = Object.keys(counts).map((k) => {
-      return { name: k, count: counts[k] };
-    });
-
-    console.log(countsExtended);
-
-    setLegendItems(countsExtended);
-  };
-
   useEffect(() => {
+    const groupSpecies = (items) => {
+      var counts = items.reduce((p, c) => {
+        var name = c.label.split(",")[0];
+        if (!p.hasOwnProperty(name)) {
+          p[name] = 0;
+        }
+        p[name] += c.count;
+        return p;
+      }, {});
+
+      var countsExtended = Object.keys(counts).map((k) => {
+        return { name: k, count: counts[k], color: props.markerColors[k] };
+      });
+
+      setLegendItems(countsExtended);
+    };
+
     groupSpecies(props.items);
-  }, [props.items]);
+  }, [props.items, props.markerColors]);
 
   const renderLegendItem = (item, i) => (
     <li key={i}>
-      <MarkerSVG markerColor={props.speciesMarkers[item.name]} />
-      <span>{item.label}</span>
-      {console.log(item.name)}
+      <MarkerSVG markerColor={[item.color]} />
       <span>{item.name}</span>
       <span>{item.count}</span>
     </li>

@@ -39,7 +39,7 @@ function Map(props) {
     mapRef.current && mapRef.current.getMap().resize();
   };
 
-  const speciesMarkers = {
+  const markerColors = {
     Dolphin: "orange",
     Pinniped: "brown",
     Porpoise: "green",
@@ -84,7 +84,7 @@ function Map(props) {
             <ClusteredMarkers
               strandings={strandings}
               setSelectedStranding={setSelectedStranding}
-              speciesMarkers={speciesMarkers}
+              markerColors={markerColors}
             />
           )}
           <TimeSlider
@@ -105,7 +105,7 @@ function Map(props) {
           ) : null}
           <Legend
             attribute={"properties.Common Name"}
-            speciesMarkers={speciesMarkers}
+            markerColors={markerColors}
           />
           <NavigationControl showCompass showZoom position="top-left" />
         </MapGL>

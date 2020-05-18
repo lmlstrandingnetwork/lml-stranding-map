@@ -50,7 +50,7 @@ const ClusteredMarkers = (props) => {
           >
             <MarkerSVG
               markerColor={
-                props.speciesMarkers[
+                props.markerColors[
                   report.properties["Common Name"].split(",")[0]
                 ]
               }
