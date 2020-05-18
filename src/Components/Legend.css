@@ -19,3 +19,8 @@
   padding: 0;
   margin: 0;
 }
+
+.legend label {
+  display: inline-block;
+  padding: 0 0 0 5px;
+}

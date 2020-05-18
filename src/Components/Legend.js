@@ -8,6 +8,7 @@ const Legend = (props) => {
 
   useEffect(() => {
     const groupSpecies = (items) => {
+      // count how many species in each group
       var counts = items.reduce((p, c) => {
         var name = c.label.split(",")[0];
         if (!p.hasOwnProperty(name)) {
@@ -17,6 +18,7 @@ const Legend = (props) => {
         return p;
       }, {});
 
+      // construct array of objects for legend items
       var countsExtended = Object.keys(counts).map((k) => {
         return { name: k, count: counts[k], color: props.markerColors[k] };
       });
@@ -30,8 +32,8 @@ const Legend = (props) => {
   const renderLegendItem = (item, i) => (
     <li key={i}>
       <MarkerSVG markerColor={[item.color]} />
-      <span>{item.name}</span>
-      <span>{item.count}</span>
+      <label classname="item-name">{item.name}</label>
+      <label classname="item-count">({item.count})</label>
     </li>
   );
 
