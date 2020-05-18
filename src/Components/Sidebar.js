@@ -2,9 +2,36 @@ import React, { useState } from "react";
 import { orderBy } from "lodash";
 import DropdownRefinementList from "./DropdownRefinementList";
 import { PoweredBy } from "react-instantsearch-dom";
+import UploadPopup from "./UploadPopup";
 import "./Sidebar.css";
 
+const reducer = (isComponentHidden, action) => {
+  switch (action.type) {
+    case "show":
+      return false;
+    case "hide":
+      return true;
+    default:
+      return isComponentHidden;
+  }
+};
+
 const Sidebar = (props) => {
+  const [isUploadPopupHidden, dispatchUploadPopup] = React.useReducer(
+    reducer,
+    true
+  );
+
+  function showUploadPopup() {
+    if (isUploadPopupHidden === true) {
+      dispatchUploadPopup({ type: "show" });
+      console.log(isUploadPopupHidden);
+    } else {
+      dispatchUploadPopup({ type: "hide" });
+      console.log(isUploadPopupHidden);
+    }
+  }
+
   return (
     <div className={"sidebar" + (props.isSidebarHidden ? "_hidden" : "")}>
       <div className="toggles-container">
@@ -13,7 +40,11 @@ const Sidebar = (props) => {
           label={"Time Slider"}
           toggleComponent={props.showTimeSlider}
         />
+        <div className="btn" onClick={showUploadPopup}>
+          <button>Upload</button>
+        </div>
       </div>
+      {!isUploadPopupHidden && <UploadPopup toggle={showUploadPopup} />}
       <DropdownRefinementList
         attribute={"properties.Common Name"}
         limit={50}

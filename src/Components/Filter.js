@@ -3,6 +3,9 @@ import algoliasearch from "algoliasearch/lite";
 import { InstantSearch } from "react-instantsearch-dom";
 import Content from "./Content";
 import Sidebar from "./Sidebar";
+import UploadPopup from "./UploadPopup";
+import Dropzone from "react-dropzone";
+import csv from "csv";
 
 const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_APP_ID,
@@ -11,51 +14,27 @@ const searchClient = algoliasearch(
 
 const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
-const reducerHeatmap = (isHeatmapHidden, action) => {
+const reducer = (isComponentHidden, action) => {
   switch (action.type) {
     case "show":
       return false;
     case "hide":
       return true;
     default:
-      return isHeatmapHidden;
-  }
-};
-
-const reducerSidebar = (isSidebarHidden, action) => {
-  switch (action.type) {
-    case "show":
-      return false;
-    case "hide":
-      return true;
-    default:
-      return isSidebarHidden;
-  }
-};
-
-const reducerTimeSlider = (isTimeSliderHidden, action) => {
-  switch (action.type) {
-    case "show":
-      return false;
-    case "hide":
-      return true;
-    default:
-      return isTimeSliderHidden;
+      return isComponentHidden;
   }
 };
 
 function Filter() {
   const [reportHits, setReportHits] = useState([]);
-  const [isHeatmapHidden, dispatchHeatmap] = React.useReducer(
-    reducerHeatmap,
+  const [isHeatmapHidden, dispatchHeatmap] = React.useReducer(reducer, true);
+  const [isSidebarHidden, dispatchSidebar] = React.useReducer(reducer, false);
+  const [isTimeSliderHidden, dispatchTimeSlider] = React.useReducer(
+    reducer,
     true
   );
-  const [isSidebarHidden, dispatchSidebar] = React.useReducer(
-    reducerSidebar,
-    false
-  );
-  const [isTimeSliderHidden, dispatchTimeSlider] = React.useReducer(
-    reducerTimeSlider,
+  const [isUploadPopupHidden, dispatchUploadPopup] = React.useReducer(
+    reducer,
     true
   );
 
@@ -72,6 +51,16 @@ function Filter() {
       dispatchTimeSlider({ type: "show" });
     } else {
       dispatchTimeSlider({ type: "hide" });
+    }
+  }
+
+  function showUploadPopup() {
+    if (isUploadPopupHidden === true) {
+      dispatchUploadPopup({ type: "show" });
+      console.log(isUploadPopupHidden);
+    } else {
+      dispatchUploadPopup({ type: "hide" });
+      console.log(isUploadPopupHidden);
     }
   }
 
@@ -112,6 +101,7 @@ function Filter() {
         onSearchStateChange={(searchState) => getResults(searchState)}
       >
         <main>
+          {!isUploadPopupHidden && <UploadPopup toggle={showUploadPopup} />}
           <Sidebar
             showHeatmap={showHeatmap}
             showTimeSlider={showTimeSlider}
