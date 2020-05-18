@@ -13,9 +13,10 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 50%;
-  height: 25%;
+  width: 400px;
+  height: 250px;
   transform: translate(-50%, -50%);
+  border-radius: 0.5em;
 }
 
 .dropzone {
@@ -32,4 +33,22 @@
   color: #bdbdbd;
   outline: none;
   transition: border 0.24s ease-in-out;
+}
+
+.uploadButton2 {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #33b633;
+  text-align: center;
+  transition: all 0.2s;
+}
+.uploadButton2:hover {
+  background-color: #288528;
 }

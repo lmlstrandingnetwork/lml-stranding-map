@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import csv from "csv";
 import "./UploadPopup.css";
 
 const Popup = (props) => {
@@ -39,13 +38,16 @@ const Popup = (props) => {
         <section className="container text-center mt-5">
           <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} />
-            {!isDragActive && "Click here or drop a file to upload!"}
-            {isDragActive && !isDragReject && "Drop it like it's hot!"}
+            {!isDragActive && "Click here or drop a .csv/.json file to upload!"}
+            {isDragActive && !isDragReject && "Drop to upload!"}
             {isDragReject && "File type not accepted, sorry!"}
           </div>
           <aside>
-            <h5>Files</h5>
+            <h5>Selected file:</h5>
             <ul>{files}</ul>
+            {files.length > 0 && (
+              <button className="uploadButton2">Upload</button>
+            )}
           </aside>
         </section>
       </div>
