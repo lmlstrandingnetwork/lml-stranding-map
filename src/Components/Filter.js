@@ -11,51 +11,23 @@ const searchClient = algoliasearch(
 
 const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
-const reducerHeatmap = (isHeatmapHidden, action) => {
+const reducer = (isComponentHidden, action) => {
   switch (action.type) {
     case "show":
       return false;
     case "hide":
       return true;
     default:
-      return isHeatmapHidden;
-  }
-};
-
-const reducerSidebar = (isSidebarHidden, action) => {
-  switch (action.type) {
-    case "show":
-      return false;
-    case "hide":
-      return true;
-    default:
-      return isSidebarHidden;
-  }
-};
-
-const reducerTimeSlider = (isTimeSliderHidden, action) => {
-  switch (action.type) {
-    case "show":
-      return false;
-    case "hide":
-      return true;
-    default:
-      return isTimeSliderHidden;
+      return isComponentHidden;
   }
 };
 
 function Filter() {
   const [reportHits, setReportHits] = useState([]);
-  const [isHeatmapHidden, dispatchHeatmap] = React.useReducer(
-    reducerHeatmap,
-    true
-  );
-  const [isSidebarHidden, dispatchSidebar] = React.useReducer(
-    reducerSidebar,
-    false
-  );
+  const [isHeatmapHidden, dispatchHeatmap] = React.useReducer(reducer, true);
+  const [isSidebarHidden, dispatchSidebar] = React.useReducer(reducer, false);
   const [isTimeSliderHidden, dispatchTimeSlider] = React.useReducer(
-    reducerTimeSlider,
+    reducer,
     true
   );
 
