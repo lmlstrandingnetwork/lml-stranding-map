@@ -7,6 +7,12 @@ import "./Content.css";
 const Content = (props) => {
   return (
     <div className="content">
+      <div className="activefilterbar">
+          <ActiveFilterBar
+            /*passed from Filter to Content */
+            reportFilters={props.reportFilters}
+          />
+        </div>
       <div className="info">
         <SidebarButton />
         <Stats
@@ -15,10 +21,6 @@ const Content = (props) => {
               return `${nbHits} strandings found in ${timeSpentMS}ms`;
             },
           }}
-        />
-        <ActiveFilterBar
-          /*passed from Filter to Content */
-          reportFilters={props.reportFilters}
         />
       </div>
       <Map hits={props.hits} 

@@ -1,5 +1,5 @@
 .filterbubble {
-    display: flex;
+    display: inline-flex;
     padding: 5px;
     background: darkgrey;
     border-radius: 5px;
