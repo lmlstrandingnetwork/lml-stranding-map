@@ -44,7 +44,6 @@ const Sidebar = (props) => {
           Upload a file
         </button>
       </div>
-      {!isUploadPopupHidden && <UploadPopup toggle={showUploadPopup} />}
       <DropdownRefinementList
         attribute={"properties.Common Name"}
         limit={50}
