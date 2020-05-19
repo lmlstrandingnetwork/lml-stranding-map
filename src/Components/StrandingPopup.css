@@ -1,7 +1,7 @@
 .stranding-popup {
   font: 400 15px/22px "Source Sans Pro", "Helvetica Neue", Sans-serif;
   padding: 0;
-  height: 250px;
+  height: 400px;
 }
 .stranding-popup h3 {
   background: #7e807b;
@@ -12,6 +12,11 @@
   font-weight: 700;
   margin: -10px;
   text-align: left;
+  
+}
+
+.bg-image{
+  background-image: "dead_seal_icon.jpg";
 }
 
 .stranding-popup h2 {
@@ -20,6 +25,7 @@
   font-weight: 500;
   font-size: larger;
   text-align: left;
+  
 }
 .stranding-popup p {
   margin: 0;
@@ -27,4 +33,8 @@
   padding: 5px;
   font-weight: 400;
   text-align: left;
+}
+
+.highlight{
+  color: gray;
 }
