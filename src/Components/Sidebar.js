@@ -25,10 +25,8 @@ const Sidebar = (props) => {
   function showUploadPopup() {
     if (isUploadPopupHidden === true) {
       dispatchUploadPopup({ type: "show" });
-      console.log(isUploadPopupHidden);
     } else {
       dispatchUploadPopup({ type: "hide" });
-      console.log(isUploadPopupHidden);
     }
   }
 
@@ -41,7 +39,6 @@ const Sidebar = (props) => {
           toggleComponent={props.showTimeSlider}
         />
       </div>
-      {!isUploadPopupHidden && <UploadPopup toggle={showUploadPopup} />}
       <DropdownRefinementList
         attribute={"properties.Common Name"}
         limit={50}
