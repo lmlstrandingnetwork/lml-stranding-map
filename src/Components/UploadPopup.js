@@ -84,7 +84,9 @@ const Popup = (props) => {
           </div>
           <aside>
             <h5>Selected file:</h5>
-            <ul>{files}</ul>
+            <span>{files}</span>
+            <h7>{featureCollection.length} records</h7>
+
             {files.length > 0 && (
               <button
                 className="uploadButton2"
