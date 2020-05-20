@@ -1,27 +1,30 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import csv from "csv";
+import api from "../api";
 import "./UploadPopup.css";
 
 const Popup = (props) => {
-  const url = process.env.REACT_APP_FIREBASE_DATABASE_URL;
   const [featureCollection, setFeatureCollection] = useState([]);
+  const [responseData, setResponseData] = useState("");
 
   const handleClick = () => {
     props.toggle();
   };
 
-  const uploadFeatureCollection = () => {
-    featureCollection.forEach((feature) => {
-      fetch(url, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(feature),
-      });
-    });
+  const uploadFeatureCollection = (e) => {
+    e.preventDefault();
+    featureCollection.forEach((element) =>
+      api
+        .uploadData(element)
+        .then((response) => {
+          setResponseData(response.data);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    );
   };
 
   const onDrop = useCallback((acceptedFiles) => {
