@@ -12,6 +12,7 @@
     "@urbica/react-map-gl": "^1.13.1",
     "@urbica/react-map-gl-cluster": "^0.2.0",
     "algoliasearch": "^4.1.0",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "csv": "^5.3.2",
     "dotenv": "^8.2.0",
