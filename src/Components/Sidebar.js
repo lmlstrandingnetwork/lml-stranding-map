@@ -25,10 +25,8 @@ const Sidebar = (props) => {
   function showUploadPopup() {
     if (isUploadPopupHidden === true) {
       dispatchUploadPopup({ type: "show" });
-      console.log(isUploadPopupHidden);
     } else {
       dispatchUploadPopup({ type: "hide" });
-      console.log(isUploadPopupHidden);
     }
   }
 

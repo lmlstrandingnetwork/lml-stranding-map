@@ -4,6 +4,7 @@ import csv from "csv";
 import "./UploadPopup.css";
 
 const Popup = (props) => {
+  const url = process.env.REACT_APP_FIREBASE_DATABASE_URL;
   const [featureCollection, setFeatureCollection] = useState([]);
 
   const handleClick = () => {
@@ -11,9 +12,8 @@ const Popup = (props) => {
   };
 
   const uploadFeatureCollection = () => {
-    console.log(featureCollection);
     featureCollection.forEach((feature) => {
-      fetch(process.env.REACT_APP_FIREBASE_DATABASE_URL, {
+      fetch(url, {
         method: "POST",
         headers: {
           Accept: "application/json",
