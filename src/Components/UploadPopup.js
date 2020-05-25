@@ -3,6 +3,7 @@ import { useDropzone } from "react-dropzone";
 import csv from "csv";
 import api from "../api";
 import "./UploadPopup.css";
+import Papa from "papaparse";
 
 const Popup = (props) => {
   const [featureCollection, setFeatureCollection] = useState([]);
@@ -27,28 +28,37 @@ const Popup = (props) => {
     );
   };
 
+  function toGeoJSON(data) {
+    var features = [];
+
+    data.forEach((element) => {
+      var lat = element["Latitude"];
+      var long = element["Longitude"];
+      var feature = {
+        type: "Feature",
+        properties: element,
+        geometry: { type: "Point", coordinates: [lat, long] },
+      };
+      features.push(feature);
+    });
+
+    setFeatureCollection(features);
+  }
+
+  function parseData(file, callBack) {
+    Papa.parse(file, {
+      header: true,
+      download: true,
+      complete: function (results) {
+        callBack(results.data);
+      },
+    });
+  }
+
   const onDrop = useCallback((acceptedFiles) => {
     var file = acceptedFiles[0];
-    const reader = new FileReader();
 
-    reader.onload = () => {
-      csv.parse(reader.result, (err, data) => {
-        var fileContents = [];
-        for (var i = 0; i < data.length; i++) {
-          const attribute1 = data[i][0];
-          const attribute2 = data[i][1];
-          const item = {
-            geometry: attribute1,
-            properties: attribute2,
-            type: "Feature",
-          };
-          fileContents.push(item);
-        }
-        setFeatureCollection(fileContents);
-      });
-    };
-
-    reader.readAsBinaryString(file);
+    parseData(file, toGeoJSON);
   }, []);
 
   const {
