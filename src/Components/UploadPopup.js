@@ -45,7 +45,6 @@ const Popup = (props) => {
     setFeatureCollection(features);
   }
 
-  // https://stackoverflow.com/questions/26266459/retrieve-parsed-data-from-csv-in-javascript-object-using-papa-parse
   function parseData(file, callBack) {
     Papa.parse(file, {
       header: true,
