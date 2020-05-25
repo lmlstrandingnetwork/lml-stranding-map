@@ -37,7 +37,7 @@ const Popup = (props) => {
       var feature = {
         type: "Feature",
         properties: element,
-        geometry: { type: "Point", coordinates: [lat, long] },
+        geometry: { type: "Point", coordinates: [long, lat] },
       };
       features.push(feature);
     });
