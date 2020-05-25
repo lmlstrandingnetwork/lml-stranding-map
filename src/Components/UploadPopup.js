@@ -28,8 +28,9 @@ const Popup = (props) => {
     );
   };
 
-  function convertToFeatureCollection(data) {
+  function toGeoJSON(data) {
     var features = [];
+
     data.forEach((element) => {
       var lat = element["Latitude"];
       var long = element["Longitude"];
@@ -42,8 +43,8 @@ const Popup = (props) => {
     });
 
     setFeatureCollection(features);
-    console.log(features);
   }
+
   // https://stackoverflow.com/questions/26266459/retrieve-parsed-data-from-csv-in-javascript-object-using-papa-parse
   function parseData(file, callBack) {
     Papa.parse(file, {
@@ -58,7 +59,7 @@ const Popup = (props) => {
   const onDrop = useCallback((acceptedFiles) => {
     var file = acceptedFiles[0];
 
-    parseData(file, convertToFeatureCollection);
+    parseData(file, toGeoJSON);
   }, []);
 
   const {
