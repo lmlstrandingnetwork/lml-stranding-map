@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch } from "react-instantsearch-dom";
+import api from "../api";
 import Content from "./Content";
 import Sidebar from "./Sidebar";
 
@@ -8,8 +9,6 @@ const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_APP_ID,
   process.env.REACT_APP_ALGOLIA_API_KEY
 );
-
-const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
 const reducer = (isComponentHidden, action) => {
   switch (action.type) {
@@ -60,14 +59,20 @@ function Filter() {
     if (filters.length === 0) {
       setReportHits([]);
     } else {
-      index
-        .search("", {
-          facetFilters: filters,
-          hitsPerPage: 1000,
-          attributesToRetrieve: ["*"],
+      let data = {
+        facetFilters: filters,
+        hitsPerPage: 1000,
+        attributesToRetrieve: ["*"],
+      };
+
+      api
+        .searchAlgolia(data)
+        .then((response) => {
+          setReportHits(response.data);
+          console.log(response);
         })
-        .then(({ hits }) => {
-          setReportHits(hits);
+        .catch((error) => {
+          console.log(error);
         });
     }
   };
