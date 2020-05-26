@@ -1,16 +1,25 @@
 const axios = require("axios");
 const express = require("express");
 const dotenv = require("dotenv");
+const algoliasearch = require("algoliasearch");
 
-const app = express();
-const port = process.env.PORT || 5000;
-
+// load environment variables from .env
 dotenv.config();
 
+// configure express server
+const app = express();
+const port = process.env.PORT || 5000;
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
-// console.log that your server is up and running
+// configure algolia
+const algolia = algoliasearch(
+  process.env.ALGOLIA_APP_ID,
+  process.env.ALGOLIA_API_KEY
+);
+const index = algolia.initIndex(process.env.ALGOLIA_INDEX_NAME);
+
+// console.log that server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // Test GET route
@@ -22,7 +31,17 @@ app.get("/express_backend", (req, res) => {
 app.post("/firebase_upload", (req, res) => {
   console.log("Request to /firebase_upload");
   console.log(req.body);
-  console.log(process.env.FIREBASE_DATABASE_URL);
+
   axios.post(process.env.FIREBASE_DATABASE_URL, req.body);
   res.send({ express: "SENDING POST REQUEST TO FIREBASE" });
+});
+
+// GET route for Algolia results
+app.post("/algolia_search", (req, res) => {
+  console.log("Request to /aloglia_search");
+  console.log(req.body);
+
+  index.search("", req.body).then(({ hits }) => {
+    res.send(hits);
+  });
 });
