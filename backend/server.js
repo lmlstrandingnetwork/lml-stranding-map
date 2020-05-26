@@ -1,7 +1,9 @@
+'use strict';
 const axios = require("axios");
 const express = require("express");
 const dotenv = require("dotenv");
 const algoliasearch = require("algoliasearch");
+const serverless = require('serverless-http');
 
 // load environment variables from .env
 dotenv.config();
@@ -45,3 +47,6 @@ app.post("/algolia_search", (req, res) => {
     res.send(hits);
   });
 });
+
+//Convert to serverless
+module.exports.handler = serverless(app);
