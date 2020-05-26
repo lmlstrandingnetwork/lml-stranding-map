@@ -16,6 +16,7 @@
     "bootstrap": "^4.4.1",
     "csv": "^5.3.2",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "firebase-functions": "^3.6.1",
     "mapbox-gl": "^1.10.0",
     "mapbox.js": "^3.2.1",
@@ -31,6 +32,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.1",
     "react-sizeme": "^2.6.12",
+    "serverless-http": "^2.5.0",
     "supercluster": "^7.0.0",
     "swr": "^0.2.0",
     "use-supercluster": "^0.2.8"
