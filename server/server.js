@@ -3,7 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const algoliasearch = require("algoliasearch");
 const serverless = require("serverless-http");
-
+/** 
 // load environment variables from .env
 dotenv.config();
 
@@ -48,4 +48,21 @@ app.post("/algolia_search", (req, res) => {
 });
 
 //Convert to serverless
+module.exports.handler = serverless(app);
+**/
+
+///
+
+const router = express.Router();
+
+router.get("/express_backend", (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.write('<h1>Hello from Express.js!</h1>');
+  res.end();
+});
+
+app.use(bodyParser.json());
+app.use('/.netlify/functions/server', router);  // path must route to lambda
+
+module.exports = app;
 module.exports.handler = serverless(app);
