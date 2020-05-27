@@ -16,7 +16,7 @@ const algolia = algoliasearch(
   process.env.REACT_APP_ALGOLIA_API_KEY
 );
 
-const index = algolia.initIndex(process.env.EACT_APP_ALGOLIA_INDEX_NAME);
+const index = algolia.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
 //testing for get 
 router.get("/test", (req, res) => {
