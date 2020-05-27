@@ -5,42 +5,26 @@ const algoliasearch = require("algoliasearch");
 const serverless = require("serverless-http");
 const app = express();
 var bodyParser = require("body-parser");
-/** 
+const index = algolia.initIndex(process.env.ALGOLIA_INDEX_NAME);
+
 // load environment variables from .env
-dotenv.config();
-
-// configure express server
-const app = express();
-const port = process.env.PORT || 5000;
-
-app.use(bodyParser.json());
+//dotenv.config();
 
 // configure algolia
 const algolia = algoliasearch(
   process.env.ALGOLIA_APP_ID,
   process.env.ALGOLIA_API_KEY
 );
-const index = algolia.initIndex(process.env.ALGOLIA_INDEX_NAME);
 
-// console.log that server is up and running
-app.listen(port, () => console.log(`Listening on port ${port}`));
-
-// Test GET route
-app.get("/express_backend", (req, res) => {
-  res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
-});
-
-// POST route for Firebase upload
-app.post("/firebase_upload", (req, res) => {
-  console.log("Request to /firebase_upload");
-  console.log(req.body);
-
-  axios.post(process.env.FIREBASE_DATABASE_URL, req.body);
-  res.send({ express: "SENDING POST REQUEST TO FIREBASE" });
+//testing for get 
+router.get("/test", (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.write('<h1>Hello from Express.js!</h1>');
+  res.end();
 });
 
 // GET route for Algolia results
-app.post("/algolia_search", (req, res) => {
+router.post("/algolia_search", (req, res) => {
   console.log("Request to /aloglia_search");
   console.log(req.body);
 
@@ -49,18 +33,13 @@ app.post("/algolia_search", (req, res) => {
   });
 });
 
-//Convert to serverless
-module.exports.handler = serverless(app);
-**/
+// POST route for Firebase upload
+router.post("/firebase_upload", (req, res) => {
+  console.log("Request to /firebase_upload");
+  console.log(req.body);
 
-///
-
-const router = express.Router();
-
-router.get("/express_backend", (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('<h1>Hello from Express.js!</h1>');
-  res.end();
+  axios.post(process.env.FIREBASE_DATABASE_URL, req.body);
+  res.send({ express: "SENDING POST REQUEST TO FIREBASE" });
 });
 
 app.use(bodyParser.json());
