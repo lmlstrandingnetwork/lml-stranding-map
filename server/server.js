@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const algoliasearch = require("algoliasearch");
 const serverless = require("serverless-http");
 const app = express();
+var bodyParser = require("body-parser");
 /** 
 // load environment variables from .env
 dotenv.config();
@@ -11,7 +12,7 @@ dotenv.config();
 // configure express server
 const app = express();
 const port = process.env.PORT || 5000;
-var bodyParser = require("body-parser");
+
 app.use(bodyParser.json());
 
 // configure algolia
