@@ -5,7 +5,6 @@ const algoliasearch = require("algoliasearch");
 const serverless = require("serverless-http");
 const app = express();
 var bodyParser = require("body-parser");
-const index = algolia.initIndex(process.env.ALGOLIA_INDEX_NAME);
 
 // load environment variables from .env
 //dotenv.config();
@@ -15,6 +14,9 @@ const algolia = algoliasearch(
   process.env.ALGOLIA_APP_ID,
   process.env.ALGOLIA_API_KEY
 );
+
+const index = algolia.initIndex(process.env.ALGOLIA_INDEX_NAME);
+
 
 //testing for get 
 router.get("/test", (req, res) => {
