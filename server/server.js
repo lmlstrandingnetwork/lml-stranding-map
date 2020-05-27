@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const algoliasearch = require("algoliasearch");
 const serverless = require("serverless-http");
+const app = express();
 /** 
 // load environment variables from .env
 dotenv.config();
