@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const algoliasearch = require("algoliasearch");
 const serverless = require("serverless-http");
 const app = express();
+const router = express.Router();
 var bodyParser = require("body-parser");
 
 // load environment variables from .env
