@@ -29,6 +29,7 @@ function NavMenu() {
             <Nav.Link href="about" >Team</Nav.Link>
             <Nav.Link href="login" >Login</Nav.Link>
             <Nav.Link href="logout" >Logout</Nav.Link>
+            <Nav.Link href="signup" >Sign up</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Brand href="/">

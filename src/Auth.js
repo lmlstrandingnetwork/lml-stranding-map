@@ -1,37 +1,30 @@
-import React, { Component } from 'react';
-import fire from './config/Fire';
-import Login from './Components/Login';
-import Logout from './Components/Logout';
+import React, { useEffect, useState } from "react";
+import app from "./config/Fire";
 
-class Auth extends Component {
-  constructor() {
-    super();
-    this.state = ({
-      user: null,
+export const AuthContext = React.createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [pending, setPending] = useState(true);
+
+  useEffect(() => {
+    app.auth().onAuthStateChanged((user) => {
+      setCurrentUser(user)
+      setPending(false)
     });
-    this.authListener = this.authListener.bind(this);
+  }, []);
+
+  if(pending){
+    return <>Loading...</>
   }
 
-  componentDidMount() {
-    this.authListener();
-  }
-
-  authListener() {
-    fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
-      if (user) {
-        this.setState({ user });
-        localStorage.setItem('user', user.uid);
-      } else {
-        this.setState({ user: null });
-        localStorage.removeItem('user');
-      }
-    });
-  }
-  render() {
-    return(<div></div>)
-    
-  }
-}
-
- export default Auth;
+  return (
+    <AuthContext.Provider
+      value={{
+        currentUser
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
