@@ -8,7 +8,7 @@ const router = express.Router();
 var bodyParser = require("body-parser");
 
 // load environment variables from .env
-//dotenv.config();
+dotenv.config();
 
 // configure algolia
 const algolia = algoliasearch(
