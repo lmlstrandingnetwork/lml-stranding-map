@@ -1,7 +1,9 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../config/Fire.js";
+import  "./LoginStyles.css";
 import { AuthContext } from "../Auth.js";
+import Button from 'react-bootstrap/Button'
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -23,22 +25,24 @@ const Login = ({ history }) => {
   const currentUser = useContext(AuthContext);
 
   if (currentUser) {
-    return <Redirect to="/logout" />;
+    return <Redirect to="/" />;
   }
 
   return (
-    <div>
-      <h1>Log in</h1>
+    <div className="loginContainer">
+      <h1>Login</h1>
       <form onSubmit={handleLogin}>
-        <label>
-          Email
-          <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          Password
-          <input name="password" type="password" placeholder="Password" />
-        </label>
-        <button type="submit">Log in</button>
+       
+        
+        <input name="email" type="email" placeholder=" Email" />
+        <br></br>
+        <br></br>
+        
+          <input name="password" type="password" placeholder=" Password" />
+        <br></br>
+        <br></br>
+        <Button variant="primary" size="lg" type="submit">Log in</Button>
+        <br></br>
       </form>
     </div>
   );
