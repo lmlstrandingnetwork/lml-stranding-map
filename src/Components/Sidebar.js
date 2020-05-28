@@ -38,9 +38,6 @@ const Sidebar = (props) => {
           label={"Time Slider"}
           toggleComponent={props.showTimeSlider}
         />
-        <button className="uploadButton" onClick={showUploadPopup}>
-          Upload a file
-        </button>
       </div>
       <DropdownRefinementList
         attribute={"properties.Common Name"}

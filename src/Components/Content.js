@@ -2,7 +2,7 @@ import React from "react";
 import { Stats } from "react-instantsearch-dom";
 import Map from "./Map";
 import "./Content.css";
-import Logout from "./Logout.js"
+import Logout from "./Logout.js";
 
 const Content = (props) => {
   const hideSidebar = () => {
@@ -30,8 +30,6 @@ const Content = (props) => {
             },
           }}
         />
-
-        <Logout/>
       </div>
       <Map
         hits={props.hits}
