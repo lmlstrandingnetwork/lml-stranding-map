@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import csv from "csv";
 import api from "../api";
 import "./UploadPopup.css";
 import Papa from "papaparse";
@@ -20,7 +19,7 @@ const Popup = (props) => {
         .uploadData(element)
         .then((response) => {
           setResponseData(response.data);
-          console.log(response);
+          console.log(responseData);
         })
         .catch((error) => {
           console.log(error);
