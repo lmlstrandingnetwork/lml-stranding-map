@@ -1,13 +1,13 @@
 import React from "react";
 import app from "../config/Fire";
+import Button from 'react-bootstrap/Button'
 
-const Home = () => {
+const Logout = () => {
   return (
-    <>
-      <h1>Log out</h1>
-      <button onClick={() => app.auth().signOut()}>Sign out</button>
-    </>
+    <div>
+      <button className="logOutButton" onClick={() => app.auth().signOut()}>Log out</button>
+    </div>
   );
 };
 
-export default Home;
+export default Logout;
