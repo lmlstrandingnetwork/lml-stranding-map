@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch } from "react-instantsearch-dom";
+import api from "../api";
 import Content from "./Content";
 import Sidebar from "./Sidebar";
 
@@ -9,53 +10,23 @@ const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_API_KEY
 );
 
-const index = searchClient.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
-
-const reducerHeatmap = (isHeatmapHidden, action) => {
+const reducer = (isComponentHidden, action) => {
   switch (action.type) {
     case "show":
       return false;
     case "hide":
       return true;
     default:
-      return isHeatmapHidden;
-  }
-};
-
-const reducerSidebar = (isSidebarHidden, action) => {
-  switch (action.type) {
-    case "show":
-      return false;
-    case "hide":
-      return true;
-    default:
-      return isSidebarHidden;
-  }
-};
-
-const reducerTimeSlider = (isTimeSliderHidden, action) => {
-  switch (action.type) {
-    case "show":
-      return false;
-    case "hide":
-      return true;
-    default:
-      return isTimeSliderHidden;
+      return isComponentHidden;
   }
 };
 
 function Filter() {
   const [reportHits, setReportHits] = useState([]);
-  const [isHeatmapHidden, dispatchHeatmap] = React.useReducer(
-    reducerHeatmap,
-    true
-  );
-  const [isSidebarHidden, dispatchSidebar] = React.useReducer(
-    reducerSidebar,
-    false
-  );
+  const [isHeatmapHidden, dispatchHeatmap] = React.useReducer(reducer, true);
+  const [isSidebarHidden, dispatchSidebar] = React.useReducer(reducer, false);
   const [isTimeSliderHidden, dispatchTimeSlider] = React.useReducer(
-    reducerTimeSlider,
+    reducer,
     true
   );
 
@@ -88,14 +59,20 @@ function Filter() {
     if (filters.length === 0) {
       setReportHits([]);
     } else {
-      index
-        .search("", {
-          facetFilters: filters,
-          hitsPerPage: 1000,
-          attributesToRetrieve: ["*"],
+      let data = {
+        facetFilters: filters,
+        hitsPerPage: 1000,
+        attributesToRetrieve: ["*"],
+      };
+
+      api
+        .searchAlgolia(data)
+        .then((response) => {
+          setReportHits(response.data);
+          console.log(response);
         })
-        .then(({ hits }) => {
-          setReportHits(hits);
+        .catch((error) => {
+          console.log(error);
         });
     }
   };

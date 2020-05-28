@@ -1,9 +1,35 @@
 import React, { useState } from "react";
 import { orderBy } from "lodash";
 import DropdownRefinementList from "./DropdownRefinementList";
+import { PoweredBy } from "react-instantsearch-dom";
+import UploadPopup from "./UploadPopup";
 import "./Sidebar.css";
 
+const reducer = (isComponentHidden, action) => {
+  switch (action.type) {
+    case "show":
+      return false;
+    case "hide":
+      return true;
+    default:
+      return isComponentHidden;
+  }
+};
+
 const Sidebar = (props) => {
+  const [isUploadPopupHidden, dispatchUploadPopup] = React.useReducer(
+    reducer,
+    true
+  );
+
+  function showUploadPopup() {
+    if (isUploadPopupHidden === true) {
+      dispatchUploadPopup({ type: "show" });
+    } else {
+      dispatchUploadPopup({ type: "hide" });
+    }
+  }
+
   return (
     <div className={"sidebar" + (props.isSidebarHidden ? "_hidden" : "")}>
       <div className="toggles-container">
@@ -12,6 +38,9 @@ const Sidebar = (props) => {
           label={"Time Slider"}
           toggleComponent={props.showTimeSlider}
         />
+        <button className="uploadButton" onClick={showUploadPopup}>
+          Upload a file
+        </button>
       </div>
       <DropdownRefinementList
         attribute={"properties.Common Name"}
@@ -26,11 +55,16 @@ const Sidebar = (props) => {
       />
       <DropdownRefinementList attribute={"properties.Sex"} />
 
-      <DropdownRefinementList attribute={"properties.Findings of Human Interaction"} />
-      <DropdownRefinementList attribute={"properties.Condition at Examination"} />
+      <DropdownRefinementList
+        attribute={"properties.Findings of Human Interaction"}
+      />
+      <DropdownRefinementList
+        attribute={"properties.Condition at Examination"}
+      />
       <DropdownRefinementList attribute={"properties.Necropsied Flag"} />
-
-
+      <div style={{ padding: "18px" }}>
+        <PoweredBy />
+      </div>
     </div>
   );
 };

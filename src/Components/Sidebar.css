@@ -19,7 +19,6 @@
 
 .toggles-container {
   padding: 18px;
-  z-index: 998;
   cursor: pointer;
   position: relative;
   border: 1px solid #999;
@@ -65,4 +64,22 @@
 .ToggleSwitch.on:before {
   transform: translateX(18px);
   background-color: white;
+}
+
+.uploadButton {
+  display: inline-block;
+  padding: 0.2em 1.8em;
+  margin: 0 0 0 12px;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #4eb5f1;
+  text-align: center;
+  transition: all 0.2s;
+}
+.uploadButton:hover {
+  background-color: #4095c6;
 }
