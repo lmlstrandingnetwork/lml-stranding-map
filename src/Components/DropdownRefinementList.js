@@ -3,17 +3,6 @@ import { connectRefinementList } from "react-instantsearch-dom";
 import PropTypes from "prop-types";
 import "./DropdownRefinementList.css";
 
-/**
- *
- * Dropdown menu item for DropdownRefinementList.
- *
- * Each component manages its own state and uses the RefinementList connector.
- *
- * Not typically interacted with directly by devs.
- *
- * Renders click event if hoverable=false or if on mobile
- *
- */
 const cx = (label) => `ais-DropdownRefinementList-${label}`;
 
 class DropdownRefinementList extends Component {
@@ -22,15 +11,9 @@ class DropdownRefinementList extends Component {
 
     this.state = {
       active: false,
-      mobile: false,
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      mobile: /Mobi/.test(navigator.userAgent),
-    });
-  }
   capitalizeFirst(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
@@ -54,16 +37,12 @@ class DropdownRefinementList extends Component {
     this.setState({ active: !this.state.active });
   };
   render() {
-    const { items, attribute, hoverable, currentRefinement } = this.props;
-    const { active, mobile } = this.state;
+    const { items, attribute, currentRefinement } = this.props;
+    const { active } = this.state;
     const title = attribute.split(".").pop();
 
     return (
-      <div
-        className="ais-DropdownRefinementList-container"
-        onMouseLeave={hoverable && !mobile && this.handleEvent}
-        onMouseEnter={hoverable && !mobile && this.handleEvent}
-      >
+      <div className="ais-DropdownRefinementList-container">
         <div className={cx("title-container")} onClick={this.handleEvent}>
           <span className="ais-DropdownRefinementList-title">
             {title}{" "}
@@ -86,11 +65,7 @@ class DropdownRefinementList extends Component {
 
 DropdownRefinementList.propTypes = {
   attribute: PropTypes.string.isRequired,
-  hoverable: PropTypes.bool,
   limit: PropTypes.number,
-};
-DropdownRefinementList.defaultProps = {
-  hoverable: false,
 };
 
 export default connectRefinementList(DropdownRefinementList);
