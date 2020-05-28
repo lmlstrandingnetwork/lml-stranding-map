@@ -16,6 +16,7 @@
     "bootstrap": "^4.4.1",
     "csv": "^5.3.2",
     "dotenv": "^8.2.0",
+    "firebase": "^7.14.5",
     "express": "^4.17.1",
     "firebase-functions": "^3.6.1",
     "mapbox-gl": "^1.10.0",

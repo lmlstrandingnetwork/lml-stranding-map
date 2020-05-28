@@ -27,7 +27,8 @@ function NavMenu() {
               Stranding Program
             </Nav.Link>
             <Nav.Link href="about" >Team</Nav.Link>
-          </Nav>
+            <Nav.Link href="login" >Login</Nav.Link>
+                      </Nav>
         </Navbar.Collapse>
         <Navbar.Brand href="/">
             <Nav className="justify-content-end">
