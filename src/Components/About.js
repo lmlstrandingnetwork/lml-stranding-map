@@ -18,16 +18,16 @@ function About() {
         <Row className="justify-content-md-center">
           <h1>Meet the Team</h1>
           <h3>We are a team of 6 software engineers who recently graduated from UCSC. Check out
-            our LinkedIn profiles and hire us... jk... unless..
+            our LinkedIn profiles.
           </h3>
         </Row>
 
         <Row className="justify-content-md-center">
           <Col>
-            <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="harrison-fox-775323193"><a class="LI-simple-link" href='https://www.linkedin.com/in/harrison-fox-775323193?trk=profile-badge'>Harrison Fox</a></div>
+            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="yakovlevpavel"><a class="LI-simple-link" href='https://www.linkedin.com/in/yakovlevpavel?trk=profile-badge'>Pavel Yakovlev</a></div> 
           </Col>
           <Col>
-            <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="harrison-fox-775323193"><a class="LI-simple-link" href='https://www.linkedin.com/in/harrison-fox-775323193?trk=profile-badge'>Harrison Fox</a></div>
+            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="ashley-pauley-862883199"><a class="LI-simple-link" href='https://www.linkedin.com/in/ashley-pauley-862883199?trk=profile-badge'>Ashley Pauley</a></div>
           </Col>
           <Col>
             <div class="LI-profile-badge" data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="maya-apotheker-b7a139172"><a class="LI-simple-link" href='https://www.linkedin.com/in/maya-apotheker-b7a139172?trk=profile-badge'>Maya Apotheker</a></div>
