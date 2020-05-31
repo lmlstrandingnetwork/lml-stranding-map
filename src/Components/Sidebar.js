@@ -30,7 +30,7 @@ const Sidebar = (props) => {
     if (userContext.currentUser != null) {
       setIsUploadButtonHidden(false);
     }
-  }, []);
+  }, [userContext.currentUser]);
 
   function showUploadPopup() {
     if (isUploadPopupHidden === true) {

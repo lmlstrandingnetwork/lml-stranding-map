@@ -1,15 +1,19 @@
-.header{
-    background-color: white;
-    color: #ffffff;
-    border-bottom: #ffbf00
-    
-  }
-  .nav-link {
-      color: #003c6c !important
-  }
-  .nav-link:hover{
-      color:#ffbf00 !important
-  }
-  .navbar.brand2{
-      float: right
-  }
+.header {
+  background-color: white;
+  color: #ffffff;
+  border-bottom: #ffbf00;
+}
+.nav-link {
+  color: #003c6c !important;
+}
+.nav-link:hover {
+  color: #ffbf00 !important;
+}
+.navbar.brand2 {
+  float: right;
+}
+
+.email {
+  color: #999;
+  margin: 0 20px;
+}

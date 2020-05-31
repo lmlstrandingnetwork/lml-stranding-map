@@ -1,12 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./NavMenu.css";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "react-bootstrap/Nav";
+import { AuthContext } from "../Auth";
 
 //Uses bootstrap
 //Be sure to have bootstrap installed
 function NavMenu() {
+  const userContext = useContext(AuthContext);
+  const [loggedInAs, setLoggedInAs] = useState("");
+
+  useEffect(() => {
+    if (userContext.currentUser != null) {
+      setLoggedInAs("Logged in as " + userContext.currentUser.email);
+    } else {
+      setLoggedInAs("");
+    }
+  }, [userContext.currentUser]);
+
   return (
     <div>
       <Navbar className="header" expand="lg">
@@ -31,6 +43,7 @@ function NavMenu() {
             <Nav.Link href="logout">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
+        <p className="email">{loggedInAs}</p>
         <Navbar.Brand href="/">
           <Nav className="justify-content-end">
             <img
