@@ -8,10 +8,12 @@ const Popup = (props) => {
   const [featureCollection, setFeatureCollection] = useState([]);
   const [responseData, setResponseData] = useState("");
 
+  // handles closing the popup
   const handleClick = () => {
     props.toggle();
   };
 
+  // send the parsed records to Firebase through the backend
   const uploadFeatureCollection = (e) => {
     e.preventDefault();
     featureCollection.forEach((element) =>
@@ -27,6 +29,7 @@ const Popup = (props) => {
     );
   };
 
+  // convert .csv to geojson
   function toGeoJSON(data) {
     var features = [];
 
@@ -44,6 +47,7 @@ const Popup = (props) => {
     setFeatureCollection(features);
   }
 
+  // use papaparse to set up the csv
   function parseData(file, callBack) {
     Papa.parse(file, {
       header: true,
@@ -54,6 +58,7 @@ const Popup = (props) => {
     });
   }
 
+  // handle dropped file
   const onDrop = useCallback((acceptedFiles) => {
     var file = acceptedFiles[0];
 
@@ -71,10 +76,11 @@ const Popup = (props) => {
     accept: ["text/csv", "application/json"],
   });
 
+  // display current accepted file
   const files = acceptedFiles.map((file) => (
-    <li key={file.path}>
+    <p>
       {file.path} - {file.size} bytes
-    </li>
+    </p>
   ));
 
   return (
@@ -92,9 +98,8 @@ const Popup = (props) => {
             {isDragReject && "File type not accepted, sorry!"}
           </div>
           <aside>
-            <h5>Selected file:</h5>
             <span>{files}</span>
-            <h7>{featureCollection.length} records</h7>
+            <p>{featureCollection.length} records</p>
 
             {files.length > 0 && (
               <button

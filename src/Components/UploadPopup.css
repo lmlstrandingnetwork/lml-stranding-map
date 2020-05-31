@@ -14,7 +14,7 @@
   left: 50%;
   top: 50%;
   width: 400px;
-  height: 250px;
+  max-height: 300px;
   transform: translate(-50%, -50%);
   border-radius: 0.5em;
 }
@@ -33,12 +33,14 @@
   color: #bdbdbd;
   outline: none;
   transition: border 0.24s ease-in-out;
+  height: 100px;
+  margin: 10px;
 }
 
 .uploadButton2 {
   display: inline-block;
   padding: 0.3em 1.2em;
-  margin: 0 0.3em 0.3em 0;
+  margin-bottom: 10px;
   border-radius: 0.5em;
   box-sizing: border-box;
   text-decoration: none;
@@ -51,4 +53,20 @@
 }
 .uploadButton2:hover {
   background-color: #288528;
+}
+
+.close {
+  float: right;
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+  margin: 10px;
+}
+
+.close:hover {
+  color: red;
+  text-decoration: none;
 }
