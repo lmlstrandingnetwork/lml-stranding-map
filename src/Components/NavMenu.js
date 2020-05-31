@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./NavMenu.css";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,27 +20,27 @@ function NavMenu() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto" >
-            <Nav.Link href="/" >Map</Nav.Link>
-            <Nav.Link href="faq" >FAQ</Nav.Link>
-            <Nav.Link href="https://lmlstrandingnetwork.ucsc.edu/" >
+          <Nav className="mr-auto">
+            <Nav.Link href="/">Map</Nav.Link>
+            <Nav.Link href="faq">FAQ</Nav.Link>
+            <Nav.Link href="https://lmlstrandingnetwork.ucsc.edu/">
               Stranding Program
             </Nav.Link>
-            <Nav.Link href="about" >Team</Nav.Link>
-            <Nav.Link href="login" >Login</Nav.Link>
-                      </Nav>
+            <Nav.Link href="about">Team</Nav.Link>
+            <Nav.Link href="login">Login</Nav.Link>
+            <Nav.Link href="logout">Logout</Nav.Link>
+          </Nav>
         </Navbar.Collapse>
         <Navbar.Brand href="/">
-            <Nav className="justify-content-end">
+          <Nav className="justify-content-end">
             <img
-            src="../baskin-logo-banner-new.jpg"
-            alt="baskin logo"
-            width="115"
-            height="20"
-          />
+              src="../baskin-logo-banner-new.jpg"
+              alt="baskin logo"
+              width="115"
+              height="20"
+            />
           </Nav>
-          </Navbar.Brand>
-          
+        </Navbar.Brand>
       </Navbar>
     </div>
   );

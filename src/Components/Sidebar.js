@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { orderBy } from "lodash";
 import DropdownRefinementList from "./DropdownRefinementList";
 import { PoweredBy } from "react-instantsearch-dom";
 import UploadPopup from "./UploadPopup";
+import { AuthContext } from "../Auth";
 import "./Sidebar.css";
 
 const reducer = (isComponentHidden, action) => {
@@ -22,6 +23,15 @@ const Sidebar = (props) => {
     true
   );
 
+  const userContext = useContext(AuthContext);
+  const [isUploadButtonHidden, setIsUploadButtonHidden] = useState(true);
+
+  useEffect(() => {
+    if (userContext.currentUser != null) {
+      setIsUploadButtonHidden(false);
+    }
+  }, []);
+
   function showUploadPopup() {
     if (isUploadPopupHidden === true) {
       dispatchUploadPopup({ type: "show" });
@@ -38,7 +48,13 @@ const Sidebar = (props) => {
           label={"Time Slider"}
           toggleComponent={props.showTimeSlider}
         />
+        {isUploadButtonHidden ? null : (
+          <button className="uploadButton" onClick={showUploadPopup}>
+            Upload a file
+          </button>
+        )}
       </div>
+
       <DropdownRefinementList
         attribute={"properties.Common Name"}
         limit={50}

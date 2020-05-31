@@ -1,13 +1,13 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../config/Fire.js";
-import  "./LoginStyles.css";
+import "./LoginStyles.css";
 import { AuthContext } from "../Auth.js";
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button";
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
-    async event => {
+    async (event) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
@@ -22,9 +22,10 @@ const Login = ({ history }) => {
     [history]
   );
 
-  const currentUser = useContext(AuthContext);
+  const userContext = useContext(AuthContext);
 
-  if (currentUser) {
+  if (userContext.currentUser != null) {
+    console.log(userContext);
     return <Redirect to="/" />;
   }
 
@@ -32,16 +33,16 @@ const Login = ({ history }) => {
     <div className="loginContainer">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
-       
-        
         <input name="email" type="email" placeholder=" Email" />
         <br></br>
         <br></br>
-        
-          <input name="password" type="password" placeholder=" Password" />
+
+        <input name="password" type="password" placeholder=" Password" />
         <br></br>
         <br></br>
-        <Button variant="primary" size="lg" type="submit">Log in</Button>
+        <Button variant="primary" size="lg" type="submit">
+          Log in
+        </Button>
         <br></br>
       </form>
     </div>
