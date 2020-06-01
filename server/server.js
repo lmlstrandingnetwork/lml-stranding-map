@@ -45,8 +45,16 @@ router.post("/firebase_upload", (req, res) => {
     "?auth=" +
     req.body["userToken"];
 
-  axios.post(databaseURL, req.body["record"]);
-  res.send({ express: "SENDING POST REQUEST TO FIREBASE" });
+  axios.post(databaseURL, req.body["record"]).then(
+    (response) => {
+      res.send(response);
+      console.log(response);
+    },
+    (error) => {
+      console.log(error);
+      res.send(error);
+    }
+  );
 });
 
 app.use(bodyParser.json());
