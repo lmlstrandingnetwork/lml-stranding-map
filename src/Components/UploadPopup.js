@@ -22,7 +22,7 @@ const Popup = (props) => {
       api
         .uploadData({ record: element, userToken: userToken })
         .then((response) => {
-          setResponseData(response.data);
+          setResponseData(response);
           console.log(responseData);
         })
         .catch((error) => {
