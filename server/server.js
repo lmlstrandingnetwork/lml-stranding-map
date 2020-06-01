@@ -41,9 +41,7 @@ router.post("/firebase_upload", (req, res) => {
   console.log(req.body);
 
   const databaseURL =
-    process.env.REACT_APP_FIREBASE_DATABASE_URL +
-    "?auth=" +
-    req.body["userToken"];
+    process.env.FIREBASE_DATABASE_URL + "?auth=" + req.body["userToken"];
 
   axios.post(databaseURL, req.body["record"]).then(
     (response) => {
