@@ -1,12 +1,14 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useContext, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import api from "../api";
 import "./UploadPopup.css";
 import Papa from "papaparse";
+import { AuthContext } from "../Auth";
 
 const Popup = (props) => {
   const [featureCollection, setFeatureCollection] = useState([]);
   const [responseData, setResponseData] = useState("");
+  const userToken = useContext(AuthContext).userToken;
 
   // handles closing the popup
   const handleClick = () => {
@@ -18,7 +20,7 @@ const Popup = (props) => {
     e.preventDefault();
     featureCollection.forEach((element) =>
       api
-        .uploadData(element)
+        .uploadData({ record: element, userToken: userToken })
         .then((response) => {
           setResponseData(response.data);
           console.log(responseData);
