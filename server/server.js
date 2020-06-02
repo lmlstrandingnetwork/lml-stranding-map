@@ -18,10 +18,10 @@ const algolia = algoliasearch(
 
 const index = algolia.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
 
-//testing for get 
+//testing for get
 router.get("/test", (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('<h1>Hello from Express.js!</h1>');
+  res.writeHead(200, { "Content-Type": "text/html" });
+  res.write("<h1>Hello from Express.js!</h1>");
   res.end();
 });
 
@@ -40,12 +40,23 @@ router.post("/firebase_upload", (req, res) => {
   console.log("Request to /firebase_upload");
   console.log(req.body);
 
-  axios.post(process.env.FIREBASE_DATABASE_URL, req.body);
-  res.send({ express: "SENDING POST REQUEST TO FIREBASE" });
+  const databaseURL =
+    process.env.FIREBASE_DATABASE_URL + "?auth=" + req.body["userToken"];
+
+  axios.post(databaseURL, req.body["record"]).then(
+    (response) => {
+      res.send("Successfully uploaded");
+      console.log(response);
+    },
+    (error) => {
+      console.log(error);
+      res.send(error);
+    }
+  );
 });
 
 app.use(bodyParser.json());
-app.use('/.netlify/functions/server', router);  // path must route to lambda
+app.use("/.netlify/functions/server", router); // path must route to lambda
 
 module.exports = app;
 module.exports.handler = serverless(app);
