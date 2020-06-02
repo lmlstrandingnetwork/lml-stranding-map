@@ -45,7 +45,7 @@ router.post("/firebase_upload", (req, res) => {
 
   axios.post(databaseURL, req.body["record"]).then(
     (response) => {
-      res.send(response.status);
+      res.send("Successfully uploaded");
       console.log(response);
     },
     (error) => {
