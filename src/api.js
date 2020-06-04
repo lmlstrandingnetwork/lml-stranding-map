@@ -11,16 +11,9 @@ export default {
       },
       (error) => {
         console.log(error);
+        return error;
       }
     ),
 
-  searchAlgolia: (data) =>
-    axios.post(algolia_search, data).then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    ),
+  searchAlgolia: (data) => axios.post(algolia_search, data),
 };
