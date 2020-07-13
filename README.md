@@ -18,7 +18,8 @@ Highlights density and magnitude of strandings in a particular area.
 ![Heatmap](/public/screenshots/heatmap.png)
 
 #### Time Slider
-Plays through stranding data through the years
+Plays through stranding data through the years.
+
 ![Time Slider 2](/public/screenshots/time-slider02.png)
 
 #### File Upload
