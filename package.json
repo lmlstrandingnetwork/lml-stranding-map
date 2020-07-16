@@ -39,7 +39,7 @@
     "use-supercluster": "^0.2.8"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
