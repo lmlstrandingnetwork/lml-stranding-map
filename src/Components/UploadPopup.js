@@ -32,6 +32,7 @@ const Popup = (props) => {
   };
 
   // convert .csv to geojson
+  // TODO: need to add family attribute in properties based on common name
   function toGeoJSON(data) {
     var features = [];
 
