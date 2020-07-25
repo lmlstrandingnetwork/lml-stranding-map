@@ -2,6 +2,8 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import algoliasearch from "algoliasearch";
+import * as express from "express";
+import * as bodyParser from "body-parser";
 
 // Set up Firestore.
 admin.initializeApp();
