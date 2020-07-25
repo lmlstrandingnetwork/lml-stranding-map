@@ -17,6 +17,18 @@ const algoliaClient = algoliasearch(
 // Set our Algolia index name
 const index = algoliaClient.initIndex("strandings");
 
+// Initialize Express server.
+const app = express();
+const main = express();
+
+// Add the path to receive request and set JSON as bodyParser to process the body
+main.use("/api/v1", app);
+main.use(bodyParser.json());
+main.use(bodyParser.urlencoded({ extended: false }));
+
+// Define Google Cloud Function name
+export const webApi = functions.https.onRequest(main);
+
 export const databaseOnCreate = functions.database
   .ref("/features/{key}")
   .onCreate(async (snapshot: any, context: any) => {
