@@ -1,11 +1,12 @@
 import axios from "axios";
 
-const firebase_upload = "/.netlify/functions/server/firebase_upload";
-const algolia_search = "/.netlify/functions/server/algolia_search";
+const firebaseURL = "/.netlify/functions/server/firebase_upload";
+const algoliaURL =
+  "https://us-central1-lml-stranding-map.cloudfunctions.net/webApi/api/algoliasearch";
 
 export default {
   uploadData: (data) =>
-    axios.post(firebase_upload, data).then(
+    axios.post(firebaseURL, data).then(
       (response) => {
         console.log(response);
       },
@@ -15,5 +16,5 @@ export default {
       }
     ),
 
-  searchAlgolia: (data) => axios.post(algolia_search, data),
+  searchAlgolia: (data) => axios.post(algoliaURL, data),
 };

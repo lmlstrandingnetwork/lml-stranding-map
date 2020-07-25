@@ -22,12 +22,34 @@ const app = express();
 const main = express();
 
 // Add the path to receive request and set JSON as bodyParser to process the body
-main.use("/api/v1", app);
+main.use("/api", app);
 main.use(bodyParser.json());
 main.use(bodyParser.urlencoded({ extended: false }));
 
 // Define Google Cloud Function name
 export const webApi = functions.https.onRequest(main);
+
+// Create new user
+app.get("/hello", async (req, res) => {
+  try {
+    res.status(201).send(`Hello from Firebase!`);
+  } catch (error) {
+    res.status(400).send(`Error`);
+  }
+});
+
+// GET route to retreive Algolia results
+app.post("/algoliasearch", (req, res) => {
+  console.log("Request to /algoliasearch");
+  console.log(req.body);
+  try {
+    index.search("", req.body).then(({ hits }) => {
+      res.send(hits);
+    });
+  } catch (error) {
+    res.status(400).send(`Failed to retreive Algolia results`);
+  }
+});
 
 export const databaseOnCreate = functions.database
   .ref("/features/{key}")
