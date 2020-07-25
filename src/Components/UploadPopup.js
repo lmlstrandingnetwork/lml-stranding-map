@@ -31,6 +31,26 @@ const Popup = (props) => {
     );
   };
 
+  function getFamily(name) {
+    var commonName = name.split(",")[0].trim();
+    console.log(commonName);
+    var Family = "Unknown";
+    if (commonName === "Sea lion") {
+      Family = "Otariid";
+    } else if (commonName === "Seal") {
+      Family = "Phocids";
+    } else if (
+      commonName === "Whale" ||
+      commonName === "Dolphin" ||
+      commonName === "Cetacean"
+    ) {
+      Family = "Odontocetes";
+    }
+
+    console.log(Family);
+    return Family;
+  }
+
   // convert .csv to geojson
   function toGeoJSON(data) {
     var features = [];
@@ -38,11 +58,17 @@ const Popup = (props) => {
     data.forEach((element) => {
       var lat = element["Latitude"];
       var long = element["Longitude"];
+      var name = element["Common Name"];
+      var Family = getFamily(name);
+      element.Family = Family;
+      console.log(Family);
+
       var feature = {
         type: "Feature",
         properties: element,
         geometry: { type: "Point", coordinates: [long, lat] },
       };
+      console.log(feature);
       features.push(feature);
     });
 
