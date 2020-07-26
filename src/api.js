@@ -2,7 +2,7 @@ import axios from "axios";
 
 const firebaseURL = "/.netlify/functions/server/firebase_upload";
 const algoliaURL =
-  "https://us-central1-lml-stranding-map.cloudfunctions.net/webApi/api/algoliasearch";
+  "https://us-central1-lml-stranding-map.cloudfunctions.net/api/algoliasearch";
 
 export default {
   uploadData: (data) =>
