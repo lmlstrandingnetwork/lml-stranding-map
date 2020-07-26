@@ -6,3 +6,7 @@
 typings/
 
 node_modules/
+
+## Firebase emulator files
+.runtimeconfig.json
+ui-debug.log
