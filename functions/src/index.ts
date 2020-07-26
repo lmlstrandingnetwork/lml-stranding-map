@@ -4,6 +4,7 @@ import * as admin from "firebase-admin";
 import algoliasearch from "algoliasearch";
 import * as express from "express";
 import * as bodyParser from "body-parser";
+import * as cors from "cors";
 
 // Set up Firestore.
 admin.initializeApp();
@@ -19,17 +20,18 @@ const index = algoliaClient.initIndex("strandings");
 
 // Initialize Express server.
 const app = express();
-const main = express();
 
-// Add the path to receive request and set JSON as bodyParser to process the body
-main.use("/api", app);
-main.use(bodyParser.json());
-main.use(bodyParser.urlencoded({ extended: false }));
+// Set JSON as bodyParser to process the body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// Define Google Cloud Function name
-export const webApi = functions.https.onRequest(main);
+// Add CORS middleware
+app.use(cors({ origin: true }));
 
-// Create new user
+// Google Cloud Function for our Express Server
+export const api = functions.https.onRequest(app);
+
+// Test endpoint
 app.get("/hello", async (req, res) => {
   try {
     res.status(201).send(`Hello from Firebase!`);
@@ -38,10 +40,8 @@ app.get("/hello", async (req, res) => {
   }
 });
 
-// GET route to retreive Algolia results
-app.post("/algoliasearch", (req, res) => {
-  console.log("Request to /algoliasearch");
-  console.log(req.body);
+// POST route to retreive Algolia results
+app.post("/algoliasearch", async (req, res) => {
   try {
     index.search("", req.body).then(({ hits }) => {
       res.send(hits);
@@ -51,6 +51,7 @@ app.post("/algoliasearch", (req, res) => {
   }
 });
 
+// Database functions
 export const databaseOnCreate = functions.database
   .ref("/features/{key}")
   .onCreate(async (snapshot: any, context: any) => {
@@ -70,6 +71,7 @@ export const databaseOnUpdate = functions.database
     await updateDocumentInAlgolia(change);
   });
 
+// Database helper functions
 async function saveDocumentInAlgolia(snapshot: any) {
   console.log("adding record to Algolia");
   if (snapshot.exists()) {
