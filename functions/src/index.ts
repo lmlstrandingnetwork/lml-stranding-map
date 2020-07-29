@@ -6,32 +6,32 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cors from "cors";
 
-// Set up Firestore.
+// Initialize Firebase.
 admin.initializeApp();
 
-// Set up Algolia.
+// Initialize Algolia.
 const algoliaClient = algoliasearch(
   functions.config().algolia.appid,
   functions.config().algolia.apikey
 );
 
-// Set our Algolia index name
+// Set Algolia index name.
 const index = algoliaClient.initIndex("strandings");
 
 // Initialize Express server.
 const app = express();
 
-// Set JSON as bodyParser to process the body
+// Set JSON as bodyParser.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Add CORS middleware
 app.use(cors({ origin: true }));
 
-// Google Cloud Function for our Express Server
+// Define Express server as Firebase Function
 export const api = functions.https.onRequest(app);
 
-// Test endpoint
+// GET endpoint for testing
 app.get("/hello", async (req, res) => {
   try {
     res.status(201).send(`Hello from Firebase!`);
@@ -40,7 +40,7 @@ app.get("/hello", async (req, res) => {
   }
 });
 
-// POST route to retreive Algolia results
+// POST route to retrieve Algolia results
 app.post("/algoliasearch", async (req, res) => {
   try {
     index.search("", req.body).then(({ hits }) => {
