@@ -21,6 +21,9 @@ const index = algoliaClient.initIndex("strandings");
 // Initialize Express server.
 const app = express();
 
+// Initialize Axios.
+const axios = require("axios").default;
+
 // Set JSON as bodyParser.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -49,6 +52,23 @@ app.post("/algoliasearch", async (req, res) => {
   } catch (error) {
     res.status(400).send(`Failed to retreive Algolia results`);
   }
+});
+
+// Post route to upload data to Firebase
+app.post("/firebaseupload", (req, res) => {
+  const databaseURL =
+    functions.config().database.url + "?auth=" + req.body["userToken"];
+
+  axios.post(databaseURL, req.body["record"]).then(
+    (response) => {
+      res.send("Successfully uploaded");
+      console.log(response);
+    },
+    (error) => {
+      console.log(error);
+      res.send(error);
+    }
+  );
 });
 
 // Database functions
