@@ -11,6 +11,7 @@ function NavMenu() {
   const userContext = useContext(AuthContext);
   const [loggedInAs, setLoggedInAs] = useState("");
 
+  // Set current active user if logged in
   useEffect(() => {
     if (userContext.currentUser != null) {
       setLoggedInAs("Logged in as " + userContext.currentUser.email);
