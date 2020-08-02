@@ -1,13 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
-import "./NavMenu.css";
 import Navbar from "react-bootstrap/Navbar";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "react-bootstrap/Nav";
-import { AuthContext } from "../Auth";
 import app from "../config/Fire";
+import { AuthContext } from "../Auth";
+import "./NavMenu.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-//Uses bootstrap
-//Be sure to have bootstrap installed
 function NavMenu() {
   const userContext = useContext(AuthContext);
   const [loggedInAs, setLoggedInAs] = useState("");
