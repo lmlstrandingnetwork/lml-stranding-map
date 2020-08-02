@@ -40,8 +40,11 @@ function NavMenu() {
               Stranding Program
             </Nav.Link>
             <Nav.Link href="about">Team</Nav.Link>
-            <Nav.Link href="login">Login</Nav.Link>
-            <Nav.Link href="logout">Logout</Nav.Link>
+            {userContext.currentUser ? (
+              <Nav.Link href="logout">Logout</Nav.Link>
+            ) : (
+              <Nav.Link href="login">Login</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
         <p className="email">{loggedInAs}</p>
