@@ -41,7 +41,7 @@ function NavMenu() {
             <Nav.Link href="about">Team</Nav.Link>
             {userContext.currentUser ? (
               <Nav.Link className="logout" onClick={() => app.auth().signOut()}>
-                Log out
+                Log Out
               </Nav.Link>
             ) : (
               <Nav.Link href="login">Login</Nav.Link>
