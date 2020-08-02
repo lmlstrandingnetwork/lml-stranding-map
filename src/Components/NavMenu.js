@@ -4,6 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "react-bootstrap/Nav";
 import { AuthContext } from "../Auth";
+import app from "../config/Fire";
 
 //Uses bootstrap
 //Be sure to have bootstrap installed
@@ -41,7 +42,9 @@ function NavMenu() {
             </Nav.Link>
             <Nav.Link href="about">Team</Nav.Link>
             {userContext.currentUser ? (
-              <Nav.Link href="logout">Logout</Nav.Link>
+              <button className="logout" onClick={() => app.auth().signOut()}>
+                Log out
+              </button>
             ) : (
               <Nav.Link href="login">Login</Nav.Link>
             )}
