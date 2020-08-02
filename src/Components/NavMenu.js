@@ -40,9 +40,9 @@ function NavMenu() {
             </Nav.Link>
             <Nav.Link href="about">Team</Nav.Link>
             {userContext.currentUser ? (
-              <button className="logout" onClick={() => app.auth().signOut()}>
+              <Nav.Link className="logout" onClick={() => app.auth().signOut()}>
                 Log out
-              </button>
+              </Nav.Link>
             ) : (
               <Nav.Link href="login">Login</Nav.Link>
             )}
