@@ -11,6 +11,7 @@ function NavMenu() {
   const userContext = useContext(AuthContext);
   const [loggedInAs, setLoggedInAs] = useState("");
 
+  // Set current active user if logged in
   useEffect(() => {
     if (userContext.currentUser != null) {
       setLoggedInAs("Logged in as " + userContext.currentUser.email);
@@ -39,8 +40,11 @@ function NavMenu() {
               Stranding Program
             </Nav.Link>
             <Nav.Link href="about">Team</Nav.Link>
-            <Nav.Link href="login">Login</Nav.Link>
-            <Nav.Link href="logout">Logout</Nav.Link>
+            {userContext.currentUser ? (
+              <Nav.Link href="logout">Logout</Nav.Link>
+            ) : (
+              <Nav.Link href="login">Login</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
         <p className="email">{loggedInAs}</p>
