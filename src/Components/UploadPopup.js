@@ -23,7 +23,6 @@ const Popup = (props) => {
         .uploadData({ record: element, userToken: userToken })
         .then((response) => {
           setResponseData(response);
-          console.log(responseData);
         })
         .catch((error) => {
           console.log(error);
@@ -33,7 +32,6 @@ const Popup = (props) => {
 
   function getFamily(name) {
     var commonName = name.split(",")[0].trim();
-    console.log(commonName);
     var Family = "Unknown";
     if (commonName === "Sea lion") {
       Family = "Otariid";
@@ -47,7 +45,6 @@ const Popup = (props) => {
       Family = "Odontocetes";
     }
 
-    console.log(Family);
     return Family;
   }
 
@@ -77,8 +74,6 @@ const Popup = (props) => {
         var uniqueid = element["National Database Number"];
         var family = getFamily(name);
         element.Family = family;
-        console.log(family);
-        console.log(uniqueid);
 
         var feature = {
           [uniqueid]: {
@@ -87,10 +82,8 @@ const Popup = (props) => {
             geometry: { type: "Point", coordinates: [long, lat] },
           },
         };
-        console.log(feature);
         features.push(feature);
       });
-      console.log(features);
       setFeatureCollection(features);
     }
 
