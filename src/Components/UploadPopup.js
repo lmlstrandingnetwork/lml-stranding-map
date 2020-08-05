@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext, useEffect } from "react";
+import React, { useCallback, useState, useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import api from "../api";
 import "./UploadPopup.css";
@@ -23,7 +23,6 @@ const Popup = (props) => {
         .uploadData({ record: element, userToken: userToken })
         .then((response) => {
           setResponseData(response);
-          console.log(responseData);
         })
         .catch((error) => {
           console.log(error);
@@ -33,7 +32,6 @@ const Popup = (props) => {
 
   function getFamily(name) {
     var commonName = name.split(",")[0].trim();
-    console.log(commonName);
     var Family = "Unknown";
     if (commonName === "Sea lion") {
       Family = "Otariid";
@@ -47,32 +45,7 @@ const Popup = (props) => {
       Family = "Odontocetes";
     }
 
-    console.log(Family);
     return Family;
-  }
-
-  // convert .csv to geojson
-  function toGeoJSON(data) {
-    var features = [];
-
-    data.forEach((element) => {
-      var lat = element["Latitude"];
-      var long = element["Longitude"];
-      var name = element["Common Name"];
-      var Family = getFamily(name);
-      element.Family = Family;
-      console.log(Family);
-
-      var feature = {
-        type: "Feature",
-        properties: element,
-        geometry: { type: "Point", coordinates: [long, lat] },
-      };
-      console.log(feature);
-      features.push(feature);
-    });
-
-    setFeatureCollection(features);
   }
 
   // use papaparse to set up the csv
@@ -89,6 +62,30 @@ const Popup = (props) => {
   // handle dropped file
   const onDrop = useCallback((acceptedFiles) => {
     var file = acceptedFiles[0];
+
+    // convert .csv to geojson
+    function toGeoJSON(data) {
+      var features = [];
+
+      data.forEach((element) => {
+        var lat = element["Latitude"];
+        var long = element["Longitude"];
+        var name = element["Common Name"];
+        var uniqueid = element["National Database Number"];
+        var family = getFamily(name);
+        element.Family = family;
+
+        var feature = {
+          [uniqueid]: {
+            type: "Feature",
+            properties: element,
+            geometry: { type: "Point", coordinates: [long, lat] },
+          },
+        };
+        features.push(feature);
+      });
+      setFeatureCollection(features);
+    }
 
     parseData(file, toGeoJSON);
   }, []);
