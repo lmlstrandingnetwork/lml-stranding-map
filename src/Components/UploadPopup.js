@@ -81,14 +81,16 @@ const Popup = (props) => {
         console.log(uniqueid);
 
         var feature = {
-          type: "Feature",
-          properties: element,
-          geometry: { type: "Point", coordinates: [long, lat] },
+          [uniqueid]: {
+            type: "Feature",
+            properties: element,
+            geometry: { type: "Point", coordinates: [long, lat] },
+          },
         };
         console.log(feature);
         features.push(feature);
       });
-
+      console.log(features);
       setFeatureCollection(features);
     }
 
