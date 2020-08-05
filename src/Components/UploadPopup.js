@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext, useEffect } from "react";
+import React, { useCallback, useState, useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import api from "../api";
 import "./UploadPopup.css";
@@ -51,30 +51,6 @@ const Popup = (props) => {
     return Family;
   }
 
-  // convert .csv to geojson
-  function toGeoJSON(data) {
-    var features = [];
-
-    data.forEach((element) => {
-      var lat = element["Latitude"];
-      var long = element["Longitude"];
-      var name = element["Common Name"];
-      var Family = getFamily(name);
-      element.Family = Family;
-      console.log(Family);
-
-      var feature = {
-        type: "Feature",
-        properties: element,
-        geometry: { type: "Point", coordinates: [long, lat] },
-      };
-      console.log(feature);
-      features.push(feature);
-    });
-
-    setFeatureCollection(features);
-  }
-
   // use papaparse to set up the csv
   function parseData(file, callBack) {
     Papa.parse(file, {
@@ -89,6 +65,32 @@ const Popup = (props) => {
   // handle dropped file
   const onDrop = useCallback((acceptedFiles) => {
     var file = acceptedFiles[0];
+
+    // convert .csv to geojson
+    function toGeoJSON(data) {
+      var features = [];
+
+      data.forEach((element) => {
+        var lat = element["Latitude"];
+        var long = element["Longitude"];
+        var name = element["Common Name"];
+        var uniqueid = element["National Database Number"];
+        var family = getFamily(name);
+        element.family = family;
+        console.log(family);
+        console.log(uniqueid);
+
+        var feature = {
+          type: "Feature",
+          properties: element,
+          geometry: { type: "Point", coordinates: [long, lat] },
+        };
+        console.log(feature);
+        features.push(feature);
+      });
+
+      setFeatureCollection(features);
+    }
 
     parseData(file, toGeoJSON);
   }, []);
