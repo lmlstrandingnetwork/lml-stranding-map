@@ -76,7 +76,7 @@ const Popup = (props) => {
         var name = element["Common Name"];
         var uniqueid = element["National Database Number"];
         var family = getFamily(name);
-        element.family = family;
+        element.Family = family;
         console.log(family);
         console.log(uniqueid);
 
