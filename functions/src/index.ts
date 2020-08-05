@@ -59,7 +59,7 @@ app.post("/firebaseupload", (req, res) => {
   const databaseURL =
     functions.config().database.url + "?auth=" + req.body["userToken"];
 
-  axios.post(databaseURL, req.body["record"]).then(
+  axios.patch(databaseURL, req.body["record"]).then(
     (response) => {
       res.send("Successfully uploaded");
       console.log(response);
