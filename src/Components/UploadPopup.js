@@ -68,8 +68,8 @@ const Popup = (props) => {
       var features = [];
 
       data.forEach((element) => {
-        var lat = element["Latitude"];
-        var long = element["Longitude"];
+        var lat = parseFloat(element["Latitude"]);
+        var long = parseFloat(element["Longitude"]);
         var name = element["Common Name"];
         var uniqueid = element["National Database Number"];
         var family = getFamily(name);
