@@ -75,7 +75,7 @@ app.post("/firebaseupload", (req, res) => {
 export const databaseOnCreate = functions.database
   .ref("/features/{key}")
   .onCreate(async (snapshot: any, context: any) => {
-    console.log(snapshot);
+    functions.logger.log("Hello from databaseOnCreate. Snapshot:", snapshot);
     await saveDocumentInAlgolia(snapshot);
   });
 
@@ -93,14 +93,18 @@ export const databaseOnUpdate = functions.database
 
 // Database helper functions
 async function saveDocumentInAlgolia(snapshot: any) {
-  console.log("adding record to Algolia");
+  functions.logger.log("Adding a new record to algolia:");
   if (snapshot.exists()) {
     const record = snapshot.val();
     if (record) {
       record.objectID = snapshot.key;
-      console.log(record);
+      functions.logger.log("Record to be added:", record);
 
-      await index.saveObject(record);
+      try {
+        await index.saveObject(record);
+      } catch (err) {
+        functions.logger.log(err);
+      }
     }
   }
 }
