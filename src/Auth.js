@@ -23,8 +23,6 @@ const AuthProvider = ({ children }) => {
           console.log(error);
         });
     });
-
-    console.log(userToken);
   }, [userToken]);
 
   if (pending) {
