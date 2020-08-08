@@ -56,25 +56,21 @@ function Filter() {
         );
     }
 
-    if (filters.length === 0) {
-      setReportHits([]);
-    } else {
-      let data = {
-        facetFilters: filters,
-        hitsPerPage: 1000,
-        attributesToRetrieve: ["*"],
-      };
+    let data = {
+      facetFilters: filters,
+      hitsPerPage: 1000,
+      attributesToRetrieve: ["*"],
+    };
 
-      api
-        .searchAlgolia(data)
-        .then((response) => {
-          setReportHits(response.data);
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    api
+      .searchAlgolia(data)
+      .then((response) => {
+        setReportHits(response.data);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
