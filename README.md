@@ -5,7 +5,7 @@ A tool for visualizing marine mammal stranding data collected by the Long Marine
 
 
 ## Demo
-A prototype build can be currently viewed at: [https://lmlstrandingmap.netlify.app/](https://lmlstrandingmap.netlify.app/)
+The current production build can be currently viewed at: [https://lmlstrandingmap.herokuapp.com/](https://lmlstrandingmap.herokuapp.com/)
 
 
 ## Key Features
