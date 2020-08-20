@@ -8,6 +8,7 @@ import { AuthContext } from "../Auth";
 const Popup = (props) => {
   const [featureCollection, setFeatureCollection] = useState([]);
   const [responseData, setResponseData] = useState("");
+  const [percentLoaded, setPercentLoaded] = useState({});
   const userToken = useContext(AuthContext).userToken;
 
   // handles closing the popup
@@ -15,12 +16,23 @@ const Popup = (props) => {
     props.toggle();
   };
 
+  // send with api call
+  // axios will call this function when upload progresses
+  var config = {
+    onUploadProgress: (progressEvent) => {
+      setPercentLoaded(
+        Math.round((progressEvent.loaded * 100) / progressEvent.total)
+      );
+      console.log(percentLoaded);
+    },
+  };
+
   // send the parsed records to Firebase through the backend
   const uploadFeatureCollection = (e) => {
     e.preventDefault();
     featureCollection.forEach((element) =>
       api
-        .uploadData({ record: element, userToken: userToken })
+        .uploadData({ record: element, userToken: userToken }, config)
         .then((response) => {
           setResponseData(response);
         })
