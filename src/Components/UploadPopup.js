@@ -4,11 +4,12 @@ import api from "../api";
 import "./UploadPopup.css";
 import Papa from "papaparse";
 import { AuthContext } from "../Auth";
+import { ProgressBar } from "react-bootstrap";
 
 const Popup = (props) => {
   const [featureCollection, setFeatureCollection] = useState([]);
   const [responseData, setResponseData] = useState("");
-  const [percentLoaded, setPercentLoaded] = useState({});
+  const [percentLoaded, setPercentLoaded] = useState("");
   const userToken = useContext(AuthContext).userToken;
 
   // handles closing the popup
@@ -127,7 +128,6 @@ const Popup = (props) => {
         <span className="close" onClick={handleClick}>
           &times;{" "}
         </span>
-
         <section className="container text-center mt-5">
           <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} />
@@ -147,6 +147,7 @@ const Popup = (props) => {
                 Upload
               </button>
             )}
+            <ProgressBar now={percentLoaded} label={`${percentLoaded}%`} />
           </aside>
         </section>
       </div>

@@ -14,9 +14,9 @@
   left: 50%;
   top: 50%;
   width: 400px;
-  max-height: 300px;
   transform: translate(-50%, -50%);
   border-radius: 0.5em;
+  padding: 20px;
 }
 
 .dropzone {
