@@ -137,7 +137,7 @@ const Popup = (props) => {
           </div>
           <aside>
             <span>{files}</span>
-            <p>{featureCollection.length} records</p>
+            <p>{featureCollection.length} records selected</p>
 
             {files.length > 0 && (
               <button
