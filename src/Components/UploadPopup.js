@@ -117,39 +117,51 @@ const Popup = (props) => {
 
   // display current accepted file
   const files = acceptedFiles.map((file) => (
-    <p>
-      {file.path} - {file.size} bytes
-    </p>
+    <p className="fileName">{file.path}</p>
   ));
+
+  // display each record to be uploaded
+  const RecordCards = () => {
+    featureCollection.map((record) => console.log(Object.keys(record)[0]));
+    return (
+      <div>
+        {featureCollection.map((record) => (
+          <div>
+            <p>{Object.keys(record)[0]}</p>
+            <ProgressBar
+              className="progressBar"
+              now={percentLoaded}
+              label={`${percentLoaded}%`}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="popup">
       <div className="popup_content">
+        <div {...getRootProps({ className: "dropzone" })}>
+          <input {...getInputProps()} />
+          {!isDragActive && "Click here or drop a file to upload"}
+          {isDragActive && !isDragReject && "Drop to upload"}
+          {isDragReject && "File type not accepted, sorry!"}
+        </div>
+        <div className="uploadFiles">
+          <span>{files}</span>
+
+          <p>{featureCollection.length} records selected</p>
+          <RecordCards />
+          {files.length > 0 && (
+            <button className="uploadButton2" onClick={uploadFeatureCollection}>
+              Upload
+            </button>
+          )}
+        </div>
         <span className="close" onClick={handleClick}>
           &times;{" "}
         </span>
-        <section className="container text-center mt-5">
-          <div {...getRootProps({ className: "dropzone" })}>
-            <input {...getInputProps()} />
-            {!isDragActive && "Click here or drop a .csv/.json file to upload!"}
-            {isDragActive && !isDragReject && "Drop to upload!"}
-            {isDragReject && "File type not accepted, sorry!"}
-          </div>
-          <aside>
-            <span>{files}</span>
-            <p>{featureCollection.length} records selected</p>
-
-            {files.length > 0 && (
-              <button
-                className="uploadButton2"
-                onClick={uploadFeatureCollection}
-              >
-                Upload
-              </button>
-            )}
-            <ProgressBar now={percentLoaded} label={`${percentLoaded}%`} />
-          </aside>
-        </section>
       </div>
     </div>
   );

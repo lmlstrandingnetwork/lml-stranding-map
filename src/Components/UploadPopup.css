@@ -17,12 +17,13 @@
   transform: translate(-50%, -50%);
   border-radius: 0.5em;
   padding: 20px;
+  display: flex;
+  flex-direction: row;
+  height: 300px;
+  width: 500px;
 }
 
 .dropzone {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   padding: 20px;
   border-width: 2px;
@@ -33,8 +34,9 @@
   color: #bdbdbd;
   outline: none;
   transition: border 0.24s ease-in-out;
-  height: 100px;
+  height: auto;
   margin: 10px;
+  width: 40%;
 }
 
 .uploadButton2 {
@@ -69,4 +71,20 @@
 .close:hover {
   color: red;
   text-decoration: none;
+}
+
+.progress {
+  margin: 5px;
+}
+
+.uploadFiles {
+  width: 50%;
+  align-items: center;
+  padding: 20px;
+  margin: 10px;
+  overflow: auto;
+}
+
+.p {
+  text-align: left;
 }
