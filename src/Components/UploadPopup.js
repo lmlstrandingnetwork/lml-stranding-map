@@ -142,28 +142,36 @@ const Popup = (props) => {
   return (
     <div className="popup">
       <div className="popup_content">
-        <div {...getRootProps({ className: "dropzone" })}>
-          <input {...getInputProps()} />
-          {!isDragActive && "Click here or drop a file to upload"}
-          {isDragActive && !isDragReject && "Drop to upload"}
-          {isDragReject && "File type not accepted, sorry!"}
+        <div className="popupTitleBar">
+          <span className="close" onClick={handleClick}>
+            &times;{" "}
+          </span>
+          <h3>File Upload</h3>
         </div>
-        <div className="uploadFiles">
-          <span>{files}</span>
+        <div className="mainPopupContent">
+          <div {...getRootProps({ className: "dropzone" })}>
+            <input {...getInputProps()} />
+            {!isDragActive && "Click here or drop a file to upload"}
+            {isDragActive && !isDragReject && "Drop to upload"}
+            {isDragReject && "File type not accepted, sorry!"}
+          </div>
+          <div className="uploadFiles">
+            <span>{files}</span>
 
-          <p className="subtitle">
-            {featureCollection.length} records selected
-          </p>
-          <RecordCards />
-          {files.length > 0 && (
-            <button className="uploadButton2" onClick={uploadFeatureCollection}>
-              Upload
-            </button>
-          )}
+            <p className="subtitle">
+              {featureCollection.length} records selected
+            </p>
+            <RecordCards />
+            {files.length > 0 && (
+              <button
+                className="uploadButton2"
+                onClick={uploadFeatureCollection}
+              >
+                Upload
+              </button>
+            )}
+          </div>
         </div>
-        <span className="close" onClick={handleClick}>
-          &times;{" "}
-        </span>
       </div>
     </div>
   );

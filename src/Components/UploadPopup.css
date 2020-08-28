@@ -16,11 +16,20 @@
   width: 400px;
   transform: translate(-50%, -50%);
   border-radius: 0.5em;
-  padding: 20px;
+  height: 400px;
+  width: 500px;
+}
+
+.popupTitleBar {
+  padding: 10px 10px 5px 10px;
+  margin-left: 35px;
+}
+
+.mainPopupContent {
   display: flex;
   flex-direction: row;
-  height: 300px;
-  width: 500px;
+  height: 85%;
+  width: 100%;
 }
 
 .dropzone {
@@ -35,7 +44,7 @@
   outline: none;
   transition: border 0.24s ease-in-out;
   height: auto;
-  margin: 10px;
+  margin: 20px;
   width: 40%;
 }
 
@@ -65,7 +74,7 @@
   color: #000;
   text-shadow: 0 1px 0 #fff;
   opacity: 0.5;
-  margin: 10px;
+  margin: 0px 5px 0px 5px;
 }
 
 .close:hover {
@@ -80,7 +89,7 @@
 .uploadFiles {
   width: 50%;
   padding: 20px;
-  margin: 10px;
+  margin: 20px 0px 20px 0px;
   overflow: auto;
 }
 
