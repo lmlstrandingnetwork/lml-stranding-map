@@ -61,6 +61,8 @@
   background-color: #33b633;
   text-align: center;
   transition: all 0.2s;
+  border: none;
+  transform: translate(50%, 50%);
 }
 .uploadButton2:hover {
   background-color: #288528;
