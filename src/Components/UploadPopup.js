@@ -127,7 +127,7 @@ const Popup = (props) => {
       <div>
         {featureCollection.map((record) => (
           <div>
-            <p>{Object.keys(record)[0]}</p>
+            <p className="recordID">{Object.keys(record)[0]}</p>
             <ProgressBar
               className="progressBar"
               now={percentLoaded}
@@ -151,7 +151,9 @@ const Popup = (props) => {
         <div className="uploadFiles">
           <span>{files}</span>
 
-          <p>{featureCollection.length} records selected</p>
+          <p className="subtitle">
+            {featureCollection.length} records selected
+          </p>
           <RecordCards />
           {files.length > 0 && (
             <button className="uploadButton2" onClick={uploadFeatureCollection}>

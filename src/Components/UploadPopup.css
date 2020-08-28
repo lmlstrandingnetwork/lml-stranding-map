@@ -74,17 +74,30 @@
 }
 
 .progress {
-  margin: 5px;
+  margin-bottom: 5px;
 }
 
 .uploadFiles {
   width: 50%;
-  align-items: center;
   padding: 20px;
   margin: 10px;
   overflow: auto;
 }
 
-.p {
+.subtitle {
   text-align: left;
+  font-size: small;
+}
+
+.fileName {
+  text-align: left;
+  margin-bottom: 0px;
+  font-size: medium;
+  font-weight: 500;
+}
+
+.recordID {
+  text-align: left;
+  margin-bottom: 0px;
+  font-size: small;
 }
