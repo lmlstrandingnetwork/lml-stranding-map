@@ -14,15 +14,28 @@
   left: 50%;
   top: 50%;
   width: 400px;
-  max-height: 300px;
   transform: translate(-50%, -50%);
   border-radius: 0.5em;
+  height: 500px;
+  width: 600px;
+}
+
+.popupTitleBar {
+  padding: 10px 10px 5px 10px;
+  margin: 10px 20px 0px 20px;
+}
+.popupTitleBar h3 {
+  font-weight: 100;
+}
+
+.mainPopupContent {
+  display: flex;
+  flex-direction: row;
+  height: 80%;
+  width: 100%;
 }
 
 .dropzone {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   padding: 20px;
   border-width: 2px;
@@ -33,8 +46,9 @@
   color: #bdbdbd;
   outline: none;
   transition: border 0.24s ease-in-out;
-  height: 100px;
-  margin: 10px;
+  height: auto;
+  margin: 20px;
+  width: 45%;
 }
 
 .uploadButton2 {
@@ -50,6 +64,8 @@
   background-color: #33b633;
   text-align: center;
   transition: all 0.2s;
+  border: none;
+  transform: translate(70%, 50%);
 }
 .uploadButton2:hover {
   background-color: #288528;
@@ -63,10 +79,40 @@
   color: #000;
   text-shadow: 0 1px 0 #fff;
   opacity: 0.5;
-  margin: 10px;
+  margin: 0px 5px 0px 5px;
 }
 
 .close:hover {
   color: red;
   text-decoration: none;
+}
+
+.progress-thin {
+  margin-bottom: 5px;
+  height: 5px;
+}
+
+.uploadFiles {
+  width: 50%;
+  padding: 0px 10px 0px 0px;
+  margin: 20px 0px 20px 0px;
+  overflow: auto;
+}
+
+.subtitle {
+  text-align: left;
+  font-size: small;
+}
+
+.fileName {
+  text-align: left;
+  margin-bottom: 0px;
+  font-size: medium;
+  font-weight: 500;
+}
+
+.recordID {
+  text-align: left;
+  margin-bottom: 0px;
+  font-size: small;
 }

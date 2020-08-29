@@ -6,8 +6,8 @@ const algoliaURL =
   "https://us-central1-lml-stranding-map.cloudfunctions.net/api/algoliasearch";
 
 export default {
-  uploadData: (data) =>
-    axios.post(firebaseURL, data).then(
+  uploadData: (data, config) =>
+    axios.post(firebaseURL, data, config).then(
       (response) => {
         console.log(response);
       },

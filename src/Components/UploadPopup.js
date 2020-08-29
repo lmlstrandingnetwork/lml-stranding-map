@@ -4,10 +4,12 @@ import api from "../api";
 import "./UploadPopup.css";
 import Papa from "papaparse";
 import { AuthContext } from "../Auth";
+import { ProgressBar } from "react-bootstrap";
 
 const Popup = (props) => {
   const [featureCollection, setFeatureCollection] = useState([]);
   const [responseData, setResponseData] = useState("");
+  const [percentLoaded, setPercentLoaded] = useState("");
   const userToken = useContext(AuthContext).userToken;
 
   // handles closing the popup
@@ -15,12 +17,23 @@ const Popup = (props) => {
     props.toggle();
   };
 
+  // send with api call
+  // axios will call this function when upload progresses
+  var config = {
+    onUploadProgress: (progressEvent) => {
+      setPercentLoaded(
+        Math.round((progressEvent.loaded * 100) / progressEvent.total)
+      );
+      console.log(percentLoaded);
+    },
+  };
+
   // send the parsed records to Firebase through the backend
   const uploadFeatureCollection = (e) => {
     e.preventDefault();
     featureCollection.forEach((element) =>
       api
-        .uploadData({ record: element, userToken: userToken })
+        .uploadData({ record: element, userToken: userToken }, config)
         .then((response) => {
           setResponseData(response);
         })
@@ -104,29 +117,51 @@ const Popup = (props) => {
 
   // display current accepted file
   const files = acceptedFiles.map((file) => (
-    <p>
-      {file.path} - {file.size} bytes
-    </p>
+    <p className="fileName">{file.path}</p>
   ));
+
+  // display each record to be uploaded
+  const RecordCards = () => {
+    featureCollection.map((record) => console.log(Object.keys(record)[0]));
+    return (
+      <div>
+        {featureCollection.map((record) => (
+          <div>
+            <p className="recordID">{Object.keys(record)[0]}</p>
+            <ProgressBar
+              style={{ marginbottom: "10px", height: "5px" }}
+              now={percentLoaded}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="popup">
       <div className="popup_content">
-        <span className="close" onClick={handleClick}>
-          &times;{" "}
-        </span>
-
-        <section className="container text-center mt-5">
+        <div className="popupTitleBar">
+          <span className="close" onClick={handleClick}>
+            &times;{" "}
+          </span>
+          <h3>File Upload</h3>
+          <hr></hr>
+        </div>
+        <div className="mainPopupContent">
           <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} />
-            {!isDragActive && "Click here or drop a .csv/.json file to upload!"}
-            {isDragActive && !isDragReject && "Drop to upload!"}
+            {!isDragActive && "Click here or drop a file to upload"}
+            {isDragActive && !isDragReject && "Drop to upload"}
             {isDragReject && "File type not accepted, sorry!"}
           </div>
-          <aside>
+          <div className="uploadFiles">
             <span>{files}</span>
-            <p>{featureCollection.length} records</p>
 
+            <p className="subtitle">
+              {featureCollection.length} records selected
+            </p>
+            <RecordCards />
             {files.length > 0 && (
               <button
                 className="uploadButton2"
@@ -135,8 +170,8 @@ const Popup = (props) => {
                 Upload
               </button>
             )}
-          </aside>
-        </section>
+          </div>
+        </div>
       </div>
     </div>
   );
