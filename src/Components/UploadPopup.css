@@ -16,19 +16,22 @@
   width: 400px;
   transform: translate(-50%, -50%);
   border-radius: 0.5em;
-  height: 400px;
-  width: 500px;
+  height: 500px;
+  width: 600px;
 }
 
 .popupTitleBar {
   padding: 10px 10px 5px 10px;
-  margin-left: 35px;
+  margin: 10px 20px 0px 20px;
+}
+.popupTitleBar h3 {
+  font-weight: 100;
 }
 
 .mainPopupContent {
   display: flex;
   flex-direction: row;
-  height: 85%;
+  height: 80%;
   width: 100%;
 }
 
@@ -45,7 +48,7 @@
   transition: border 0.24s ease-in-out;
   height: auto;
   margin: 20px;
-  width: 40%;
+  width: 45%;
 }
 
 .uploadButton2 {
@@ -84,8 +87,9 @@
   text-decoration: none;
 }
 
-.progress {
+.progress-thin {
   margin-bottom: 5px;
+  height: 5px;
 }
 
 .uploadFiles {

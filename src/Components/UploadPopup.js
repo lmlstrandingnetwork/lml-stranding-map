@@ -129,9 +129,8 @@ const Popup = (props) => {
           <div>
             <p className="recordID">{Object.keys(record)[0]}</p>
             <ProgressBar
-              className="progressBar"
+              style={{ marginbottom: "10px", height: "5px" }}
               now={percentLoaded}
-              label={`${percentLoaded}%`}
             />
           </div>
         ))}
@@ -147,6 +146,7 @@ const Popup = (props) => {
             &times;{" "}
           </span>
           <h3>File Upload</h3>
+          <hr></hr>
         </div>
         <div className="mainPopupContent">
           <div {...getRootProps({ className: "dropzone" })}>
