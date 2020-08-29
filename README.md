@@ -31,7 +31,7 @@ After logging in, lab technicians can upload new stranding data to the database.
 - [Urbica React Map GL](https://urbica.github.io/react-map-gl/) - React Component Library for Mapbox GL JS.
 - [Firebase](https://firebase.google.com/) - Cloud storage, authentication, and backend code hosting.
 - [Algolia](https://algolia.com/) - Fast, realtime search integration for Firebase Realtime Database.
-- [Netlify](https://netlify.com/) - Web hosting, automated builds and deployments.
+- [Heroku](https://heroku.com/) - Application hosting, automated builds and deployments.
 
 
 ## License
