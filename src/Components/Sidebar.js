@@ -49,9 +49,9 @@ const Sidebar = (props) => {
           toggleComponent={props.showTimeSlider}
         />
         {isUploadButtonHidden ? null : (
-          <button className="uploadButton" onClick={showUploadPopup}>
+          <label className="uploadButton" onClick={showUploadPopup}>
             Upload a file
-          </button>
+          </label>
         )}
       </div>
       {!isUploadPopupHidden && <UploadPopup toggle={showUploadPopup} />}
