@@ -67,20 +67,11 @@
 }
 
 .uploadButton {
-  display: inline-block;
-
-  padding: 0.2em 1.8em;
-  border-radius: 0.5em;
-  box-sizing: border-box;
-  text-decoration: none;
   font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  color: #ffffff;
-  background-color: #4eb5f1;
-  text-align: center;
+  font-weight: 400;
+  color: #003c6c;
   transition: all 0.2s;
-  border: none;
 }
 .uploadButton:hover {
-  background-color: #4095c6;
+  color: #ffbf00;
 }
