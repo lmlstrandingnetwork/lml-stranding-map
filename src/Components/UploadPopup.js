@@ -5,7 +5,7 @@ import "./UploadPopup.css";
 import Papa from "papaparse";
 import { AuthContext } from "../Auth";
 import { ProgressBar } from "react-bootstrap";
-import { CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 const Popup = (props) => {
   const [featureCollection, setFeatureCollection] = useState([]);
@@ -140,7 +140,7 @@ const Popup = (props) => {
   };
 
   // upload template csv for download
-  const uploadTemplate = [
+  const csvTemplate = [
     [
       "National Database Number",
       "Field Number",
@@ -196,21 +196,25 @@ const Popup = (props) => {
             {isDragActive && !isDragReject && "Drop to upload"}
             {isDragReject && "File type not accepted, sorry!"}
           </div>
-          <div className="uploadFiles">
-            <span>{files}</span>
-
-            <p className="subtitle">
-              {featureCollection.length} records selected
-            </p>
-            <RecordCards />
-            {files.length > 0 && (
+          <div className="fileContent">
+            <div className="fileDetail">
+              <span>{files}</span>
+              <p className="subtitle">
+                {featureCollection.length} records selected
+              </p>
+            </div>
+            <div className="recordContent">
+              <RecordCards />
+            </div>
+            <div className="uploadButtonContent">
               <button
                 className="uploadButton2"
                 onClick={uploadFeatureCollection}
               >
                 Upload
               </button>
-            )}
+              <CSVLink data={csvTemplate}>Download CSV template</CSVLink>
+            </div>
           </div>
         </div>
       </div>
