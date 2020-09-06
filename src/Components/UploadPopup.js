@@ -213,7 +213,12 @@ const Popup = (props) => {
               >
                 Upload
               </button>
-              <CSVLink data={csvTemplate}>Download CSV template</CSVLink>
+              <CSVLink
+                data={csvTemplate}
+                filename={"stranding-report-template.csv"}
+              >
+                Download CSV template
+              </CSVLink>
             </div>
           </div>
         </div>
