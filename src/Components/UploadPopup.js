@@ -5,6 +5,7 @@ import "./UploadPopup.css";
 import Papa from "papaparse";
 import { AuthContext } from "../Auth";
 import { ProgressBar } from "react-bootstrap";
+import { CSVLink } from "react-csv";
 
 const Popup = (props) => {
   const [featureCollection, setFeatureCollection] = useState([]);
@@ -138,6 +139,46 @@ const Popup = (props) => {
     );
   };
 
+  // upload template csv for download
+  const csvTemplate = [
+    [
+      "National Database Number",
+      "Field Number",
+      "Common Name",
+      "Affiliation",
+      "Latitude",
+      "Latitude Units",
+      "Longitude",
+      "Longitude Units",
+      "Findings of Human Interaction",
+      "Date of Examination",
+      "Year of Examination",
+      "Condition at Examination",
+      "Sex",
+      "Age Class",
+      "Length",
+      "Length Units",
+      "Necropsied Flag",
+    ],
+    [
+      "SW-2005-1060399",
+      "LMLZC05NOV2005",
+      "Sea lion, California",
+      "Long Marine Laboratory",
+      36.9513286,
+      "decimal degrees",
+      -122.0655682,
+      "decimal degrees",
+      "CBD",
+      "2005-NOV-05,2005",
+      "Fresh dead",
+      "MALE,SUBADULT",
+      180,
+      "cm",
+      "N",
+    ],
+  ];
+
   return (
     <div className="popup">
       <div className="popup_content">
@@ -155,21 +196,30 @@ const Popup = (props) => {
             {isDragActive && !isDragReject && "Drop to upload"}
             {isDragReject && "File type not accepted, sorry!"}
           </div>
-          <div className="uploadFiles">
-            <span>{files}</span>
-
-            <p className="subtitle">
-              {featureCollection.length} records selected
-            </p>
-            <RecordCards />
-            {files.length > 0 && (
+          <div className="fileContent">
+            <div className="fileDetail">
+              <span>{files}</span>
+              <p className="subtitle">
+                {featureCollection.length} records selected
+              </p>
+            </div>
+            <div className="recordContent">
+              <RecordCards />
+            </div>
+            <div className="uploadButtonContent">
               <button
                 className="uploadButton2"
                 onClick={uploadFeatureCollection}
               >
                 Upload
               </button>
-            )}
+              <CSVLink
+                data={csvTemplate}
+                filename={"stranding-report-template.csv"}
+              >
+                Download CSV template
+              </CSVLink>
+            </div>
           </div>
         </div>
       </div>
