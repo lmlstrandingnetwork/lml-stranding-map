@@ -5,6 +5,7 @@ import "./UploadPopup.css";
 import Papa from "papaparse";
 import { AuthContext } from "../Auth";
 import { ProgressBar } from "react-bootstrap";
+import { CSVDownload } from "react-csv";
 
 const Popup = (props) => {
   const [featureCollection, setFeatureCollection] = useState([]);
@@ -137,6 +138,46 @@ const Popup = (props) => {
       </div>
     );
   };
+
+  // upload template csv for download
+  const uploadTemplate = [
+    [
+      "National Database Number",
+      "Field Number",
+      "Common Name",
+      "Affiliation",
+      "Latitude",
+      "Latitude Units",
+      "Longitude",
+      "Longitude Units",
+      "Findings of Human Interaction",
+      "Date of Examination",
+      "Year of Examination",
+      "Condition at Examination",
+      "Sex",
+      "Age Class",
+      "Length",
+      "Length Units",
+      "Necropsied Flag",
+    ],
+    [
+      "SW-2005-1060399",
+      "LMLZC05NOV2005",
+      "Sea lion, California",
+      "Long Marine Laboratory",
+      36.9513286,
+      "decimal degrees",
+      -122.0655682,
+      "decimal degrees",
+      "CBD",
+      "2005-NOV-05,2005",
+      "Fresh dead",
+      "MALE,SUBADULT",
+      180,
+      "cm",
+      "N",
+    ],
+  ];
 
   return (
     <div className="popup">
