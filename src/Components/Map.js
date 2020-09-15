@@ -15,7 +15,7 @@ const SizeAware = withSize({ noPlaceholder: true, monitorHeight: true })(
 
 function Map(props) {
   // Default map orientation
-  const [viewport, setViewport] = useState({
+  const [view, setViewport] = useState({
     latitude: 36.954117,
     longitude: -122.030799,
     zoom: 13,
@@ -58,11 +58,11 @@ function Map(props) {
     <div>
       <SizeAware onSize={resizeMap}>
         <MapGL
-          {...viewport}
+          {...view}
           ref={mapRef}
           style={{
             width: "100%",
-            height: "670px",
+            height: "83vh",
           }}
           accessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           mapStyle="mapbox://styles/hfox999/ck6crjgkn0bfs1imqs16f84wz"
