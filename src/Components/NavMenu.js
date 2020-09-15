@@ -35,7 +35,10 @@ function NavMenu() {
           <Nav className="mr-auto">
             <Nav.Link href="/">Map</Nav.Link>
             <Nav.Link href="faq">FAQ</Nav.Link>
-            <Nav.Link href="https://lmlstrandingnetwork.ucsc.edu/">
+            <Nav.Link
+              href="https://lmlstrandingnetwork.ucsc.edu/"
+              target="_blank"
+            >
               Stranding Program
             </Nav.Link>
             <Nav.Link href="about">Team</Nav.Link>
