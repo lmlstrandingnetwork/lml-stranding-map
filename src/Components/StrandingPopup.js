@@ -20,7 +20,7 @@ const StrandingPopup = (props) => {
           {props.selectedStranding.properties["National Database Number"]}{" "}
         </h2>
         <p>
-          <span className="highlight"> Date of Examination::</span>{" "}
+          <span className="highlight"> Date of Examination:</span>{" "}
           {props.selectedStranding.properties["Date of Examination"]}{" "}
         </p>
         <p>
