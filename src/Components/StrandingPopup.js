@@ -15,10 +15,7 @@ const StrandingPopup = (props) => {
         <div className="bg-image">
           <h3> {props.selectedStranding.properties["Common Name"]} </h3>
         </div>
-        <h2>
-          {" "}
-          {props.selectedStranding.properties["National Database Number"]}{" "}
-        </h2>
+        <h2> {props.selectedStranding.properties["Field Number"]} </h2>
         <p>
           <span className="highlight"> Date of Examination:</span>{" "}
           {props.selectedStranding.properties["Date of Examination"]}{" "}
