@@ -113,7 +113,12 @@ const Popup = (props) => {
     isDragReject,
   } = useDropzone({
     onDrop,
-    accept: ["text/csv", "application/json"],
+    accept: [
+      ".csv",
+      "application/vnd.ms-excel",
+      "text/csv",
+      "application/json",
+    ],
   });
 
   // display current accepted file
