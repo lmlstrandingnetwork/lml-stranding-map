@@ -82,22 +82,28 @@ const Popup = (props) => {
       var features = [];
 
       data.forEach((element) => {
-        var lat = parseFloat(element["Latitude"]);
-        var long = element["Longitude"];
-        long = parseFloat(long.replace(/\u2013|\u2014/g, "-"));
-        var name = element["Common Name"];
-        var uniqueid = element["National Database Number"];
-        var family = getFamily(name);
-        element.Family = family;
+        // if National Database Number has no value, then we are looking at an empty row
+        // figure out how to handle this more elegantly later, for now just skip
+        if (element["National Database Number"] === "") {
+          console.log("empty row - skipping");
+        } else {
+          var lat = parseFloat(element["Latitude"]);
+          var long = element["Longitude"];
+          long = parseFloat(long.replace(/\u2013|\u2014/g, "-"));
+          var name = element["Common Name"];
+          var uniqueid = element["National Database Number"];
+          var family = getFamily(name);
+          element.Family = family;
 
-        var feature = {
-          [uniqueid]: {
-            type: "Feature",
-            properties: element,
-            geometry: { type: "Point", coordinates: [long, lat] },
-          },
-        };
-        features.push(feature);
+          var feature = {
+            [uniqueid]: {
+              type: "Feature",
+              properties: element,
+              geometry: { type: "Point", coordinates: [long, lat] },
+            },
+          };
+          features.push(feature);
+        }
       });
       setFeatureCollection(features);
     }
