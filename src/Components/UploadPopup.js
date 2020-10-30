@@ -62,6 +62,11 @@ const Popup = (props) => {
     return Family;
   }
 
+  function removeEmptyColumns(obj) {
+    Object.keys(obj).forEach(key => key === "" && delete obj[key]);
+  };
+
+
   // use papaparse to set up the csv
   function parseData(file, callBack) {
     Papa.parse(file, {
@@ -70,6 +75,7 @@ const Popup = (props) => {
       complete: function (results) {
         callBack(results.data);
       },
+      skipEmptyLines: "greedy"
     });
   }
 
@@ -82,28 +88,24 @@ const Popup = (props) => {
       var features = [];
 
       data.forEach((element) => {
-        // if National Database Number has no value, then we are looking at an empty row
-        // figure out how to handle this more elegantly later, for now just skip
-        if (element["National Database Number"] === "") {
-          console.log("empty row - skipping");
-        } else {
-          var lat = parseFloat(element["Latitude"]);
-          var long = element["Longitude"];
-          long = parseFloat(long.replace(/\u2013|\u2014/g, "-"));
-          var name = element["Common Name"];
-          var uniqueid = element["National Database Number"];
-          var family = getFamily(name);
-          element.Family = family;
+        removeEmptyColumns(element);
 
-          var feature = {
-            [uniqueid]: {
-              type: "Feature",
-              properties: element,
-              geometry: { type: "Point", coordinates: [long, lat] },
-            },
-          };
-          features.push(feature);
-        }
+        var lat = parseFloat(element["Latitude"]);
+        var long = element["Longitude"];
+        long = parseFloat(long.replace(/\u2013|\u2014/g, "-"));
+        var name = element["Common Name"];
+        var uniqueid = element["National Database Number"];
+        var family = getFamily(name);
+        element.Family = family;
+
+        var feature = {
+          [uniqueid]: {
+            type: "Feature",
+            properties: element,
+            geometry: { type: "Point", coordinates: [long, lat] },
+          },
+        };
+        features.push(feature);
       });
       setFeatureCollection(features);
     }
