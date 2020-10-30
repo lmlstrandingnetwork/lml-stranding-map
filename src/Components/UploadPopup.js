@@ -62,6 +62,11 @@ const Popup = (props) => {
     return Family;
   }
 
+  function removeEmptyColumns(obj) {
+    Object.keys(obj).forEach(key => key === "" && delete obj[key]);
+  };
+
+
   // use papaparse to set up the csv
   function parseData(file, callBack) {
     Papa.parse(file, {
@@ -83,6 +88,8 @@ const Popup = (props) => {
       var features = [];
 
       data.forEach((element) => {
+        removeEmptyColumns(element);
+
         var lat = parseFloat(element["Latitude"]);
         var long = element["Longitude"];
         long = parseFloat(long.replace(/\u2013|\u2014/g, "-"));
