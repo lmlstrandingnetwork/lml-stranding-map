@@ -70,6 +70,7 @@ const Popup = (props) => {
       complete: function (results) {
         callBack(results.data);
       },
+      skipEmptyLines: "greedy"
     });
   }
 
