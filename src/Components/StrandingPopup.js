@@ -4,6 +4,13 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "./StrandingPopup.css";
 
 const StrandingPopup = (props) => {
+  const reverseName = (props) => {
+    let name = props.selectedStranding.properties["Common Name"];
+    let array = name.split(", ");
+    let header = array.reverse().join(" ");
+    return header[0].toUpperCase() + header.substr(1).toLowerCase();
+  }
+
   return (
     <Popup
       latitude={props.latitude}
@@ -13,7 +20,7 @@ const StrandingPopup = (props) => {
     >
       <div className="stranding-popup">
         <div className="bg-image">
-          <h3> {props.selectedStranding.properties["Common Name"]} </h3>
+          <h3> {reverseName(props)} </h3>
         </div>
         <h2> {props.selectedStranding.properties["Field Number"]} </h2>
         <p>
