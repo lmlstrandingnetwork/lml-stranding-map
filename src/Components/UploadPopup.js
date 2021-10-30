@@ -92,7 +92,8 @@ const Popup = (props) => {
 
         var lat = parseFloat(element["Latitude"]);
         var long = element["Longitude"];
-        long = parseFloat(long.replace(/\u2013|\u2014/g, "-"));
+        long = long[0] === '-' ?
+          parseFloat(long) : parseFloat(long.replace(/\u2013|\u2014/g, "-"));
         var name = element["Common Name"];
         var uniqueid = element["National Database Number"];
         var family = getFamily(name);
@@ -136,7 +137,7 @@ const Popup = (props) => {
 
   // display each record to be uploaded
   const RecordCards = () => {
-    featureCollection.map((record) => console.log(Object.keys(record)[0]));
+    featureCollection.map((record) => console.log(record));
     return (
       <div>
         {featureCollection.map((record) => (
