@@ -10,7 +10,14 @@ const StrandingPopup = (props) => {
     let header = array.reverse().join(" ");
     return header[0].toUpperCase() + header.substr(1).toLowerCase();
   }
-
+  const parseDate = (props) => {
+    let date = props.selectedStranding.properties["Date of Examination"];
+    let array = date.split("-");
+    let result = "";
+    result += array[1] + " " + array[2] + ", " + array[0];
+    //result = date;
+    return result;
+  }
   return (
     <Popup
       latitude={props.latitude}
@@ -22,10 +29,12 @@ const StrandingPopup = (props) => {
         <div className="bg-image">
           <h3> {reverseName(props)} </h3>
         </div>
-        <h2> {props.selectedStranding.properties["Field Number"]} </h2>
+        <h2>
+         {props.selectedStranding.properties["Field Number"]}
+        </h2>
         <p>
-          <span className="highlight"> Date of Examination:</span>{" "}
-          {props.selectedStranding.properties["Date of Examination"]}{" "}
+          <span className="highlight"> Examination Date:</span>{" "}
+          {parseDate(props)}{" "}
         </p>
         <p>
           <span className="highlight"> Age Class:</span>{" "}
@@ -44,7 +53,7 @@ const StrandingPopup = (props) => {
           {props.selectedStranding.geometry.coordinates[0]}
         </p>
         <p>
-          <span className="highlight"> Findings of Human Interaction: </span>
+          <span className="highlight"> Human Interaction: </span>
           {
             props.selectedStranding.properties["Findings of Human Interaction"]
           }{" "}
