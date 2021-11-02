@@ -43,7 +43,7 @@ const ClusteredMarkers = (props) => {
         >
           <button
             className="marker-btn"
-            onClick={(e) => {
+            onMouseEnter={(e) => {
               e.preventDefault();
               props.setSelectedStranding(report);
             }}

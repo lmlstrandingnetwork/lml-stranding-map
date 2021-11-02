@@ -16,7 +16,7 @@ const StrandingPopup = (props) => {
       latitude={props.latitude}
       longitude={props.longitude}
       onClose={props.onClose}
-      closeOnClick={true}
+      closeOnClick={false}
     >
       <div className="stranding-popup">
         <div className="bg-image">
