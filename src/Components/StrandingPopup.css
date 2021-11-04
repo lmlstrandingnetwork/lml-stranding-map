@@ -1,7 +1,7 @@
 .stranding-popup {
   font: 375 14px/20px "Source Sans Pro", "Helvetica Neue", Sans-serif;
   padding: 0;
-  height: 300px;
+  max-height: 320px;
 }
 .stranding-popup h3 {
   background: #7e807b;
