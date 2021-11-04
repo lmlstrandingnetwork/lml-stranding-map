@@ -16,10 +16,10 @@ const StrandingPopup = (props) => {
          return "Not available";
       let array = date.split("-");
       let result = "";
-      if (array.length == 3)
-         result == array[1] + " " + array[2] + ", " + array[0];
-      else if (array.length == 2)=
-         result == array[1] + " " + ", " + array[0];
+      if (array.length === 3)
+         result = array[1] + " " + array[2] + ", " + array[0];
+      else if (array.length === 2)
+         result = array[1] + " " + ", " + array[0];
       else
          result = array[0];
       return result;
