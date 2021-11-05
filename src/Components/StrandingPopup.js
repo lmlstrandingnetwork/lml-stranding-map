@@ -35,13 +35,13 @@ const StrandingPopup = (props) => {
     return findings === "Y" ? "Yes" : "No";
   }
   return (
-      <Popup
-        latitude={props.latitude}
-        longitude={props.longitude}
-        onClose={props.onClose}
-        closeOnClick={true}
-      >
-        <div className="stranding-popup">
+    <Popup
+      latitude={props.latitude}
+      longitude={props.longitude}
+      onClose={props.onClose}
+      closeOnClick={false}
+    >
+      <div className="stranding-popup">
         <div className="bg-image">
             <h3> {reverseName(props)} </h3>
         </div>
