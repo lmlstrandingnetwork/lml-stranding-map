@@ -24,11 +24,15 @@ const StrandingPopup = (props) => {
         result = array[0].toUpperCase();
       return result;
   }
-  const humanInter = (props) => {
+  const parseHumanInter = (props) => {
       let findings = props.selectedStranding.properties["Findings of Human Interaction"];
       if (findings === "Y") return "Yes";
       else if (findings === "N") return "No";
-      else return "Cannot be determined"
+      else return "Cannot be determined";
+  }
+  const parseNecropsiedFlag = (props) => {
+    let findings = props.selectedStranding.properties["Necropsied Flag"];
+    return findings === "Y" ? "Yes" : "No";
   }
   return (
       <Popup
@@ -66,9 +70,7 @@ const StrandingPopup = (props) => {
         </p>
         <p>
             <span className="highlight"> Human Interaction: </span>
-            {
-              humanInter(props)
-            }{" "}
+            {parseHumanInter(props)}{" "}
         </p>
         <p>
             <span className="highlight"> Condition at Examination: </span>
@@ -76,11 +78,11 @@ const StrandingPopup = (props) => {
         </p>
         <p>
             <span className="highlight"> Necropsied Flag: </span>{" "}
-            {props.selectedStranding.properties["Necropsied Flag"]}{" "}
+            {parseNecropsiedFlag(props)}{" "}
         </p>
         </div>
       </Popup>
-   );
+  );
 };
 
 export default StrandingPopup;
