@@ -4,6 +4,7 @@ import Cluster from "@urbica/react-map-gl-cluster";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./ClusteredMarkers.css";
 import MarkerSVG from "./MarkerSVG";
+import StarSVG from "./StarSVG";
 
 const ClusterMarker = ({ longitude, latitude, pointCount }) => {
   var clusterSize = pointCount * 1.85;
@@ -48,13 +49,23 @@ const ClusteredMarkers = (props) => {
               props.setSelectedStranding(report);
             }}
           >
-            <MarkerSVG
-              markerColor={
-                props.markerColors[
-                  report.properties["Common Name"].split(",")[0]
-                ]
-              }
-            />
+            {
+              report.properties["Case Study"] ?
+              <StarSVG
+                markerColor={
+                  props.markerColors[
+                    report.properties["Common Name"].split(",")[0]
+                  ]
+                }
+              /> :
+              <MarkerSVG
+                markerColor={
+                  props.markerColors[
+                    report.properties["Common Name"].split(",")[0]
+                  ]
+                }
+              />
+            }
           </button>
         </Marker>
       ))}
