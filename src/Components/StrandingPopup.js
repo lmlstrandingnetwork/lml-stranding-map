@@ -17,11 +17,11 @@ const StrandingPopup = (props) => {
       let array = date.split("-");
       let result = "";
       if (array.length === 3)
-        result = array[1].toUpperCase() + " " + array[2] + ", " + array[0];
+        result = properCapitalization(array[1]) + " " + array[2] + ", " + array[0];
       else if (array.length === 2)
-        result = array[1].toUpperCase() + " , " + array[0];
+        result = properCapitalization(array[1]) + " , " + array[0];
       else
-        result = array[0].toUpperCase();
+        result = properCapitalization(array[0]);
       return result;
   }
   const parseHumanInter = (props) => {
@@ -33,6 +33,12 @@ const StrandingPopup = (props) => {
   const parseNecropsiedFlag = (props) => {
     let findings = props.selectedStranding.properties["Necropsied Flag"];
     return findings === "Y" ? "Yes" : "No";
+  }
+  // takes in a string and returns it with proper capitalization
+  // Ex: "HELLO WORLD" -> "Hello world"
+  const properCapitalization = (str) => {
+    return str ?
+      str[0].toUpperCase() + str.substr(1).toLowerCase() : "N/A";
   }
   return (
     <Popup
@@ -54,11 +60,11 @@ const StrandingPopup = (props) => {
         </p>
         <p>
             <span className="highlight"> Age Class:</span>{" "}
-            {props.selectedStranding.properties["Age Class"]}{" "}
+            {properCapitalization(props.selectedStranding.properties["Age Class"])}{" "}
         </p>
         <p>
             <span className="highlight"> Sex: </span>
-            {props.selectedStranding.properties["Sex"]}{" "}
+            {properCapitalization(props.selectedStranding.properties["Sex"])}{" "}
         </p>
         <p>
             <span className="highlight"> Latitude: </span>
