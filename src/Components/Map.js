@@ -41,11 +41,13 @@ function Map(props) {
 
   const markerColors = {
     Dolphin: "orange",
-    Pinniped: "brown",
+    Pinniped: "gray",
     Porpoise: "green",
     Seal: "blue",
     "Sea lion": "red",
     Whale: "purple",
+    Otariid: "brown",
+    Cetacean: "black"
   };
 
   useEffect(() => {
