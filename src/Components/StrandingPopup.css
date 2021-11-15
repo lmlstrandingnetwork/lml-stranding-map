@@ -3,13 +3,14 @@ html, body {
 }
 
 .wrapper {
-  height: 100%;
+  height: 80%;
 }
 
 .stranding-popup {
-  font: 375 14px/20px "Source Sans Pro", "Helvetica Neue", Sans-serif;
-  padding: 0;
-  min-height: 320px;
+  font: 350 14px/20px "Source Sans Pro", "Helvetica Neue", Sans-serif;
+  padding: 0px;
+  min-height: 290px;
+  width: 220px;
 }
 .stranding-popup h3 {
   background: hsl(84, 2%, 49%);
@@ -29,26 +30,37 @@ html, body {
 
 .stranding-popup h2 {
   display: block;
-  padding: 10px 0px 0px 4px;
-  font-weight: 500;
-  font-size: 125%;
+  padding-top: 15px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  font-weight: 450;
+  font-size: 100%;
   text-align: left;
 }
 .stranding-popup p {
   margin: 0;
   display: block;
-  padding: 2px;
+  padding-top: 3px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  
   font-weight: 400;
+  font-size: 100%;
   text-align: left;
 }
-
+.local {
+  font-size: 95%;
+}
 .highlight {
   color: gray;
 }
 
 .case-study {
   font: 375 14px/20px "Source Sans Pro", "Helvetica Neue", Sans-serif;
-  min-height: 320px;
+  min-height: 300px;
+  max-height: 300px;
   width: 200px;
   text-align: left;
 }
@@ -71,6 +83,7 @@ html, body {
 }
 
 .case-study-summary {
+  font: 375 14px/16px "Source Sans Pro", "Helvetica Neue", Sans-serif;
   text-align: left;
   font-weight: bold;
 }
@@ -83,9 +96,9 @@ html, body {
   border-color: #56B1CE;
   position: absolute;
   left: 50px;
-  top: 285px;
+  top: 260px;
 }
 
 .mapboxgl-popup-content {
-  height: 320px;
+  height: 290px;
 }
