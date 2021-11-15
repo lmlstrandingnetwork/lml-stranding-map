@@ -51,7 +51,7 @@ const StrandingPopup = (props) => {
         latitude={props.latitude}
         longitude={props.longitude}
         onClose={props.onClose}
-        closeOnClick={true}
+        closeOnClick={false}
       >
       <div className="stranding-popup">
         <div className="bg-image">
@@ -93,8 +93,8 @@ const StrandingPopup = (props) => {
       {props.selectedStranding.properties["Case Study"] ?
       <Popup
         className="case-study"
-        closeButton={true}
-        closeOnClick={true}
+        closeButton={false}
+        closeOnClick={false}
         latitude={props.latitude}
         longitude={props.longitude}
         offset={[225, 0]}
