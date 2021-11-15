@@ -51,7 +51,9 @@ html, body {
   font-size: 100%;
   text-align: left;
 }
-
+.local {
+   font-size: 95%;
+}
 .highlight {
   color: gray;
 }
@@ -98,5 +100,5 @@ html, body {
 
 .mapboxgl-popup-content {
   min-height: 185px;
-  max-height: 285px;
+  max-height: 315px;
 }

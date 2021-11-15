@@ -37,7 +37,7 @@ const StrandingPopup = (props) => {
   const parseLocality = (props) => {
      let locality = props.selectedStranding.properties["Locality Detail"];
      if (locality === undefined) return "Unavailable";
-     return properCapitalization(locality);
+     return locality;
   }
   // takes in a string and returns it with proper capitalization
   // Ex: "HELLO WORLD" -> "Hello world"
@@ -71,7 +71,7 @@ const StrandingPopup = (props) => {
         </p>
         <p>
            <span className="highlight"> Locality details: </span>
-           {parseLocality(props)}{" "}
+           <span className = "local">{parseLocality(props)}</span>{" "}
         </p>
         <p>
             <span className="highlight"> Human Interaction: </span>
