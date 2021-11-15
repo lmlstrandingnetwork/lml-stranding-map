@@ -34,6 +34,11 @@ const StrandingPopup = (props) => {
     let findings = props.selectedStranding.properties["Necropsied Flag"];
     return findings === "Y" ? "Yes" : "No";
   }
+  const parseLocality = (props) => {
+     let locality = props.selectedStranding.properties["Locality Detail"];
+     if (locality === undefined) return "Unavailable";
+     return properCapitalization(locality);
+  }
   // takes in a string and returns it with proper capitalization
   // Ex: "HELLO WORLD" -> "Hello world"
   const properCapitalization = (str) => {
@@ -46,19 +51,16 @@ const StrandingPopup = (props) => {
         latitude={props.latitude}
         longitude={props.longitude}
         onClose={props.onClose}
-        closeOnClick={false}
+        closeOnClick={true}
       >
       <div className="stranding-popup">
         <div className="bg-image">
             <h3> {reverseName(props)} </h3>
         </div>
         <h2>
-            {props.selectedStranding.properties["Field Number"]}
-        </h2>
-        <p>
-            <span className="highlight"> Examination Date:</span>{" "}
+            <span className="highlight"> Examine Date:</span>{" "}
             {parseDate(props)}{" "}
-        </p>
+        </h2>
         <p>
             <span className="highlight"> Age Class:</span>{" "}
             {properCapitalization(props.selectedStranding.properties["Age Class"])}{" "}
@@ -68,16 +70,12 @@ const StrandingPopup = (props) => {
             {properCapitalization(props.selectedStranding.properties["Sex"])}{" "}
         </p>
         <p>
-            <span className="highlight"> Latitude: </span>
-            {props.selectedStranding.geometry.coordinates[1]}
-        </p>
-        <p>
-            <span className="highlight"> Longitude: </span>
-            {props.selectedStranding.geometry.coordinates[0]}
+           <span className="highlight"> Locality details: </span>
+           {parseLocality(props)}{" "}
         </p>
         <p>
             <span className="highlight"> Human Interaction: </span>
-            {parseHumanInter(props)}{" "}
+            {parseHumanInter(props)}
         </p>
         <p>
             <span className="highlight"> Condition at Examination: </span>
@@ -87,14 +85,14 @@ const StrandingPopup = (props) => {
             <span className="highlight"> Necropsied Flag: </span>{" "}
             {parseNecropsiedFlag(props)}{" "}
         </p>
-        </div>
+      </div>
       </Popup>
       {/* Case study popup */}
       {props.selectedStranding.properties["Case Study"] ?
       <Popup
         className="case-study"
-        closeButton={false}
-        closeOnClick={false}
+        closeButton={true}
+        closeOnClick={true}
         latitude={props.latitude}
         longitude={props.longitude}
         offset={[225, 0]}
