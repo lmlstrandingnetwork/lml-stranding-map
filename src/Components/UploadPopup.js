@@ -89,7 +89,11 @@ const Popup = (props) => {
 
       data.forEach((element) => {
         removeEmptyColumns(element);
-
+        
+        // skip records without latitude or longitude
+        if (!element["Latitude"] || !element["Longitude"]) {
+          return;
+        }
         var lat = parseFloat(element["Latitude"]);
         var long = element["Longitude"];
         long = long[0] === '-' ?

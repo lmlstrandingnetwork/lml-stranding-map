@@ -41,12 +41,13 @@ const StrandingPopup = (props) => {
       str[0].toUpperCase() + str.substr(1).toLowerCase() : "N/A";
   }
   return (
-    <Popup
-      latitude={props.latitude}
-      longitude={props.longitude}
-      onClose={props.onClose}
-      closeOnClick={false}
-    >
+    <div className="wrapper">
+      <Popup
+        latitude={props.latitude}
+        longitude={props.longitude}
+        onClose={props.onClose}
+        closeOnClick={false}
+      >
       <div className="stranding-popup">
         <div className="bg-image">
             <h3> {reverseName(props)} </h3>
@@ -88,6 +89,42 @@ const StrandingPopup = (props) => {
         </p>
         </div>
       </Popup>
+      {/* Case study popup */}
+      {props.selectedStranding.properties["Case Study"] ?
+      <Popup
+        className="case-study"
+        closeButton={false}
+        closeOnClick={false}
+        latitude={props.latitude}
+        longitude={props.longitude}
+        offset={[225, 0]}
+      >
+        <div className="case-study-header">
+            <h3> Case Study </h3>
+        </div>
+        <div>
+          {props.selectedStranding.properties["Photo"] ?
+            <img
+            className="case-study-photo"
+            src={props.selectedStranding.properties["Photo"]}
+            height="100px"
+            /> :
+            <img
+            className="case-study-photo"
+            src="https://firebasestorage.googleapis.com/v0/b/lml-stranding-map.appspot.com/o/4a5b602a3824f7e8253f1f4b0a94d324.jpg?alt=media&token=905c60f7-ddc1-4fac-894b-cd36bcad79fd"
+            height="100px"
+            />
+          }
+        </div> 
+        <p className="case-study-summary">
+          {props.selectedStranding.properties["Case Study Summary"]}
+        </p>
+        <button className="case-study-button">
+          Read More
+        </button>
+        <br />
+      </Popup> : <span />}
+    </div>
   );
 };
 
