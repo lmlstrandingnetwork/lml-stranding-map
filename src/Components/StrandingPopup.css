@@ -80,10 +80,12 @@ html, body {
 .case-study-photo {
   margin-top: 15px;
   max-width: 180px;
+  max-height: 115px;
 }
 
 .case-study-summary {
-  font: 375 14px/16px "Source Sans Pro", "Helvetica Neue", Sans-serif;
+  margin-top: 5px;
+  font: 375 16px/16px "Source Sans Pro", "Helvetica Neue", Sans-serif;
   text-align: left;
   font-weight: bold;
 }
