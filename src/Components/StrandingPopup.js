@@ -89,7 +89,8 @@ const StrandingPopup = (props) => {
         </p>
       </div>
       </Popup>
-      {/* Case study popup */}
+
+      {/* Case study popup, only show if "Case Study" property is true */}
       {props.selectedStranding.properties["Case Study"] ?
       <Popup
         className="case-study"
@@ -97,28 +98,32 @@ const StrandingPopup = (props) => {
         closeOnClick={false}
         latitude={props.latitude}
         longitude={props.longitude}
+        /* Offset longitude to display case study popup to the right of stranding popup */
         offset={[225, 0]}
       >
         <div className="case-study-header">
             <h3> Case Study </h3>
         </div>
         <div>
+          {/* Check for "Photo" property, display if it exists" */}
           {props.selectedStranding.properties["Photo"] ?
             <img
             className="case-study-photo"
             src={props.selectedStranding.properties["Photo"]}
-            height="100px"
             /> :
+            /* If "Photo" property not present, use placeholder image */
             <img
             className="case-study-photo"
             src="https://firebasestorage.googleapis.com/v0/b/lml-stranding-map.appspot.com/o/4a5b602a3824f7e8253f1f4b0a94d324.jpg?alt=media&token=905c60f7-ddc1-4fac-894b-cd36bcad79fd"
             height="100px"
             />
           }
-        </div> 
+        </div>
+        {/* Display one sentence "Case Study Summary" */}
         <p className="case-study-summary">
           {props.selectedStranding.properties["Case Study Summary"]}
         </p>
+        {/* TO DO: Link to separate case study page */}
         <button className="case-study-button">
           Read More
         </button>
