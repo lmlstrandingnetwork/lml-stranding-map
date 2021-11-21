@@ -277,12 +277,20 @@ const Popup = (props) => {
               <RecordCards />
             </div>
             <div className="uploadButtonContent">
+              {featureCollection.length > 0 ?
               <button
                 className="uploadButton2"
                 onClick={uploadFeatureCollection}
               >
                 Upload
-              </button>
+              </button> :
+              <button
+                disabled
+                className="uploadButtonDisabled"
+                onClick={uploadFeatureCollection}
+              >
+                Upload
+              </button>}
               <CSVLink
                 data={csvTemplate}
                 filename={"stranding-report-template.csv"}
