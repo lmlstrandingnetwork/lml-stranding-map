@@ -9,6 +9,8 @@ import { CSVLink } from "react-csv";
 
 const Popup = (props) => {
   const [featureCollection, setFeatureCollection] = useState([]);
+  const [missingLatLongCollection, setMissingLatLongCollection] = useState([]);
+  const [missingYearCollection, setMissingYearCollection] = useState([]);
   const [responseData, setResponseData] = useState("");
   const [percentLoaded, setPercentLoaded] = useState("");
   const userToken = useContext(AuthContext).userToken;
@@ -86,14 +88,26 @@ const Popup = (props) => {
     // convert .csv to geojson
     function toGeoJSON(data) {
       var features = [];
+      var missingLatLong = [];
+      var missingYear = [];
 
       data.forEach((element) => {
         removeEmptyColumns(element);
+        var validRecord = true;
         
-        // skip records without latitude or longitude
+        // store records without latitude or longitude
         if (!element["Latitude"] || !element["Longitude"]) {
-          return;
+          missingLatLong.push(element["National Database Number"]);
+          validRecord = false;
         }
+        // store records without Year of Examination
+        if (!element["Year of Examination"]) {
+          missingYear.push(element["National Database Number"]);
+          validRecord = false;
+        }
+        // skip records that are missing latitude, longitude, or year of examination
+        if (!validRecord) return;
+
         var lat = parseFloat(element["Latitude"]);
         var long = element["Longitude"];
         long = long[0] === '-' ?
@@ -113,6 +127,8 @@ const Popup = (props) => {
         features.push(feature);
       });
       setFeatureCollection(features);
+      setMissingLatLongCollection(missingLatLong);
+      setMissingYearCollection(missingYear);
     }
 
     parseData(file, toGeoJSON);
@@ -139,6 +155,30 @@ const Popup = (props) => {
     <p className="fileName">{file.path}</p>
   ));
 
+  // display records with missing fields
+  const InvalidRecords = () => {
+    return (
+      <div>
+        <div className="subtitle">
+          {missingLatLongCollection.length} records missing Latitude/Longitude
+        </div>
+        {missingLatLongCollection.map((record) => (
+          <div>
+            <p className="recordID">{record}</p>
+          </div>
+        ))}
+        <div className="subtitle">
+          {missingYearCollection.length} records missing Year of Examination
+        </div>
+        {missingYearCollection.map((record) => (
+          <div>
+            <p className="recordID">{record}</p>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   // display each record to be uploaded
   const RecordCards = () => {
     featureCollection.map((record) => console.log(record));
@@ -163,38 +203,44 @@ const Popup = (props) => {
       "National Database Number",
       "Field Number",
       "Common Name",
+      "Genus",
+      "Species",
       "Affiliation",
+      "Country",
+      "County",
+      "City",
+      "State",
+      "Locality Detail",
       "Latitude",
-      "Latitude Units",
       "Longitude",
-      "Longitude Units",
       "Findings of Human Interaction",
       "Date of Examination",
       "Year of Examination",
       "Condition at Examination",
       "Sex",
       "Age Class",
-      "Length",
-      "Length Units",
       "Necropsied Flag",
     ],
     [
       "SW-2005-1060399",
       "LMLZC05NOV2005",
       "Sea lion, California",
+      "Zalophus",
+      "californianus",
       "Long Marine Laboratory",
+      "United States",
+      "SANTA CRUZ",
+      "Santa Cruz",
+      "CA",
+      "EAST END OF ITS BEACH",
       36.9513286,
-      "decimal degrees",
       -122.0655682,
-      "decimal degrees",
       "CBD",
       "2005-NOV-05",
       "2005",
       "Fresh dead",
       "MALE",
       "SUBADULT",
-      180,
-      "cm",
       "N",
     ],
   ];
@@ -219,20 +265,32 @@ const Popup = (props) => {
           <div className="fileContent">
             <div className="fileDetail">
               <span>{files}</span>
-              <p className="subtitle">
-                {featureCollection.length} records selected
-              </p>
+            </div>
+            {(missingLatLongCollection.length > 0 || missingYearCollection.length > 0) && 
+            <div className="invalidRecordContent">
+              <InvalidRecords />
+            </div>}
+            <div className="subtitle">
+              {featureCollection.length} valid records selected
             </div>
             <div className="recordContent">
               <RecordCards />
             </div>
             <div className="uploadButtonContent">
+              {featureCollection.length > 0 ?
               <button
                 className="uploadButton2"
                 onClick={uploadFeatureCollection}
               >
                 Upload
-              </button>
+              </button> :
+              <button
+                disabled
+                className="uploadButtonDisabled"
+                onClick={uploadFeatureCollection}
+              >
+                Upload
+              </button>}
               <CSVLink
                 data={csvTemplate}
                 filename={"stranding-report-template.csv"}
