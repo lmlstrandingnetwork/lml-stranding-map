@@ -22,7 +22,12 @@ function App() {
           <Route path="/about" exact component={About} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/casestudy" exact component={CaseStudyPage} />
+          <Route
+            exact path="/case/:databaseid"
+            render={(props) =>
+              <CaseStudyPage databaseid={props.match.params.databaseid}
+                {...props} />}
+          />
         </Router>
         <Footer />
       </AuthProvider>
