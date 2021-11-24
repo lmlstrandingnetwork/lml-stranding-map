@@ -1,26 +1,29 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import api from "../api";
 
 const CaseStudyPage = (props) => {
-    const [caseStudy, setCaseStudy] = useState([]);
-    // send the parsed records to Firebase through the backend
-    const getCaseStudy = (e) => {
-        e.preventDefault();
-        featureCollection.forEach((element) =>
-          api
-            .uploadData({ record: element, userToken: userToken }, config)
-            .then((response) => {
-              setResponseData(response);
-            })
-            .catch((error) => {
-              console.log(error);
-            })
-        );
-    };
-    return (
-        <div>
-            <h1>Case Study</h1>
-        </div>
-    );
+  // databaseid (National Database Number) passed in via URL of case study page
+  const databaseid = props.databaseid;
+  const [caseStudy, setCaseStudy] = useState([]);
+  
+  // retrieve data for given databaseid from Firebase
+  useEffect(() => {
+    api
+      .getStranding(databaseid)
+      .then((response) => {
+        console.log(response.data);
+        setCaseStudy(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, [databaseid]); // only call useEffect when the databaseid prop updates
+  
+  return (
+      <div>
+          <h1>Case Study</h1>
+      </div>
+  );
 }
 
 export default CaseStudyPage;
