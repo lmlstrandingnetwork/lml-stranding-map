@@ -23,7 +23,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route
-            exact path="/case/:databaseid"
+            exact path="/stranding/:databaseid"
             render={(props) =>
               <CaseStudyPage databaseid={props.match.params.databaseid}
                 {...props} />}

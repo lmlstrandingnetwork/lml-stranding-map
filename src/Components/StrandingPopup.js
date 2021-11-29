@@ -123,10 +123,16 @@ const StrandingPopup = (props) => {
         <p className="case-study-summary">
           {props.selectedStranding.properties["Case Study Summary"]}
         </p>
-        {/* TO DO: Link to separate case study page */}
-        <button className="case-study-button">
-          Read More
-        </button>
+        {/* Link to case study page using National Database Number */}
+        <a
+          href={'/stranding/' + props.selectedStranding.properties["National Database Number"]}
+          target="_blank"             // opens link in new tab
+          rel="noopener noreferrer"   // gets rid of eslint warning
+        >
+          <button className="case-study-button">
+            Read More
+          </button>
+        </a>
         <br />
       </Popup> : <span />}
     </div>
