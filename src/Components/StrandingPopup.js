@@ -102,7 +102,7 @@ const StrandingPopup = (props) => {
         offset={[225, 0]}
       >
         <div className="case-study-header">
-            <h3> Case Study </h3>
+            <h3>Stranding Story</h3>
         </div>
         <div>
           {/* Check for "Photo" property, display if it exists" */}

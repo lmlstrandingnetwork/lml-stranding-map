@@ -21,7 +21,7 @@ const CaseStudyPage = (props) => {
   
   return (
       <div>
-          <h1>Case Study</h1>
+          <h1>Stranding Story</h1>
           <p>{caseStudy["National Database Number"]}</p>
       </div>
   );
