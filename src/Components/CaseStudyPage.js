@@ -22,7 +22,16 @@ const CaseStudyPage = (props) => {
   return (
       <div>
           <h1>Stranding Story</h1>
-          <p>{caseStudy["National Database Number"]}</p>
+          <p>{caseStudy["Field Number"]}</p>
+          <p>{caseStudy["Case Study Writeup"]}</p>
+
+          {caseStudy["Writeup Photo"] ? 
+          <img
+            className="caseimage"
+            src={caseStudy["Writeup Photo"]}
+          /> :
+          <br></br>}
+
       </div>
   );
 }
