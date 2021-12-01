@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import api from "../api";
+import "./CaseStudyPage.css";
 
 const CaseStudyPage = (props) => {
   // databaseid (National Database Number) passed in via URL of case study page
@@ -20,19 +21,30 @@ const CaseStudyPage = (props) => {
   }, [databaseid]); // only call useEffect when the databaseid prop updates
   
   return (
-      <div>
-          <h1>Stranding Story</h1>
-          <p>{caseStudy["Field Number"]}</p>
-          <p>{caseStudy["Case Study Writeup"]}</p>
+    <div>
+      <div className="header">
+        <h1>Stranding Story</h1>
+        <h6>{caseStudy["Field Number"]}</h6>
+      </div>
+      <div className="caseStudy">
+          <div className="photo">
+            {caseStudy["Writeup Photo"] ?
+            <img
+              className="caseimage"
+              src={caseStudy["Writeup Photo"]}
+            /> :
+            <img
+              className="caseimage"
+              src={caseStudy["Photo"]}
+            />}
+          </div>
 
-          {caseStudy["Writeup Photo"] ? 
-          <img
-            className="caseimage"
-            src={caseStudy["Writeup Photo"]}
-          /> :
-          <br></br>}
+          <div className="writeup">
+            <p className="writeupText">{caseStudy["Case Study Writeup"]}</p>
+          </div>
 
       </div>
+    </div>
   );
 }
 
