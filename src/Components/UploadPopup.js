@@ -45,7 +45,7 @@ const Popup = (props) => {
         })
     );
   };
-
+  // based on the common name, return the family name
   function getFamily(name) {
     var commonName = name.split(",")[0].trim();
     var Family = "Unknown";
@@ -67,8 +67,6 @@ const Popup = (props) => {
   function removeEmptyColumns(obj) {
     Object.keys(obj).forEach(key => key === "" && delete obj[key]);
   };
-
-
   // use papaparse to set up the csv
   function parseData(file, callBack) {
     Papa.parse(file, {
@@ -107,11 +105,12 @@ const Popup = (props) => {
         }
         // skip records that are missing latitude, longitude, or year of examination
         if (!validRecord) return;
-
+        // pull and parse the longitude and latitude from the data
         var lat = parseFloat(element["Latitude"]);
         var long = element["Longitude"];
         long = long[0] === '-' ?
           parseFloat(long) : parseFloat(long.replace(/\u2013|\u2014/g, "-"));
+        // pull the other info from the data
         var name = element["Common Name"];
         var uniqueid = element["National Database Number"];
         var family = getFamily(name);

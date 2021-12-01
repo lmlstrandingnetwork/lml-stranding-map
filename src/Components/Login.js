@@ -6,6 +6,7 @@ import { AuthContext } from "../Auth.js";
 import Button from "react-bootstrap/Button";
 
 const Login = ({ history }) => {
+  // Query the Firebase api of the email and password combo is good
   const handleLogin = useCallback(
     async (event) => {
       event.preventDefault();

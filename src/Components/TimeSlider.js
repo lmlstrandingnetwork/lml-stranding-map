@@ -36,7 +36,8 @@ const TimeSlider = (props) => {
     };
     handleFilterChange();
   }, [props.items]);
-
+  // create the html for the Time Slider, with a range going from first year of exam to last year of exam
+  // has a play button
   return (
     <div className={props.className}>
       {props.items.length > 0 ? (
