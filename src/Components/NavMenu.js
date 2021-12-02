@@ -34,25 +34,28 @@ function NavMenu() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/">Map</Nav.Link>
-            <Nav.Link href="faq">FAQ</Nav.Link>
+            <Nav.Link href="/faq">FAQ</Nav.Link>
             <Nav.Link
               href="https://lmlstrandingnetwork.ucsc.edu/"
               target="_blank"
             >
               Stranding Program
             </Nav.Link>
-            <Nav.Link href="about">Team</Nav.Link>
+            <Nav.Link href="/about">Team</Nav.Link>
             {userContext.currentUser ? (
-              <Nav.Link className="logout" onClick={() => app.auth().signOut()}>
+              <Nav.Link className="/logout" onClick={() => app.auth().signOut()}>
                 Log Out
               </Nav.Link>
             ) : (
-              <Nav.Link href="login">Login</Nav.Link>
+              <Nav.Link href="/login">Login</Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>
         <p className="email">{loggedInAs}</p>
-        <Navbar.Brand href="/">
+        <Navbar.Brand
+          href="https://engineering.ucsc.edu/"
+          target="_blank"
+        >
           <Nav className="justify-content-end">
             <img
               src="../baskin-logo-banner-new.jpg"
