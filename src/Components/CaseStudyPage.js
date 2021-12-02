@@ -32,10 +32,12 @@ const CaseStudyPage = (props) => {
             <img
               className="caseimage"
               src={caseStudy["Writeup Photo"]}
+              alt={"Photo of stranded mammal " + caseStudy["Field Number"]}
             /> :
             <img
               className="caseimage"
               src={caseStudy["Photo"]}
+              alt={"Photo of stranded mammal " + caseStudy["Field Number"]}
             />}
           </div>
 

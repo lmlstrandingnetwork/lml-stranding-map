@@ -110,12 +110,14 @@ const StrandingPopup = (props) => {
             <img
             className="case-study-photo"
             src={props.selectedStranding.properties["Photo"]}
+            alt={"Photo of stranded mammal " + props.selectedStranding.properties["Field Number"]}
             /> :
             /* If "Photo" property not present, use placeholder image */
             <img
             className="case-study-photo"
             src="https://firebasestorage.googleapis.com/v0/b/lml-stranding-map.appspot.com/o/4a5b602a3824f7e8253f1f4b0a94d324.jpg?alt=media&token=905c60f7-ddc1-4fac-894b-cd36bcad79fd"
             height="100px"
+            alt="Placeholder, img of mammal unavailable"
             />
           }
         </div>
