@@ -100,6 +100,9 @@ html, body {
   left: 50px;
   top: 260px;
 }
+.case-study-button:hover {
+  background-color: #4995af;
+}
 
 .mapboxgl-popup-content {
   height: 290px;

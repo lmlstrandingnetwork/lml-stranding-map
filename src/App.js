@@ -6,6 +6,7 @@ import Faq from "./Components/faq";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Footer from "./Components/Footer";
+import CaseStudyPage from "./Components/CaseStudyPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AuthProvider from "./Auth";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -21,6 +22,12 @@ function App() {
           <Route path="/about" exact component={About} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
+          <Route
+            exact path="/stranding/:databaseid"
+            render={(props) =>
+              <CaseStudyPage databaseid={props.match.params.databaseid}
+                {...props} />}
+          />
         </Router>
         <Footer />
       </AuthProvider>

@@ -1,0 +1,26 @@
+.header {
+  color: black;
+}
+
+.caseStudy {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.writeup {
+  width: 50%;
+  margin: 1% 5% 0 1%;
+}
+
+.writeupText{
+  text-align: left;
+}
+
+.photo {
+  width: 50%;
+  margin: 1% 1% 0 5%;
+}
+
+.caseimage {
+  width: 90%;
+}
