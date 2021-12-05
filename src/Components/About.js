@@ -17,11 +17,30 @@ function About() {
 
         <Row className="justify-content-md-center">
           <h1>Meet the Team</h1>
-          <h3>We are a team of 6 software engineers who recently graduated from UCSC. Check out
-            our LinkedIn profiles.
+          <h3>We are a team of 4 software engineers who continued the development of this website in 2021.
           </h3>
         </Row>
 
+        <Row className="justify-content-md-center">
+          <Col>
+            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="deeksha-manjunath-63ab18168"><a class="LI-simple-link" href='https://www.linkedin.com/in/deeksha-manjunath-63ab18168?trk=profile-badge'>Deeksha Manjunath</a></div> 
+          </Col>
+          <Col>
+            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="benson-ho-4221a5149"><a class="LI-simple-link" href='https://www.linkedin.com/in/benson-ho-4221a5149?trk=profile-badge'>Benson Ho</a></div> 
+          </Col>
+        </Row>
+
+        <Row className="justify-content-md-center">
+          <Col>
+            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="junru-zhou"><a class="LI-simple-link" href='https://www.linkedin.com/in/junru-zhou?trk=profile-badge'>Junru Zhou</a></div> 
+          </Col>
+          <Col>
+            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="ethan-perlada"><a class="LI-simple-link" href='https://www.linkedin.com/in/ethan-perlada?trk=profile-badge'>Ethan Perlada</a></div> 
+          </Col>
+        </Row>
+
+        <h3>The original team of 6 software engineers who recently graduated from UCSC in 2020.
+        </h3>
         <Row className="justify-content-md-center">
           <Col>
             <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="yakovlevpavel"><a class="LI-simple-link" href='https://www.linkedin.com/in/yakovlevpavel?trk=profile-badge'>Pavel Yakovlev</a></div> 
@@ -51,7 +70,7 @@ function About() {
         <Row className="justify-content-md-center">
           <h1>Ackowledgements</h1>
           <h3>Thank you to our sponsors at the Long Marine Lab: Dr. Robin
-          Dunkin, Karolina Wirga, and Amber Diluzio. We would also like to
+          Dunkin, Karolina Wirga, Amber Diluzio, Juli Limon, and Maia Smith. We would also like to
           thank Professor Jullig and our TA’s Akila De Silva and Scott Davis
 that have provided support and mentorship throughout this project.</h3>
         </Row>
