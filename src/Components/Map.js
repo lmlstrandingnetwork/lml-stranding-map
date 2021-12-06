@@ -34,11 +34,11 @@ function Map(props) {
   const [strandingsKey, setStrandingsKey] = React.useReducer((c) => c + 1, 0);
 
   const mapRef = useRef();
-
+  // Resize the map to the current webpage size
   const resizeMap = () => {
     mapRef.current && mapRef.current.getMap().resize();
   };
-
+  // setup the marker colors
   const markerColors = {
     Dolphin: "orange",
     Pinniped: "gray",
@@ -47,7 +47,8 @@ function Map(props) {
     "Sea lion": "red",
     Whale: "purple",
     Otariid: "brown",
-    Cetacean: "black"
+    Cetacean: "lightgreen",
+    "Stranding Story": "black"
   };
 
   useEffect(() => {
@@ -55,7 +56,11 @@ function Map(props) {
     setStrandings(strandings);
     setStrandingsKey();
   }, [props.hits, strandings]);
-
+  /* Creates a map that is aware to the current webpage size
+   * Checks whether heatmap and time slider have been toggled on, which turn on their respective options
+   * selectedStranding ? () checks if the user selected a stranding. If so, open the popup(s) with details, defined in StrandingPopup.js
+   * <Legend> creates a legend object defined from Legend.js
+   */
   return (
     <div>
       <SizeAware onSize={resizeMap}>
@@ -107,8 +112,8 @@ function Map(props) {
           ) : null}
           <Legend
             attribute={"properties.Common Name"}
+            strandings={strandings}
             markerColors={markerColors}
-            transformItems={(items) => orderBy(items, "label", "asc")}
           />
           <NavigationControl showCompass showZoom position="top-left" />
         </MapGL>

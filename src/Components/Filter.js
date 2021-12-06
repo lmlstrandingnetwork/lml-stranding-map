@@ -29,7 +29,7 @@ function Filter() {
     reducer,
     true
   );
-
+  // toggles the heat map
   function showHeatmap() {
     if (isHeatmapHidden === true) {
       dispatchHeatmap({ type: "show" });
@@ -37,7 +37,7 @@ function Filter() {
       dispatchHeatmap({ type: "hide" });
     }
   }
-
+  // toggles the time slider
   function showTimeSlider() {
     if (isTimeSliderHidden === true) {
       dispatchTimeSlider({ type: "show" });
@@ -45,7 +45,7 @@ function Filter() {
       dispatchTimeSlider({ type: "hide" });
     }
   }
-
+  // Gets the list of all common names for the selected year(s) of examination
   const getResults = (searchState) => {
     let filters = ["properties.Year of Examination:2021"];
     if (searchState) {
@@ -76,7 +76,7 @@ function Filter() {
   useEffect(() => {
     getResults();
   }, []);
-
+  // Creates and returns the html for the Filter object
   return (
     <div>
       <InstantSearch

@@ -10,6 +10,7 @@ const StrandingPopup = (props) => {
     let header = array.reverse().join(" ");
     return header[0].toUpperCase() + header.substr(1).toLowerCase();
   }
+  // Formats the date in a more readable way
   const parseDate = (props) => {
       let date = props.selectedStranding.properties["Date of Examination"];
       if (date === undefined)
@@ -24,16 +25,19 @@ const StrandingPopup = (props) => {
         result = properCapitalization(array[0]);
       return result;
   }
+  // Expands the human interaction acronym
   const parseHumanInter = (props) => {
       let findings = props.selectedStranding.properties["Findings of Human Interaction"];
       if (findings === "Y") return "Yes";
       else if (findings === "N") return "No";
       else return "Cannot be determined";
   }
+  // Expands the necropsied acronym
   const parseNecropsiedFlag = (props) => {
     let findings = props.selectedStranding.properties["Necropsied Flag"];
     return findings === "Y" ? "Yes" : "No";
   }
+  // Checks if the locality is present in the data
   const parseLocality = (props) => {
     let locality = props.selectedStranding.properties["Locality Detail"];
     if (locality === undefined) return "Unavailable";
@@ -45,6 +49,7 @@ const StrandingPopup = (props) => {
     return str ?
       str[0].toUpperCase() + str.substr(1).toLowerCase() : "N/A";
   }
+  // Creates the html for the popup and returns
   return (
     <div className="wrapper">
       <Popup
