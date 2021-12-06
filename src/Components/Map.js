@@ -47,8 +47,8 @@ function Map(props) {
     "Sea lion": "red",
     Whale: "purple",
     Otariid: "brown",
-    Cetacean: "black",
-    "Case Study": "lightgreen"
+    Cetacean: "lightgreen",
+    "Stranding Story": "black"
   };
 
   useEffect(() => {
