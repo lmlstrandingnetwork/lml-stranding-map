@@ -57,53 +57,6 @@ html, body {
   color: gray;
 }
 
-.case-study {
-  font: 375 14px/20px "Source Sans Pro", "Helvetica Neue", Sans-serif;
-  min-height: 300px;
-  max-height: 300px;
-  width: 200px;
-  text-align: left;
-}
-
-.case-study h3 {
-  background: #56B1CE;
-  color: #fff;
-  display: block;
-  padding: 9px;
-  border-radius: 3px 3px 0 0;
-  font-weight: 500;
-  margin: -10px;
-  text-align: left;
-  font-size: 175%;
-}
-
-.case-study-photo {
-  margin-top: 15px;
-  max-width: 180px;
-  max-height: 115px;
-}
-
-.case-study-summary {
-  margin-top: 5px;
-  font: 375 16px/16px "Source Sans Pro", "Helvetica Neue", Sans-serif;
-  text-align: left;
-}
-
-.case-study-button {
-  border-radius: 3px 3px 0 0;
-  width: 100px;
-  font-weight: 500;
-  color: white;
-  background-color: #56B1CE;
-  border-color: #56B1CE;
-  position: absolute;
-  left: 50px;
-  top: 260px;
-}
-.case-study-button:hover {
-  background-color: #4995af;
-}
-
 .mapboxgl-popup-content {
   height: 290px;
 }

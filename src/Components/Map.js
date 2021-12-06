@@ -5,6 +5,7 @@ import { withSize } from "react-sizeme";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { heatmapLayer } from "./heatmapLayer";
 import StrandingPopup from "./StrandingPopup";
+import CaseStudyPopup from "./CaseStudyPopup";
 import Legend from "./Legend";
 import ClusteredMarkers from "./ClusteredMarkers";
 import TimeSlider from "./TimeSlider";
@@ -100,8 +101,22 @@ function Map(props) {
             transformItems={(items) => orderBy(items, "label", "asc")}
             limit={1000}
           />
+          {/* Normal stranding popup w/ info */}
           {selectedStranding ? (
             <StrandingPopup
+              selectedStranding={selectedStranding}
+              latitude={selectedStranding.geometry.coordinates[1]}
+              longitude={selectedStranding.geometry.coordinates[0]}
+              onClose={() => {
+                setSelectedStranding(null);
+              }}
+            />
+          ) : null}
+          {/* Case Study ("Stranding Story") popup 
+              Only shows if "Case Study" property is true
+          */}
+          {selectedStranding && selectedStranding.properties["Case Study"] ? (
+            <CaseStudyPopup
               selectedStranding={selectedStranding}
               latitude={selectedStranding.geometry.coordinates[1]}
               longitude={selectedStranding.geometry.coordinates[0]}
