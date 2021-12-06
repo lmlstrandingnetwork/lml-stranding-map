@@ -17,7 +17,7 @@ function About() {
 
         <Row className="justify-content-md-center">
           <h1>Meet the Team</h1>
-          <h3>We are a team of 4 software engineers who continued the development of this website in 2021.
+          <h3>We are a team of 4 computer science students at UCSC who continued this website's development in 2021.
           </h3>
         </Row>
 
