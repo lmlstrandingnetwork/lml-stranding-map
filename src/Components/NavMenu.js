@@ -58,10 +58,10 @@ function NavMenu() {
         >
           <Nav className="justify-content-end">
             <img
-              src="../baskin-logo-banner-new.jpg"
+              src="../baskin-logo-banner-2021.png"
               alt="baskin logo"
-              width="115"
-              height="20"
+              width="120"
+              height="30"
             />
           </Nav>
         </Navbar.Brand>
