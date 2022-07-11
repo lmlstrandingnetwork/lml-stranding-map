@@ -18,8 +18,6 @@ function App() {
         <NavMenu />
         <Router>
           <Route path="/" exact component={Filter} />
-          <Route path="/faq" exact component={Faq} />
-          <Route path="/about" exact component={About} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route

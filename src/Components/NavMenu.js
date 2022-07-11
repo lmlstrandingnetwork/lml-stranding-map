@@ -34,14 +34,12 @@ function NavMenu() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/">Map</Nav.Link>
-            <Nav.Link href="/faq">FAQ</Nav.Link>
             <Nav.Link
               href="https://lmlstrandingnetwork.ucsc.edu/"
               target="_blank"
             >
               Stranding Program
             </Nav.Link>
-            <Nav.Link href="/about">Team</Nav.Link>
             {userContext.currentUser ? (
               <Nav.Link className="/logout" onClick={() => app.auth().signOut()}>
                 Log Out
