@@ -25,6 +25,7 @@ const StrandingPopup = (props) => {
         result = properCapitalization(array[0]);
       return result;
   }
+  
   // Expands the human interaction acronym
   const parseHumanInter = (props) => {
       let findings = props.selectedStranding.properties["Findings of Human Interaction"];
@@ -91,6 +92,9 @@ const StrandingPopup = (props) => {
         <p>
             <span className="highlight"> Necropsied Flag: </span>{" "}
             {parseNecropsiedFlag(props)}{" "}
+        </p>
+        <p>
+            <span className="highlight"> Domoic Acid: </span>{" "}
         </p>
       </div>
       </Popup>
