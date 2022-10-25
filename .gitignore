@@ -24,3 +24,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+DataCleaning/DA_LMLStrand_Site.csv
+DataCleaning/lml-stranding-map-export.json
+DataCleaning/result.json
