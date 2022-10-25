@@ -75,12 +75,14 @@ const Sidebar = (props) => {
         attribute={"properties.Condition at Examination"}
       />
       <DropdownRefinementList attribute={"properties.Necropsied Flag"} />
+      <DropdownRefinementList attribute={"properties.Domoic Acid"} />
       <div style={{ padding: "18px" }}>
         <PoweredBy />
       </div>
     </div>
   );
 };
+
 
 const ToggleSwitch = (props) => {
   const [toggleState, setToggleState] = useState("off");
