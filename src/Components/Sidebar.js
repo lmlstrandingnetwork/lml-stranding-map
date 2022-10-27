@@ -53,6 +53,12 @@ const Sidebar = (props) => {
             Upload a file
           </label>
         )}
+        <br/>
+        {isUploadButtonHidden ? null : (
+          <label className="uploadButton" onClick={showUploadPopup}>
+            Upload Domoic Acid File
+          </label>
+        )}
       </div>
       {!isUploadPopupHidden && <UploadPopup toggle={showUploadPopup} />}
       <DropdownRefinementList

@@ -252,7 +252,7 @@ const Popup = (props) => {
           <span className="close" onClick={handleClick}>
             &times;{" "}
           </span>
-          <h3>File Upload</h3>
+          <h3>Domoic Acid Data File Upload</h3>
           <hr></hr>
         </div>
         <div className="mainPopupContent">
