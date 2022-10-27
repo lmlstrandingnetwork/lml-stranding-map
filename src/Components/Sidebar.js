@@ -75,7 +75,6 @@ const Sidebar = (props) => {
         attribute={"properties.Condition at Examination"}
       />
       <DropdownRefinementList attribute={"properties.Necropsied Flag"} />
-      <DropdownRefinementList attribute={"properties.Domoic Acid"} />
       <div style={{ padding: "18px" }}>
         <PoweredBy />
       </div>
