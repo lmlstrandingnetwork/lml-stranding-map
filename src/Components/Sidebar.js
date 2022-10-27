@@ -3,6 +3,7 @@ import { orderBy } from "lodash";
 import DropdownRefinementList from "./DropdownRefinementList";
 import { PoweredBy } from "react-instantsearch-dom";
 import UploadPopup from "./UploadPopup";
+import UploadDomoicAcidPopup from "./UploadDomoicAcidPopup";
 import { AuthContext } from "../Auth";
 import "./Sidebar.css";
 
@@ -19,6 +20,11 @@ const reducer = (isComponentHidden, action) => {
 
 const Sidebar = (props) => {
   const [isUploadPopupHidden, dispatchUploadPopup] = React.useReducer(
+    reducer,
+    true
+  );
+
+  const [isDAUploadPopupHidden, dispatchDAUploadPopup] = React.useReducer(
     reducer,
     true
   );
@@ -40,6 +46,14 @@ const Sidebar = (props) => {
     }
   }
 
+  function showDAUploadPopup() {
+    if (isDAUploadPopupHidden === true) {
+      dispatchDAUploadPopup({ type: "show" });
+    } else {
+      dispatchDAUploadPopup({ type: "hide" });
+    }
+  }
+
   return (
     <div className={"sidebar" + (props.isSidebarHidden ? "_hidden" : "")}>
       <div className="toggles-container">
@@ -55,12 +69,13 @@ const Sidebar = (props) => {
         )}
         <br/>
         {isUploadButtonHidden ? null : (
-          <label className="uploadButton" onClick={showUploadPopup}>
+          <label className="uploadButton" onClick={showDAUploadPopup}>
             Upload Domoic Acid File
           </label>
         )}
       </div>
       {!isUploadPopupHidden && <UploadPopup toggle={showUploadPopup} />}
+      {!isDAUploadPopupHidden && <UploadDomoicAcidPopup toggle={showDAUploadPopup} />}
       <DropdownRefinementList
         attribute={"properties.Common Name"}
         limit={50}
