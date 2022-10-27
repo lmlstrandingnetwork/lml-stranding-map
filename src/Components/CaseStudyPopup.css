@@ -11,7 +11,7 @@ html, body {
   min-height: 300px;
   max-height: 300px;
   width: 200px;
-  text-align: left;
+  text-align: center;
 }
 
 .case-study h3 {
@@ -22,7 +22,7 @@ html, body {
   border-radius: 3px 3px 0 0;
   font-weight: 500;
   margin: -10px;
-  text-align: left;
+  text-align: center;
   font-size: 175%;
 }
 
@@ -35,7 +35,7 @@ html, body {
 .case-study-summary {
   margin-top: 5px;
   font: 375 16px/16px "Source Sans Pro", "Helvetica Neue", Sans-serif;
-  text-align: left;
+  text-align: lecenterft;
 }
 
 .case-study-button {
@@ -46,7 +46,7 @@ html, body {
   background-color: #56B1CE;
   border-color: #56B1CE;
   position: absolute;
-  left: 50px;
+  left: 70px;
   top: 260px;
 }
 .case-study-button:hover {
@@ -54,5 +54,6 @@ html, body {
 }
 
 .mapboxgl-popup-content {
-  height: 290px;
+  height: 345px;
+  width: 245px;
 }
