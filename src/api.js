@@ -6,7 +6,8 @@ const firebaseFeaturesURL =
   "https://lml-stranding-map.firebaseio.com/features/";
 const algoliaURL =
   "https://us-central1-lml-stranding-map.cloudfunctions.net/api/algoliasearch";
-
+const allFirebaseFeaturesURL =
+  "https://lml-stranding-map.firebaseio.com/features.json";
 export default {
   uploadData: (data, config) =>
     axios.post(firebaseFunctionURL, data, config).then(
@@ -21,6 +22,15 @@ export default {
   // pass in National Database Number of the case you want to retrieve from Firebase
   getStranding: (databaseid) =>
       axios.get(firebaseFeaturesURL + databaseid + ".json").then(
+        (response) => {
+          return response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      ),
+      getFeatures: () =>
+      axios.get(allFirebaseFeaturesURL).then(
         (response) => {
           return response;
         },

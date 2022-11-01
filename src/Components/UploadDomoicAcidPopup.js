@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext } from "react";
+import React, { useCallback, useState, useContext, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import api from "../api";
 import "./UploadPopup.css";
@@ -14,7 +14,20 @@ const Popup = (props) => {
   const [responseData, setResponseData] = useState("");
   const [percentLoaded, setPercentLoaded] = useState("");
   const userToken = useContext(AuthContext).userToken;
-
+  let allFeatures = null;
+  useEffect(() => {
+    api
+      .getFeatures()
+      .then((response) => {
+        allFeatures=response.data;
+        console.log(allFeatures);
+        //setCaseStudy(response.data.properties);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, [""]); 
+  
   // handles closing the popup
   const handleClick = () => {
     props.toggle();
@@ -83,55 +96,51 @@ const Popup = (props) => {
   // handle dropped file
   const onDrop = useCallback((acceptedFiles) => {
     var file = acceptedFiles[0];
-
+  
     // convert .csv to geojson
-    function toGeoJSON(data) {
+    function matchWithExistingRecord(data) {
       var features = [];
-      var missingLatLong = [];
-      var missingYear = [];
+      
 
       data.forEach((element) => {
         removeEmptyColumns(element);
-        var validRecord = true;
         
-        // store records without latitude or longitude
-        if (!element["Latitude"] || !element["Longitude"]) {
-          missingLatLong.push(element["National Database Number"]);
-          validRecord = false;
-        }
-        // store records without Year of Examination
-        if (!element["Year of Examination"]) {
-          missingYear.push(element["National Database Number"]);
-          validRecord = false;
-        }
-        // skip records that are missing latitude, longitude, or year of examination
-        if (!validRecord) return;
+        
+        
+        
         // pull and parse the longitude and latitude from the data
-        var lat = parseFloat(element["Latitude"]);
-        var long = element["Longitude"];
-        long = long[0] === '-' ?
-          parseFloat(long) : parseFloat(long.replace(/\u2013|\u2014/g, "-"));
-        // pull the other info from the data
-        var name = element["Common Name"];
-        var uniqueid = element["National Database Number"];
-        var family = getFamily(name);
-        element.Family = family;
+        //FIELD #	DA PRESENT IN AT LEAST ONE SAMPLE?	FECES (ng/g)	URINE (ng/g)	STOMACH CONTENTS (ng/g)
 
-        var feature = {
-          [uniqueid]: {
-            type: "Feature",
-            properties: element,
-            geometry: { type: "Point", coordinates: [long, lat] },
-          },
+        // pull the other info from the data
+        const fieldNum = element["FIELD #"];
+        const DA_PRESENT = element["DA PRESENT IN AT LEAST ONE SAMPLE?"];
+        const feces = element["FECES (ng/g)"];
+        const urine = element["URINE (ng/g)"];
+        const stomach_contents = element["STOMACH CONTENTS (ng/g)"];
+      
+
+        
+        for(let nationalNumber in allFeatures) {
+          const possibleMatch = allFeatures[nationalNumber];
+          if (possibleMatch.properties["Field Number"] === fieldNum){
+            possibleMatch.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"] = DA_PRESENT;
+            possibleMatch.properties["FECES (ng/g)"] = feces;
+            possibleMatch.properties["URINE (ng/g)"] = urine;
+            possibleMatch.properties["STOMACH CONTENTS (ng/g)"] = stomach_contents;
+            const feature = {
+              [nationalNumber]: possibleMatch
+            };
+            features.push(feature);
+          }
         };
-        features.push(feature);
+        
       });
       setFeatureCollection(features);
-      setMissingLatLongCollection(missingLatLong);
-      setMissingYearCollection(missingYear);
-    }
+      //setMissingLatLongCollection(missingLatLong);
+      //setMissingYearCollection(missingYear);
+    };
 
-    parseData(file, toGeoJSON);
+    parseData(file, matchWithExistingRecord);
   }, []);
 
   const {
