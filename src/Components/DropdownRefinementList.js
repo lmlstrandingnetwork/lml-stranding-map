@@ -39,7 +39,11 @@ class DropdownRefinementList extends Component {
   render() {
     const { items, attribute, currentRefinement } = this.props;
     const { active } = this.state;
-    const title = attribute.split(".").pop();
+    var title = attribute.split(".").pop();
+    
+    if(title === "DA PRESENT IN AT LEAST ONE SAMPLE?"){
+      title = "Domoic Acid";
+    }
 
     return (
       <div className="ais-DropdownRefinementList-container">
