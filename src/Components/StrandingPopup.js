@@ -51,8 +51,32 @@ const StrandingPopup = (props) => {
       str[0].toUpperCase() + str.substr(1).toLowerCase() : "N/A";
   }
   const parseDomoicAcid = (props) => {
-    let dapresent = props.selectedStranding.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"];
-    return dapresent;
+    let currStranding = props.selectedStranding.properties;
+    let daPresent = currStranding["DA PRESENT IN AT LEAST ONE SAMPLE?"];
+    console.log(daPresent);
+    if (daPresent == "Not Present") {
+      return "No Data Available";
+    }
+    if (daPresent == "N") {
+      return "Not Present";
+    }
+    if (daPresent == "Y") {
+      let fecesAmount = currStranding["FECES (ng per g)"];
+      if (fecesAmount == "N/A") fecesAmount = 0;
+      fecesAmount = parseFloat(fecesAmount);
+
+      let urineAmount = currStranding["URINE (ng per g)"];
+      if (urineAmount == "N/A") urineAmount = 0;
+      urineAmount = parseFloat(urineAmount);
+
+      let stomachAmount = currStranding["STOMACH CONTENTS (ng per g)"];
+      if (stomachAmount == "N/A") stomachAmount = 0;
+      stomachAmount = parseFloat(stomachAmount);
+
+      let maxAmount = Math.max(fecesAmount, urineAmount, stomachAmount).toFixed(3).toString();
+      return maxAmount + " (ng/g)"
+    }
+    return daPresent;
   }
   // Creates the html for the popup and returns
   return (
@@ -98,8 +122,8 @@ const StrandingPopup = (props) => {
             {parseNecropsiedFlag(props)}{" "}
         </p>
         <p>
-            <span className="highlight"> Domoic Acid: </span>
-            {props.selectedStranding.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"]}{" "}
+            <span className="highlight"> Domoic Acid: </span>{" "}
+            {parseDomoicAcid(props)}{" "}
         </p>
       </div>
       </Popup>
