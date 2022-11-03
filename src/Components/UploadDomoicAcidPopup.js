@@ -124,9 +124,9 @@ const Popup = (props) => {
           const possibleMatch = allFeatures[nationalNumber];
           if (possibleMatch.properties["Field Number"] === fieldNum){
             possibleMatch.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"] = DA_PRESENT;
-            possibleMatch.properties["FECES (ng/g)"] = feces;
-            possibleMatch.properties["URINE (ng/g)"] = urine;
-            possibleMatch.properties["STOMACH CONTENTS (ng/g)"] = stomach_contents;
+            possibleMatch.properties["FECES (ng per g)"] = feces;
+            possibleMatch.properties["URINE (ng per g)"] = urine;
+            possibleMatch.properties["STOMACH CONTENTS (ng per g)"] = stomach_contents;
             const feature = {
               [nationalNumber]: possibleMatch
             };
