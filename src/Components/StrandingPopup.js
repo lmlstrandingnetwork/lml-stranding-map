@@ -50,6 +50,10 @@ const StrandingPopup = (props) => {
     return str ?
       str[0].toUpperCase() + str.substr(1).toLowerCase() : "N/A";
   }
+  const parseDomoicAcid = (props) => {
+    let dapresent = props.selectedStranding.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"];
+    return dapresent;
+  }
   // Creates the html for the popup and returns
   return (
     <div className="wrapper">
@@ -94,7 +98,8 @@ const StrandingPopup = (props) => {
             {parseNecropsiedFlag(props)}{" "}
         </p>
         <p>
-            <span className="highlight"> Domoic Acid: </span>{" "}
+            <span className="highlight"> Domoic Acid: </span>
+            {props.selectedStranding.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"]}{" "}
         </p>
       </div>
       </Popup>
