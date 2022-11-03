@@ -15,6 +15,8 @@ const Popup = (props) => {
   const [percentLoaded, setPercentLoaded] = useState("");
   const userToken = useContext(AuthContext).userToken;
   let allFeatures = null;
+
+
   useEffect(() => {
     api
       .getFeatures()
@@ -96,17 +98,32 @@ const Popup = (props) => {
   // handle dropped file
   const onDrop = useCallback((acceptedFiles) => {
     var file = acceptedFiles[0];
-  
+
     // convert .csv to geojson
     function matchWithExistingRecord(data) {
       var features = [];
-      
+
+      // console.log(allFeatures);
+
+      for(let nationalNumber in allFeatures) { //if database entries do not initially contain DA data, fill in now
+        const possibleMatch = allFeatures[nationalNumber];
+        if(!possibleMatch.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"]){
+          possibleMatch.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"] = "Not Present";
+          possibleMatch.properties["FECES (ng per g)"] = "N/A";
+          possibleMatch.properties["URINE (ng per g)"] = "N/A";
+          possibleMatch.properties["STOMACH CONTENTS (ng per g)"] = "N/A";
+          const feature = {
+            [nationalNumber]: possibleMatch
+          };
+          features.push(feature);
+          // console.log("DA data not found");
+        }else{
+          // console.log("DA data found");
+        }
+      }
 
       data.forEach((element) => {
         removeEmptyColumns(element);
-        
-        
-        
         
         // pull and parse the longitude and latitude from the data
         //FIELD #	DA PRESENT IN AT LEAST ONE SAMPLE?	FECES (ng/g)	URINE (ng/g)	STOMACH CONTENTS (ng/g)
@@ -117,9 +134,7 @@ const Popup = (props) => {
         const feces = element["FECES (ng/g)"];
         const urine = element["URINE (ng/g)"];
         const stomach_contents = element["STOMACH CONTENTS (ng/g)"];
-      
 
-        
         for(let nationalNumber in allFeatures) {
           const possibleMatch = allFeatures[nationalNumber];
           if (possibleMatch.properties["Field Number"] === fieldNum){
@@ -135,6 +150,7 @@ const Popup = (props) => {
         };
         
       });
+
       setFeatureCollection(features);
       //setMissingLatLongCollection(missingLatLong);
       //setMissingYearCollection(missingYear);
@@ -142,6 +158,7 @@ const Popup = (props) => {
 
     parseData(file, matchWithExistingRecord);
   }, []);
+
 
   const {
     acceptedFiles,
@@ -190,7 +207,7 @@ const Popup = (props) => {
 
   // display each record to be uploaded
   const RecordCards = () => {
-    featureCollection.map((record) => console.log(record));
+    // featureCollection.map((record) => console.log(record));
     return (
       <div>
         {featureCollection.map((record) => (
