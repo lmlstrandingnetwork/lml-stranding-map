@@ -54,23 +54,23 @@ const StrandingPopup = (props) => {
     let currStranding = props.selectedStranding.properties;
     let daPresent = currStranding["DA PRESENT IN AT LEAST ONE SAMPLE?"];
     console.log(daPresent);
-    if (daPresent == "Not Present") {
+    if ( (daPresent !== "Y" && daPresent!== "N") ) {
       return "No Data Available";
     }
-    if (daPresent == "N") {
+    if (daPresent === "N") {
       return "Not Present";
     }
-    if (daPresent == "Y") {
+    if (daPresent === "Y") {
       let fecesAmount = currStranding["FECES (ng per g)"];
       if (fecesAmount == "N/A") fecesAmount = 0;
       fecesAmount = parseFloat(fecesAmount);
 
       let urineAmount = currStranding["URINE (ng per g)"];
-      if (urineAmount == "N/A") urineAmount = 0;
+      if (urineAmount === "N/A") urineAmount = 0;
       urineAmount = parseFloat(urineAmount);
 
       let stomachAmount = currStranding["STOMACH CONTENTS (ng per g)"];
-      if (stomachAmount == "N/A") stomachAmount = 0;
+      if (stomachAmount === "N/A") stomachAmount = 0;
       stomachAmount = parseFloat(stomachAmount);
 
       let maxAmount = Math.max(fecesAmount, urineAmount, stomachAmount).toFixed(3).toString();
