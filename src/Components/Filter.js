@@ -47,7 +47,8 @@ function Filter() {
   }
   // Gets the list of all common names for the selected year(s) of examination
   const getResults = (searchState) => {
-    let filters = ["properties.Year of Examination:2021"];
+    // let filters = ["properties.Year of Examination:2021"];
+    let filters = ["properties.Year of Examination"];
     if (searchState) {
       filters = Object.keys(searchState.refinementList)
         .filter((key) => searchState.refinementList[key].length !== 0)

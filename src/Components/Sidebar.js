@@ -84,7 +84,7 @@ const Sidebar = (props) => {
       <DropdownRefinementList
         attribute={"properties.Year of Examination"}
         limit={50}
-        defaultRefinement={["2021"]}
+        // defaultRefinement={["2021"]}
         transformItems={(items) => orderBy(items, "label", "desc")}
       />
       <DropdownRefinementList attribute={"properties.Sex"} />
