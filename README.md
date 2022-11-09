@@ -38,41 +38,52 @@ After logging in, lab technicians can upload new stranding data to the database.
 [MIT](https://choosealicense.com/licenses/mit/)
 
 # Table of Contents
+<details open><summary>lml-stranding-map</summary><blockquote>
 
-- DataCleaning - *Includes a python script that merges stranding data currently on the website with a separate domoic acid csv file*
-  - cleanup.py - *python script*
-- functions - *Config files for Firebase, Axios, and Algolia*
-  - src
-    - index.ts - *Database config and functions*
-  - .eslintrc.json
-  - .gitignore
-  - index.js
-  - package-lock.json
-  - package.json
-  - tsconfig.json
-  - tslint.json
-- public - *Images and scalable vector graphics used on the website*
-  - screenshots - *Screenshots of the website*
-- src - *Javascript and css files for the website*
-  - Components - *Main Javascript and css files for the display and logic of the website*
-  - Config
-  - App.js
-  - App.test.js
-  - Auth.js
-  - PrivateRoute.js
-  - api.js
-  - index.css
-  - index.js
-  - logo.svg
-  - serviceWorker.js
-  - setupTests.js
-- .firebaserc
-- .gitignore
-- README.md
-- app.json
-- firebase.json
-- geojson.py
-- netlify.toml
-- package-lock.json
-- package.json
+<details><summary>DataCleaning</summary><blockquote>
 
+cleanup.py - *python script*
+</blockquote></details>
+
+<details><summary>functions</summary><blockquote>
+<details><summary>src</summary><blockquote>
+
+index.ts - *Database config and functions*
+</blockquote></details>
+
+.eslintrc.json
+.gitignore  
+index.js  
+package-lock.json  
+package.json  
+tsconfig.json  
+tslint.json
+</blockquote></details>
+
+<details><summary>public</summary><blockquote>
+<details><summary>screenshots</summary><blockquote>
+
+placeholder
+</blockquote></details>
+</blockquote></details>
+
+<details><summary>src</summary><blockquote>
+
+placeholder
+</blockquote></details>
+
+.firebaserc  
+.gitignore  
+README.md  
+app.json  
+firebase.json  
+geojson.py  
+netlify.toml  
+package-lock.json  
+package.json
+</blockquote></details>  
+
+<details><summary>Template</summary><blockquote>
+
+text
+</blockquote></details>
