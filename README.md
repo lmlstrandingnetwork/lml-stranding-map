@@ -44,6 +44,14 @@ After logging in, lab technicians can upload new stranding data to the database.
 
 >functions - *Config files for Firebase, Axios, and Algolia*
 >>src
+>>>index.ts
+>>.eslintrc.json
+>>.gitignore
+>>index.js
+>>package-lock.json
+>>package.json
+>>tsconfig.json
+>>tslint.json
 
 >index.ts - *Database config and functions*
 
