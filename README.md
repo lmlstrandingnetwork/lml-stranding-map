@@ -36,3 +36,17 @@ After logging in, lab technicians can upload new stranding data to the database.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+# Table of Contents
+
+## DataCleaning
+A Python script that merges stranding data currently on the website with a separate domoic acid csv file
+
+## functions
+Config files for Firebase, Axios, and Algolia
+
+## public
+Images and scalable vector graphics used on the website
+
+## src
+Javascript and css files for the website
