@@ -40,7 +40,7 @@ After logging in, lab technicians can upload new stranding data to the database.
 # Table of Contents
 
 - DataCleaning - *Includes a python script that merges stranding data currently on the website with a separate domoic acid csv file*
->>cleanup.py - *python script*
+  - cleanup.py - *python script*
 
 - functions - *Config files for Firebase, Axios, and Algolia*
   - src
@@ -56,7 +56,7 @@ After logging in, lab technicians can upload new stranding data to the database.
 - index.ts - *Database config and functions*
 
 - public - *Images and scalable vector graphics used on the website*
->>screenshots - *Screenshots of the website*
+  - screenshots - *Screenshots of the website*
 
 - src - *Javascript and css files for the website*
   - Components - *Main Javascript and css files for the display and logic of the website*
