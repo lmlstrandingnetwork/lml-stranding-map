@@ -142,6 +142,20 @@ const Popup = (props) => {
             possibleMatch.properties["FECES (ng per g)"] = feces;
             possibleMatch.properties["URINE (ng per g)"] = urine;
             possibleMatch.properties["STOMACH CONTENTS (ng per g)"] = stomach_contents;
+            let fecesAmount = feces;
+            if (fecesAmount == "N/A") fecesAmount = 0;
+            fecesAmount = parseFloat(fecesAmount);
+
+            let urineAmount = urine;
+            if (urineAmount == "N/A") urineAmount = 0;
+            urineAmount = parseFloat(urineAmount);
+
+            let stomachAmount = stomach_contents;
+            if (stomachAmount == "N/A") stomachAmount = 0;
+            stomachAmount = parseFloat(stomachAmount);
+
+            let maxAmount = Math.max(fecesAmount, urineAmount, stomachAmount);
+            possibleMatch.properties["Maximum Domoic Acid (ng per g)"] = maxAmount;
             const feature = {
               [nationalNumber]: possibleMatch
             };

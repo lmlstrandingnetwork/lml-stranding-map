@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { orderBy } from "lodash";
 import DropdownRefinementList from "./DropdownRefinementList";
-import { PoweredBy } from "react-instantsearch-dom";
+import { Panel, PoweredBy } from "react-instantsearch-dom";
 import UploadPopup from "./UploadPopup";
 import UploadDomoicAcidPopup from "./UploadDomoicAcidPopup";
 import { AuthContext } from "../Auth";
 import "./Sidebar.css";
-
+import CustomRangeSlider from "./CustomRangeSlider"
 const reducer = (isComponentHidden, action) => {
   switch (action.type) {
     case "show":
@@ -97,6 +97,9 @@ const Sidebar = (props) => {
       />
       <DropdownRefinementList attribute={"properties.Necropsied Flag"} />
       <DropdownRefinementList attribute={"properties.DA PRESENT IN AT LEAST ONE SAMPLE?"} />
+      <Panel header="Max Domoic Acid">
+      <CustomRangeSlider attribute={"properties.Maximum Domoic Acid (ng per g)" } min ={0} max={10}/>
+      </Panel>
       <div style={{ padding: "18px" }}>
         <PoweredBy />
       </div>
