@@ -120,7 +120,7 @@ Sidebar.js
 Signup.js  
 StarSVG.js  
 StrandingPopup.css  
-StrandingPopup.js - *Stranding pin popup on map*  
+StrandingPopup.js - *Stranding info popup for map pins*  
 TimeSlider.css  
 TimeSlider.js - *Year filter slider and play button*  
 UploadDomoicAcidPopup.js - *Allows LML to upload domoic acid data in csv format for previously uploaded strandings*  
