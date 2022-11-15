@@ -51,7 +51,7 @@ cleanup.py - *python script*
 index.ts - *Database config and functions*
 </blockquote></details>
 
-.eslintrc.json
+.eslintrc.json  
 index.js  
 package-lock.json  
 package.json  
@@ -93,7 +93,7 @@ seal.png
 <details><summary>Components</summary><blockquote>
 
 About.css  
-About.js  
+About.js - *Recognition page for teams that have worked on the website*  
 CaseStudyPage.css  
 CaseStudyPage.js  
 CaseStudyPopup.css  
@@ -120,12 +120,12 @@ Sidebar.js
 Signup.js  
 StarSVG.js  
 StrandingPopup.css  
-StrandingPopup.js  
+StrandingPopup.js - *Stranding pin popup on map*  
 TimeSlider.css  
-TimeSlider.js  
-UploadDomoicAcidPopup.js  
+TimeSlider.js - *Year filter slider and play button*  
+UploadDomoicAcidPopup.js - *Allows LML to upload domoic acid data in csv format for previously uploaded strandings*  
 UploadPopup.css  
-UploadPopup.js  
+UploadPopup.js - *Allows LML to upload stranding data in csv format*  
 faq.js  
 heatmapLayer.js
 </blockquote></details>
