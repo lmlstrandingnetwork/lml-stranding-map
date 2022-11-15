@@ -31,11 +31,10 @@
 }
 
 .play-button {
-  border-style: solid;
+  background: transparent;
   box-sizing: border-box;
-  width: 25px;
-  height: 25px;
+  height: 24px;
+  border-style: solid;
   border-width: 12px 0px 12px 24px;
-  border-color: transparent transparent transparent #202020;
-  align-content: center;
+  border-color: transparent transparent transparent black;
 }
