@@ -19,6 +19,7 @@ class DropdownRefinementList extends Component {
   }
   renderItem = (item, i) => (
     <label key={i} className="ais-DropdownRefinementList-item-label">
+      {(item.label == "Y") ? console.log("bruh") : console.log("bruuuuuh")}
       <input
         type="checkbox"
         checked={item.isRefined}
@@ -59,6 +60,7 @@ class DropdownRefinementList extends Component {
         </div>
         {active && (
           <div className="ais-DropdownRefinementList-List">
+            {console.log(items)}
             {items.map(this.renderItem)}
           </div>
         )}

@@ -1,87 +1,260 @@
+import { withRouter } from "react-router";
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
-import {Helmet} from "react-helmet";
 import "./About.css"
-
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import rd from '../Images/rd.jpg';
+import jl from '../Images/jl.jpg';
+import ms from '../Images/ms.jpeg';
 
 function About() {
   return (     
-    <div>
-    <Container>
-        <Helmet>
-          <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
-        </Helmet>
+    
+    <div class="border-custom">
+      <Container>
+        <h1 class="h1-title">Meet the Teams</h1>
 
-        <Row className="justify-content-md-center">
-          <h1>Meet the Team</h1>
-          <h3>We are a team of 4 computer science students at UCSC who continued this website's development in 2021.
-          </h3>
-        </Row>
+        <h2 class="h2-title"><u>Research Team:</u></h2>
 
-        <Row className="justify-content-md-center">
-          <Col>
-            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="deeksha-manjunath-63ab18168"><a class="LI-simple-link" href='https://www.linkedin.com/in/deeksha-manjunath-63ab18168?trk=profile-badge'>Deeksha Manjunath</a></div> 
-          </Col>
-          <Col>
-            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="benson-ho-4221a5149"><a class="LI-simple-link" href='https://www.linkedin.com/in/benson-ho-4221a5149?trk=profile-badge'>Benson Ho</a></div> 
-          </Col>
-        </Row>
+        <div class="row justify-content-center">
 
-        <Row className="justify-content-md-center">
-          <Col>
-            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="junru-zhou"><a class="LI-simple-link" href='https://www.linkedin.com/in/junru-zhou?trk=profile-badge'>Junru Zhou</a></div> 
-          </Col>
-          <Col>
-            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="ethan-perlada"><a class="LI-simple-link" href='https://www.linkedin.com/in/ethan-perlada?trk=profile-badge'>Ethan Perlada</a></div> 
-          </Col>
-        </Row>
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <img class="card-img-top" src={rd} alt="Logo"/>
+              <div class="card-body">
+                <h5 class="card-title">Robin Dunkin</h5>
+                <p class="card-text">Dr. Robin Dunkin is the Marine Mammal Stranding Operations manager for The Long Marine Lab Stranding Network.</p>
+              </div>
+            </div>
+          </div>
 
-        <h3>The original team of 6 software engineers who recently graduated from UCSC in 2020.
-        </h3>
-        <Row className="justify-content-md-center">
-          <Col>
-            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="yakovlevpavel"><a class="LI-simple-link" href='https://www.linkedin.com/in/yakovlevpavel?trk=profile-badge'>Pavel Yakovlev</a></div> 
-          </Col>
-          <Col>
-            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="ashley-pauley-862883199"><a class="LI-simple-link" href='https://www.linkedin.com/in/ashley-pauley-862883199?trk=profile-badge'>Ashley Pauley</a></div>
-          </Col>
-          <Col>
-            <div class="LI-profile-badge" data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="maya-apotheker-b7a139172"><a class="LI-simple-link" href='https://www.linkedin.com/in/maya-apotheker-b7a139172?trk=profile-badge'>Maya Apotheker</a></div>
-          </Col>
-        </Row>
-        <Row>
-          <p>  </p>
-        </Row>
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <img class="card-img-top" src={jl} alt="Logo"/>
+              <div class="card-body">
+                <h5 class="card-title">Juliana Limon</h5>
+                <p class="card-text">Juliana Limon is a Stranding Technician for the Long Marine Lab Stranding Network.</p>
+              </div>
+            </div>
+          </div>
 
-        <Row >
-          <Col>
-          <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="natalie-w-08b4639b"><a class="LI-simple-link" href='https://www.linkedin.com/in/natalie-w-08b4639b?trk=profile-badge'>Natalie W.</a></div>         
-          </Col>
-          <Col>
-          <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="azizkhuja"><a class="LI-simple-link" href='https://www.linkedin.com/in/azizkhuja?trk=profile-badge'>Azizkhuja Asomiddinov</a></div>          
-          </Col>
-          <Col>
-            <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="harrison-fox-775323193"><a class="LI-simple-link" href='https://www.linkedin.com/in/harrison-fox-775323193?trk=profile-badge'>Harrison Fox</a></div>
-          </Col>
-        </Row>
-        <Row className="justify-content-md-center">
-          <h1>Ackowledgements</h1>
-          <h3>Thank you to our sponsors at the Long Marine Lab: Dr. Robin
-          Dunkin, Karolina Wirga, Amber Diluzio, Juli Limon, and Maia Smith. We would also like to
-          thank Professor Jullig and our TA’s Akila De Silva and Scott Davis
-that have provided support and mentorship throughout this project.</h3>
-        </Row>
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <img class="card-img-top" src={ms} alt="Logo"/>
+              <div class="card-body">
+                <h5 class="card-title">Maia Smith</h5>
+                <p class="card-text">Maia Smith is a Stranding Technician for the Long Marine Lab Stranding Network.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <h2 class="h2-title"><u>Software Team 2022:</u></h2>
+
+        <div class="row justify-content-center">
+          <div class="col-sm-4 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Christopher Jensen</h5>
+                <h6 class="card-subtitle mb-2 text-muted">chjjense@ucsc</h6>
+                <p class="card-text">Computer Engineering student at UCSC</p>
+                <div>
+                    <Button href="https://www.linkedin.com/in/christopherjensen-998117177?trk=profile-badge" variant="primary">LinkedIn</Button>{' '}
+                    <Button href="https://github.com/chrisjjensen12" variant="dark">Github</Button>
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="col-sm-4 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Anirudh Reddy</h5>
+                <h6 class="card-subtitle mb-2 text-muted">akreddy@ucsc.edu</h6>
+                <p class="card-text">Computer Engineering student at UCSC</p>
+                <div>
+                    <Button variant="primary">LinkedIn</Button>{' '}
+                    <Button variant="dark">Github</Button>
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="col-sm-4 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Isha Manglik</h5>
+                <h6 class="card-subtitle mb-2 text-muted">imanglik@ucsc.edu</h6>
+                <p class="card-text">Computer Engineering student at UCSC</p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/isha-manglik?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                    <Button variant="dark">Github</Button>
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-sm-4 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Sydney Deharo</h5>
+                <h6 class="card-subtitle mb-2 text-muted">sdeharo@ucsc.edu</h6>
+                <p class="card-text">Computer Engineering student at UCSC</p>
+                <div>
+                    <Button variant="primary">LinkedIn</Button>{' '}
+                    <Button variant="dark">Github</Button>
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="col-sm-4 custom-padding">
+            <div class="card" >
+              <div class="card-body">
+                <h5 class="card-title">Ryoji Duey</h5>
+                <h6 class="card-subtitle mb-2 text-muted">rduey@ucsc.edu</h6>
+                <p class="card-text">Computer Science student at UCSC</p>
+                <div>
+                    <Button href="https://www.linkedin.com/in/ryojiduey?trk=profile-badge" variant="primary">LinkedIn</Button>{' '}
+                    <Button variant="dark">Github</Button>
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+
+        <h2 class="h3-title"><u>Software Team 2021:</u></h2>
+
+        <div class="row justify-content-center">
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Deeksha Manjunath</h5>
+                <p class="card-text"></p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/deeksha-manjunath-63ab18168?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Benson Ho</h5>
+                <p class="card-text"></p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/benson-ho-4221a5149?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Junru Zhou</h5>
+                <p class="card-text"></p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/junru-zhou?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Ethan Perlada</h5>
+                <p class="card-text"></p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/ethan-perlada?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+
+        <h2 class="h3-title"><u>Software Team 2020:</u></h2>
+
+        <div class="row justify-content-center">
+
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Pavel Yakovlev</h5>
+                <p class="card-text"></p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/yakovlevpavel?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                </div>
+              </div>
+            </div>  
+          </div>
+
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Ashley Pauley</h5>
+                <p class="card-text"></p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/ashley-pauley-862883199?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                </div>
+              </div>
+            </div>  
+          </div>
+
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Maya Apotheker</h5>
+                <p class="card-text"></p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/maya-apotheker-b7a139172?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                </div>
+              </div>
+            </div>  
+          </div>
+          
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Natalie W.</h5>
+                <p class="card-text"></p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/natalie-w-08b4639b?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Azizkhuja Asomiddinov</h5>
+                <p class="card-text"></p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/azizkhuja?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="col-sm-3 custom-padding">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Harrison Fox</h5>
+                <p class="card-text"></p>
+                <div>
+                    <Button href='https://www.linkedin.com/in/harrison-fox-775323193?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
 
       </Container>
-  </div>   
+    </div>   
       
   );
 }
 
 
-
-
-export default About;
+export default withRouter(About);

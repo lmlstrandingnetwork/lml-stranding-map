@@ -41,6 +41,7 @@ function NavMenu() {
             >
               Stranding Program
             </Nav.Link>
+            <Nav.Link href="/about">Meet The Team</Nav.Link>
             {userContext.currentUser ? (
               <Nav.Link className="/logout" onClick={() => app.auth().signOut()}>
                 Log Out

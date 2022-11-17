@@ -1,6 +1,49 @@
 .background {
     background: #aaa;
 }
-h1, h3, p{
+h1, h3, h2{
     text-align: center;
+}
+
+h1{
+    font-size: 57px;
+}
+
+.h1-title{
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.h2-title{
+    margin-bottom: 25px;
+    margin-top: 50px;
+}
+
+.h3-title{
+    margin-bottom: 25px;
+    margin-top: 50px;
+}
+
+.custom-center-r1{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.custom-center-r2{
+    display: flex;
+    justify-content: center;
+}
+
+.custom-width{
+    width: 100%;
+}
+
+
+.custom-padding{
+    padding-bottom: 15px;
+}
+
+.border-custom{
+    margin-bottom: 150px;
 }

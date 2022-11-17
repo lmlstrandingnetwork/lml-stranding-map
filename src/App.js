@@ -5,6 +5,7 @@ import About from "./Components/About";
 import Faq from "./Components/faq";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
+// import Team from "./Components/Team";
 import Footer from "./Components/Footer";
 import CaseStudyPage from "./Components/CaseStudyPage";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" exact component={Filter} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
+          <Route path="/about" exact component={About} />
           <Route
             exact path="/stranding/:databaseid"
             render={(props) =>
