@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./TimeSlider.css";
 import { connectRefinementList } from "react-instantsearch-dom";
 
+var clicks = 0;
+var time;
+var seconds = 0;
+
 const TimeSlider = (props) => {
   const [value, setValue] = useState(0);
   const [startYear, setStartYear] = useState("");
@@ -10,21 +14,46 @@ const TimeSlider = (props) => {
 
   // update our current year label and refine by it when slider is moved
   const handleChange = (value) => {
+    seconds = value;
     setValue(value);
     setCurrentYear(props.items[value].label);
     props.refine([props.items[value].label]);
+    
   };
 
   // move the slider on its own on an interval when play button pressed
+  // allow slider to be paused at a given value
   const handleClick = () => {
-    for (var i = 0; i <= props.items.length - 1; i++) {
-      var tick = function (i) {
-        return function () {
-          document.querySelector("input[type=range]").value = i;
-          handleChange(i);
-        };
-      };
-      setTimeout(tick(i), 500 * i);
+    clicks++;
+    if(clicks % 2){
+      // if at end of slider values, next play starts from earliest year
+      if(seconds >= props.items.length - 1){
+        seconds = 0;
+      }
+      start();
+    }
+    else{
+      stop();
+    }
+
+
+    function start() {
+       time = setTimeout(function() {
+        ++seconds;
+        start();
+      }, 500);
+      document.querySelector('.play-button').style.cssText = "border-style: double; padding-bottom: 12px; border-width: 0px 0px 0px 24px;";
+      // if at end of slider values, stop auto slide
+      if (seconds >= props.items.length - 1){
+        stop();
+        clicks++;
+        document.querySelector('.play-button').style.cssText = "border-style: solid; padding-bottom: 0px; border-width: 12px 0px 12px 24px;";
+      }
+      handleChange(seconds);
+    }
+    function stop() {
+      document.querySelector('.play-button').style.cssText = "border-style: solid; padding-bottom: 0px; border-width: 12px 0px 12px 24px;";
+      clearTimeout(time);
     }
   };
 
