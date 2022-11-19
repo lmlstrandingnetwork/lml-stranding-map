@@ -49,15 +49,30 @@ function Filter() {
   const getResults = (searchState) => {
     // let filters = ["properties.Year of Examination:2021"];
     let filters = ["properties.Year of Examination"];
+    let rangeFilter = "";
+    
     if (searchState) {
-      filters = Object.keys(searchState.refinementList)
-        .filter((key) => searchState.refinementList[key].length !== 0)
-        .map((key) =>
-          searchState.refinementList[key].map((entry) => key + ":" + entry)
+      if (Object.hasOwn(searchState, 'refinementList')) {
+        filters = Object.keys(searchState.refinementList)
+          .filter((key) => searchState.refinementList[key].length !== 0)
+          .map((key) =>
+            searchState.refinementList[key].map((entry) => key + ":" + entry)
         );
+      }
+      if(Object.hasOwn(searchState, 'range')){
+        if(Object.hasOwn(searchState.range,'properties.Maximum Domoic Acid (ng per g)')){
+          const min = searchState.range['properties.Maximum Domoic Acid (ng per g)'].min;
+          const max = searchState.range['properties.Maximum Domoic Acid (ng per g)'].max;
+          rangeFilter = `"properties.Maximum Domoic Acid (ng per g)":${min} TO ${max}`;
+
+        }
+         
+      }
     }
+    
 
     let data = {
+      filters: rangeFilter,
       facetFilters: filters,
       hitsPerPage: 1000,
       attributesToRetrieve: ["*"],
