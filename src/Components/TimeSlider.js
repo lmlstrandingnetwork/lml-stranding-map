@@ -31,8 +31,13 @@ const TimeSlider = (props) => {
   // update the range of the slider every time the list of filterable years changes
   useEffect(() => {
     const handleFilterChange = () => {
-      setStartYear(props.items[0].label);
+      if (props.items.length >=1)
+      {
+        setStartYear(props.items[0].label);
       setEndYear(props.items[props.items.length - 1].label);
+
+      }
+      
     };
     handleFilterChange();
   }, [props.items]);

@@ -6,6 +6,8 @@ import { connectRange } from 'react-instantsearch-dom';
 import 'rheostat/initialize';
 import Rheostat from 'rheostat';
 import 'rheostat/css/rheostat.css';
+import log10 from 'rheostat/lib/algorithms/log10';
+console.log(log10);
 
 const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
   const [stateMin, setStateMin] = React.useState(min);
@@ -37,6 +39,7 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
     <Rheostat
       min={min}
       max={max}
+      algorithm={log10}
       values={[currentRefinement.min, currentRefinement.max]}
       onChange={onChange}
       onValuesUpdated={onValuesUpdated}
