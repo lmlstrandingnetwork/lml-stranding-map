@@ -95,13 +95,13 @@ seal.png
 About.css  
 About.js - *Recognition page for teams that have worked on the website*  
 CaseStudyPage.css  
-CaseStudyPage.js - *"Stranding Story" case study page displaying stranding field number, photo, and writeup*
+CaseStudyPage.js - *"Stranding Story" case study page displaying stranding field number, photo, and writeup*  
 CaseStudyPopup.css  
-CaseStudyPopup.js - *"Stranding Story" popup for map pins*
+CaseStudyPopup.js - *"Stranding Story" popup for map pins*  
 ClusteredMarkers.css  
 ClusteredMarkers.js  
 Content.css  
-Content.js - *Layout of non-map portion of the page (sidebar, slider toggles)*
+Content.js - *Layout of non-map portion of the page (sidebar, slider toggles)*  
 DropdownRefinementList.css  
 DropdownRefinementList.js  
 Filter.js  
@@ -114,7 +114,7 @@ LoginStyles.css
 Map.js  
 MarkerSVG.js  
 NavMenu.css  
-NavMenu.js - *Top NavBar of page above map*
+NavMenu.js - *Top NavBar of page above map*  
 Sidebar.css  
 Sidebar.js  
 Signup.js  
