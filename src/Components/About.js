@@ -76,8 +76,6 @@ function About() {
                 <h6 class="card-subtitle mb-2 text-muted">akreddy@ucsc.edu</h6>
                 <p class="card-text">Computer Engineering student at UCSC</p>
                 <div>
-                    <Button variant="primary">LinkedIn</Button>{' '}
-                    <Button variant="dark">Github</Button>
                 </div>
               </div>
             </div>  
@@ -90,7 +88,7 @@ function About() {
                 <p class="card-text">Computer Engineering student at UCSC</p>
                 <div>
                     <Button href='https://www.linkedin.com/in/isha-manglik?trk=profile-badge' variant="primary">LinkedIn</Button>{' '}
-                    <Button variant="dark">Github</Button>
+                    <Button href="https://github.com/imanglik" variant="dark">Github</Button>
                 </div>
               </div>
             </div>  
@@ -105,8 +103,7 @@ function About() {
                 <h6 class="card-subtitle mb-2 text-muted">sdeharo@ucsc.edu</h6>
                 <p class="card-text">Computer Engineering student at UCSC</p>
                 <div>
-                    <Button variant="primary">LinkedIn</Button>{' '}
-                    <Button variant="dark">Github</Button>
+                    <Button href="https://github.com/ssdeharo" variant="dark">Github</Button>
                 </div>
               </div>
             </div>  
@@ -119,7 +116,6 @@ function About() {
                 <p class="card-text">Computer Science student at UCSC</p>
                 <div>
                     <Button href="https://www.linkedin.com/in/ryojiduey?trk=profile-badge" variant="primary">LinkedIn</Button>{' '}
-                    <Button variant="dark">Github</Button>
                 </div>
               </div>
             </div>  
