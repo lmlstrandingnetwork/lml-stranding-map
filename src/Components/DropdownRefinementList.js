@@ -30,6 +30,11 @@ class DropdownRefinementList extends Component {
       <span className={cx("item-count")}> ({item.count})</span>
     </label>
   );
+  editItem = (item, i) => {
+    if(item.label === "Not Present"){
+      item.label = "Not Tested";
+    }
+  };
   selectItem = (item, resetQuery) => {
     this.props.refine(item.value);
   };
@@ -59,6 +64,7 @@ class DropdownRefinementList extends Component {
         </div>
         {active && (
           <div className="ais-DropdownRefinementList-List">
+            {items.map(this.editItem)}
             {items.map(this.renderItem)}
           </div>
         )}
