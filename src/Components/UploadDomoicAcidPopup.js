@@ -161,7 +161,7 @@ const Popup = (props) => {
 
             // match max domoic acid to bucket on logorithmic scale
             let bucketsArray = [0, 1, 10, 100, 1000, 10000, 100000]; // set up buckets
-            let bucket = range.find(num => num >= maxAmount); // outputs upper end of bucket (50.6 -> 100)
+            let bucket = bucketsArray.find(num => num >= maxAmount); // outputs upper end of bucket (50.6 -> 100)
             possibleMatch.properties["DA BUCKET (ng per g)"] = bucket;
 
             const feature = {
