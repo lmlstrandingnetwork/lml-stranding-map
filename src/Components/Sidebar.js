@@ -99,7 +99,7 @@ const Sidebar = (props) => {
       <DropdownRefinementList attribute={"properties.Necropsied Flag"} />
       <DropdownRefinementList attribute={"properties.DA PRESENT IN AT LEAST ONE SAMPLE?"} />
       <Panel header="Max Domoic Acid">
-      <CustomRangeSlider  attribute={"properties.Maximum Domoic Acid (ng per g)" } min ={1} max={238420}/>
+      <CustomRangeSlider  attribute={"properties.Maximum Domoic Acid (ng per g)" } fullMin ={1} fullMax={238420}/>
       </Panel>
       <div style={{ padding: "18px" }}>
         <PoweredBy />

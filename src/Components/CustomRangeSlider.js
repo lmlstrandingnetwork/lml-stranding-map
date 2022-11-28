@@ -9,40 +9,61 @@ import 'rheostat/css/rheostat.css';
 import log10 from 'rheostat/lib/algorithms/log10';
 console.log(log10);
 
-const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
-  const [stateMin, setStateMin] = React.useState(min);
-  const [stateMax, setStateMax] = React.useState(max);
-
+const RangeSlider = ({ min, max, currentRefinement, canRefine, refine,fullMin,fullMax }) => {
+  const [stateMin, setStateMin] = React.useState(fullMin);
+  const [stateMax, setStateMax] = React.useState(fullMax);
+  const [filteringDisabled, setfilteringDisabled] = React.useState(min === undefined || max === undefined);
   React.useEffect(() => {
     if (canRefine) {
-      setStateMin(currentRefinement.min);
-      setStateMax(currentRefinement.max);
+      
+      if(currentRefinement.max === undefined || currentRefinement.min === undefined)
+      {
+        setfilteringDisabled(true);
+      }
+      else{
+        setfilteringDisabled(false);
+        setStateMin(currentRefinement.min);
+        setStateMax(currentRefinement.max);
+      }
     }
   }, [currentRefinement.min, currentRefinement.max]);
 
-  if (min === max) {
-    return null;
-  }
+  
 
   const onChange = ({ values: [min, max] }) => {
     if (currentRefinement.min !== min || currentRefinement.max !== max) {
       refine({ min, max });
     }
   };
-
+  const onCheckboxClicked = (event) => {
+    setfilteringDisabled(event.target.checked);
+    if(event.target.checked)
+    {
+      setStateMin(undefined);
+      setStateMax(undefined);
+      refine({ min:undefined, max:undefined });
+    } else{
+      refine({min: stateMin, max: stateMax});
+    }
+    
+  };
   const onValuesUpdated = ({ values: [min, max] }) => {
     setStateMin(min);
     setStateMax(max);
+    //setfilteringDisabled(currentRefinement.max === undefined || currentRefinement.min === undefined );
   };
 
   return (
+    <>
     <Rheostat
-      min={min}
-      max={max}
+      disabled={filteringDisabled}
+      min={fullMin}
+      max={fullMax}
       algorithm={log10}
-      values={[currentRefinement.min, currentRefinement.max]}
+      values={[stateMin, stateMax]}
       onChange={onChange}
       onValuesUpdated={onValuesUpdated}
+      
     >
       <div
         className="rheostat-marker rheostat-marker--large"
@@ -56,7 +77,11 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
       >
         <div className="rheostat-value">{stateMax}</div>
       </div>
+      
     </Rheostat>
+    <input type="checkbox" id="disable-filter" checked={filteringDisabled?"checked":""} onChange={onCheckboxClicked}></input>
+    <label for="disable-filter">Disable the Range Filter</label>
+    </>
   );
 };
 

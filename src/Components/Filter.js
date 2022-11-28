@@ -63,7 +63,11 @@ function Filter() {
         if(Object.hasOwn(searchState.range,'properties.Maximum Domoic Acid (ng per g)')){
           const min = searchState.range['properties.Maximum Domoic Acid (ng per g)'].min;
           const max = searchState.range['properties.Maximum Domoic Acid (ng per g)'].max;
-          rangeFilter = `"properties.Maximum Domoic Acid (ng per g)":${min} TO ${max}`;
+          if(min !== undefined && max !==undefined)
+          {
+            rangeFilter = `"properties.Maximum Domoic Acid (ng per g)":${min} TO ${max}`;
+          }
+          
 
         }
          
