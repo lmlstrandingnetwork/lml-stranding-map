@@ -39,8 +39,7 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine,fullMin,fu
     setfilteringDisabled(event.target.checked);
     if(event.target.checked)
     {
-      setStateMin(undefined);
-      setStateMax(undefined);
+      
       refine({ min:undefined, max:undefined });
     } else{
       refine({min: stateMin, max: stateMax});
