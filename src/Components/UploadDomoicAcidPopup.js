@@ -108,11 +108,10 @@ const Popup = (props) => {
       for(let nationalNumber in allFeatures) { //if database entries do not initially contain DA data, fill in now
         const possibleMatch = allFeatures[nationalNumber];
         if(!possibleMatch.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"]){
-          possibleMatch.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"] = "Not Tested";
+          possibleMatch.properties["DA PRESENT IN AT LEAST ONE SAMPLE?"] = "Not Present";
           possibleMatch.properties["FECES (ng per g)"] = "N/A";
           possibleMatch.properties["URINE (ng per g)"] = "N/A";
           possibleMatch.properties["STOMACH CONTENTS (ng per g)"] = "N/A";
-          possibleMatch.properties["DA BUCKET (ng per g)"] = "N/A";
           const feature = {
             [nationalNumber]: possibleMatch
           };
@@ -157,12 +156,6 @@ const Popup = (props) => {
 
             let maxAmount = Math.max(fecesAmount, urineAmount, stomachAmount);
             possibleMatch.properties["Maximum Domoic Acid (ng per g)"] = maxAmount;
-
-
-            // match max domoic acid to bucket on logorithmic scale
-            let bucketsArray = [0, 1, 10, 100, 1000, 10000, 100000]; // set up buckets
-            let bucket = bucketsArray.find(num => num >= maxAmount); // outputs upper end of bucket (50.6 -> 100)
-            possibleMatch.properties["DA BUCKET (ng per g)"] = bucket;
 
             const feature = {
               [nationalNumber]: possibleMatch
