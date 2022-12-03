@@ -34,7 +34,6 @@ function NavMenu() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/">Map</Nav.Link>
-            <Nav.Link href="/">Domoic Acid</Nav.Link>
             <Nav.Link
               href="https://lmlstrandingnetwork.ucsc.edu/"
               target="_blank"

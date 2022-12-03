@@ -1,4 +1,5 @@
 import React from 'react';
+import "./CustomRangeSlider.css";
 import { connectRange } from 'react-instantsearch-dom';
 // source: https://www.algolia.com/doc/api-reference/widgets/range-slider/react/
 
@@ -55,6 +56,7 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine,fullMin,fu
   return (
     <>
     <Rheostat
+      className = "sliderSpacing"
       disabled={filteringDisabled}
       min={fullMin}
       max={fullMax}
@@ -68,18 +70,12 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine,fullMin,fu
         className="rheostat-marker rheostat-marker--large"
         style={{ left: 0 }}
       >
-        <div className="rheostat-value">{stateMin}</div>
-      </div>
-      <div
-        className="rheostat-marker rheostat-marker--large"
-        style={{ right: 0 }}
-      >
-        <div className="rheostat-value">{stateMax}</div>
+        <div className="rheostat-value rangeStyle">{stateMin} ng/g - {stateMax} ng/g</div>
       </div>
       
     </Rheostat>
     <input type="checkbox" id="disable-filter" checked={filteringDisabled?"checked":""} onChange={onCheckboxClicked}></input>
-    <label for="disable-filter">Disable the Range Filter</label>
+    <label className="checkboxStyle" for="disable-filter">Disable Slider</label>
     </>
   );
 };

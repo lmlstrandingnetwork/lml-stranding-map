@@ -75,3 +75,20 @@
 .uploadButton:hover {
   color: #ffbf00;
 }
+
+.sliderContainer {
+
+  padding: 18px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #999;
+  margin: 10px;
+  background: white;
+  display: inline-block;
+  width: 90%;
+
+}
+
+.sliderTitle {
+  margin-bottom: 15px;
+}
