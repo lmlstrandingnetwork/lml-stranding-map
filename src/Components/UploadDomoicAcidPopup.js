@@ -241,48 +241,18 @@ const Popup = (props) => {
   // upload template csv for download
   const csvTemplate = [
     [
-      "National Database Number",
-      "Field Number",
-      "Common Name",
-      "Genus",
-      "Species",
-      "Affiliation",
-      "Country",
-      "County",
-      "City",
-      "State",
-      "Locality Detail",
-      "Latitude",
-      "Longitude",
-      "Findings of Human Interaction",
-      "Date of Examination",
-      "Year of Examination",
-      "Condition at Examination",
-      "Sex",
-      "Age Class",
-      "Necropsied Flag",
+      "FIELD #",
+      "DA PRESENT IN AT LEAST ONE SAMPLE?",
+      "FECES (ng/g)",
+      "URINE (ng/g)",
+      "STOMACH CONTENTS (ng/g)",
     ],
     [
-      "SW-2005-1060399",
-      "LMLZC05NOV2005",
-      "Sea lion, California",
-      "Zalophus",
-      "californianus",
-      "Long Marine Laboratory",
-      "United States",
-      "SANTA CRUZ",
-      "Santa Cruz",
-      "CA",
-      "EAST END OF ITS BEACH",
-      36.9513286,
-      -122.0655682,
-      "CBD",
-      "2005-NOV-05",
-      "2005",
-      "Fresh dead",
-      "MALE",
-      "SUBADULT",
-      "N",
+      "LMLCU2014DEC23",
+      "Y",
+      "341.822305",
+      "N/A",
+      "N/A",
     ],
   ];
 
@@ -334,7 +304,7 @@ const Popup = (props) => {
               </button>}
               <CSVLink
                 data={csvTemplate}
-                filename={"stranding-report-template.csv"}
+                filename={"da-template.csv"}
               >
                 Download CSV template
               </CSVLink>

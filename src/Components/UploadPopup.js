@@ -116,6 +116,11 @@ const Popup = (props) => {
         var uniqueid = element["National Database Number"];
         var family = getFamily(name);
         element.Family = family;
+        element["DA PRESENT IN AT LEAST ONE SAMPLE?"] = "Not Present";
+        element["FECES (ng per g)"] = "N/A";
+        element["URINE (ng per g)"] = "N/A";
+        element["STOMACH CONTENTS (ng per g)"] = "N/A";
+        console.log(element);
 
         var feature = {
           [uniqueid]: {
